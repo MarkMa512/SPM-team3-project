@@ -17,7 +17,7 @@ class Course{
     }
 
     function addPrerequisite($prerequisite){
-        prerequisiteList.append($prerequisite);
+        $this->prerequisiteList.append($prerequisite);
     }
 
     function getCourseCode(){

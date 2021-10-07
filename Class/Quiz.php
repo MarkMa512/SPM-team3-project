@@ -35,6 +35,11 @@ class Quiz{
         }return 0;
     }
 
+    function getClass($quizID){
+        // return the quiz class object
+        return ;
+    }
+
 }
 
 ?>

@@ -10,7 +10,8 @@ class Section{
     }
 
     function autoGetQuizResult($quizID, $answer){
-        
+        $result = [];
+        // 
     }
 
 }
