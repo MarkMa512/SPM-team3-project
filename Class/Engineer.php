@@ -13,6 +13,7 @@ class Engineer extends Employee{
     function getType(){
         return $this->type;
     }
+    
 }
 
 ?>
