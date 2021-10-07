@@ -2,7 +2,7 @@
 
 class Learner extends Engineer{
 
-    public viewProgressOfLearner(courseID){
+    public viewProgressOfLearner($courseID){
         
     }
 }

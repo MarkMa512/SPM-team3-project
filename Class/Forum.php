@@ -1,8 +1,8 @@
 <?php 
 class Forum{
-    private ID;
-    private topic;
-    private post;
+    private $ID;
+    private $topic;
+    private $post;
     
 }
 
