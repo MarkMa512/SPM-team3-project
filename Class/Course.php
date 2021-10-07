@@ -1,12 +1,15 @@
 <?php 
 class Course{
-    private courseID;
+    private courseCode;
     private prerequisiteList = [];; 
     private courseTitle;
     private courseRunList = [];
 
-    function __construct(courseTitle){
+    function __construct(courseCode, courseTitle, prerequisite){
+        $this->courseCode = courseCode;
         $this->courseTitle = courseTitle;
+        $this->prerequisite = prerequisite;
+        // select statement 
     }
 
     public createCourseRun(startDate, endDate){
@@ -17,8 +20,8 @@ class Course{
         prerequisiteList.append(prerequisite);
     }
 
-    public getCourseID(){
-        return $this->courseID;
+    public getCourseCode(){
+        return $this->courseCode;
     }
     public getPrerequisiteList(){
         return $this->coursprerequisiteListe;
