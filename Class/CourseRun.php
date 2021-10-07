@@ -5,11 +5,12 @@ class CourseRun{
     private $endDate;
     private $sessionList = [];
     // materials ?? datatype how to store?
-    private trainer;
+    private trainer = "";
     private trainee = [];
 
 
-    public function __construct($startDate, $endDate){
+    public function __construct($courseRunID, $startDate, $endDate){
+        $this->courseRunID = $courseRunID;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
     }

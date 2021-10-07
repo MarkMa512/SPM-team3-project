@@ -5,7 +5,7 @@ class Course{
     private $courseTitle;
     private $courseRunList = [];
 
-    function __construct($courseCode, $courseTitle, $prerequisite){
+    function __construct($courseCode, $courseTitle, $prerequisite, $courseRunList=[]){
         $this->courseCode = $courseCode;
         $this->courseTitle = $courseTitle;
         $this->prerequisite = $prerequisite;

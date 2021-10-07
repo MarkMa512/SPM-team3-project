@@ -26,7 +26,7 @@ class Quiz{
             $total_question = $this->quizAnswer.length;;
             $correct = 0;
             $answers = [];
-            for(i=0; i<$answer.length; i++){
+            for($i=0; $i<$answer.length; $i++){
                 if(in_array($answer[i], $this->quizAnswer)){
                     $correct++;
                 }
@@ -35,10 +35,7 @@ class Quiz{
         }return 0;
     }
 
-    function getClass($quizID){
-        // return the quiz class object
-        return ;
-    }
+    
 
 }
 
