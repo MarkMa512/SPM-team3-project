@@ -1,15 +1,18 @@
 <?php 
+
 class CourseRun{
     private $courseRunID;
     private $startDate;
     private $endDate;
     private $sessionList = [];
     // materials ?? datatype how to store?
-    private trainer = "";
-    private trainee = [];
+    private $trainer = "";
+    private $trainee = [];
 
 
     public function __construct($courseRunID, $startDate, $endDate){
+        $this->trainer = "";
+        $this->trainee = [];
         $this->courseRunID = $courseRunID;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -28,7 +31,7 @@ class CourseRun{
     }
 
     public function createSession($sectionNum){
-        $this->sessionList.append(new Session($sectionNum));
+        array_push($this->sessionList,new Section($sectionNum));
     }
     
 
@@ -40,15 +43,17 @@ class CourseRun{
     }
 
     public function addTrainee($traineeID){
-        $this->trainee.append($traineeID);
+        $this->trainee[] = $traineeID;
     }
 
     public function removeTrainee($traineeID) {
         $index = array_search($traineeID, $this->trainee);
-        if(index == -1){
+        if($index == -1){
             return false;
         }
-        $this->trainee.pop($index);
+        
+
+        unset($this->trainee[$index]);
         return true;
     }
 

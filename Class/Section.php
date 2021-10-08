@@ -6,7 +6,7 @@ class Section{
         $this->sectionNum = $sectionNum;
     }
     function createQuiz($quizID, $quizType, $quizQuestion, $quizAnswer){
-        $this->quizList.append(new Quiz($quizID, $quizType, $quizQuestion, $quizAnswer));
+        $this->quizList[]=new Quiz($quizID, $quizType, $quizQuestion, $quizAnswer);
     }
 
     
@@ -14,14 +14,14 @@ class Section{
     function autoGetQuizResult($quizID, $answer){
         // return $answer with its quiz ID
         $result = [];
-        for($i=0; $i< $answer.length; $i++){
-            $crrQuiz = getQuizClass($quizID);
-            $result.append($crrQuiz->autoGrade($answer[i]));
+        for($i=0; $i< sizeof($answer); $i++){
+            $crrQuiz = self::getQuizClass($quizID);
+            $result[]=$crrQuiz->autoGrade($answer[$i]);
         }
         // return % of correction as list 
 
         // you can return anything you wanna return here like % of overall 
-        return result;
+        return $result;
     }
 
     function getQuizClass($quizID){

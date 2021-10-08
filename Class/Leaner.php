@@ -11,20 +11,20 @@ class Learner extends Engineer{
     }
 
     function messageTrainer($courseID){
-        $crrCourse = getCourseClass($courseID);
+        $crrCourse = self::getCourseClass($courseID);
         // message function 
-        $trainerID = $crrCourse->
+        
     }
 
-    function getCourseRunClass($courseID){
-        $courseRunID;
-        $startDate;
-        $endDate;
+    function getCourseClass($courseID){
+        $courseRunID = "";
+        $startDate = "";
+        $endDate = "";
         $sessionList = [];
         // materials ?? datatype how to store?
-        trainer = "";
-        trainee = [];
-        return new Course($courseCode, $courseTitle, $prerequisite, $courseRunList);
+        $trainer = "";
+        $trainee = [];
+        // return new Course($courseCode, $courseTitle, $prerequisite, $courseRunList);
 
 
     }

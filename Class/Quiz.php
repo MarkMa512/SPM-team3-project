@@ -23,11 +23,11 @@ class Quiz{
                 return 1;
             }
         }else{
-            $total_question = $this->quizAnswer.length;;
+            $total_question = sizeof($this->quizAnswer);
             $correct = 0;
             $answers = [];
-            for($i=0; $i<$answer.length; $i++){
-                if(in_array($answer[i], $this->quizAnswer)){
+            for($i=0; $i<sizeof($this->answer); $i++){
+                if(in_array($answer[$i], $this->quizAnswer)){
                     $correct++;
                 }
             }
