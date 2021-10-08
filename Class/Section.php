@@ -15,7 +15,7 @@ class Section{
         // return $answer with its quiz ID
         $result = [];
         for($i=0; $i< sizeof($answer); $i++){
-            $crrQuiz = self::getQuizClass($quizID);
+            $crrQuiz = $this->getQuizClass($quizID);
             $result[]=$crrQuiz->autoGrade($answer[$i]);
         }
         // return % of correction as list 

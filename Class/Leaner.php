@@ -11,7 +11,7 @@ class Learner extends Engineer{
     }
 
     function messageTrainer($courseID){
-        $crrCourse = self::getCourseClass($courseID);
+        $crrCourse = $this->getCourseClass($courseID);
         // message function 
         
     }

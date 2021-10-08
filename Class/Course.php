@@ -12,12 +12,13 @@ class Course{
         // select statement 
     }
 
-    function createCourseRun($startDate, $endDate){
-        $this->courseRunList.append(new CourseRun($startDate, $endDate));
+    function createCourseRun($courseRunID, $startDate, $endDate){
+        array_push($this->courseRunList,new CourseRun($courseRunID, $startDate, $endDate));
+
     }
 
     function addPrerequisite($prerequisite){
-        $this->prerequisiteList.append($prerequisite);
+        array_push($this->prerequisiteList,$prerequisite);
     }
 
     function getCourseCode(){
