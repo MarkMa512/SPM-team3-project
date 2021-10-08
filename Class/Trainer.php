@@ -2,9 +2,18 @@
 
 class Trainer extends Engineer{
 
-    function viewProgressOfLearner(){
+    function viewProgressOfLearner($trainerID){
         
     }
+
+    function viewProgressOfCourse($courseCOde, $courseRunID){
+        
+    }
+
+    function messageLearner($trainerID){
+        
+    }
+
 }
 
 ?>

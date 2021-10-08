@@ -1,58 +1,97 @@
 <?php 
 
 class CourseRun{
+    private $courseCode;
     private $courseRunID;
     private $startDate;
     private $endDate;
-    private $sessionList = [];
+    private $sectionList = [];
+    
     // materials ?? datatype how to store?
+
     private $trainer = "";
+
+    // store trainee ID => empID
     private $trainee = [];
 
 
-    public function __construct($courseRunID, $startDate, $endDate){
-        $this->trainer = "";
+    
+
+    function __construct($courseCode, $courseRunID, $startDate, $endDate, $trainer=""){
+        // $courseCode, $courseRunID as the primary key 
+        $this->courseCode = $courseCode;
+        $this->trainer = $trainer; //if trainer return "" if not exist
         $this->trainee = [];
         $this->courseRunID = $courseRunID;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
+        // insert statement to check if $courseCode and $courseRunID (PKs) exisited 
+
     }
 
-    public function getStartDate(){
-        return $this->startDate;
-    }
-
-    public function getEndDate(){
-        return $this->endDate;
-    }
-
-    public function getID(){
+    // return method by object refers back to Course.php class, pls rmb to use $courseCode, $courseRunID
+    function getCourseRunID(){
         return $this->courseRunID;
     }
-
-    public function createSession($sectionNum){
-        array_push($this->sessionList,new Section($sectionNum));
+    function getStartDate(){
+        return $this->startDate;
     }
-    
+    function getEndDate(){
+        return $this->endDate;
+    }
+    function getCourseCode(){
+        return $this->courseCode;
+    }
+    function getTrainer(){
+        return $this->trainer;
+    }
+    function getTrainee() {
+        return $this->trainee;
+    }
+    function getSectionList(){
+        return $this->sectionList;
+    }
 
-    public function setTrainer($trainerID){
+    // return method by object refers back to Course.php class set
+    // set 
+    function setCourseRunID($courseRunID){
+        $this->courseRunID = $courseRunID;
+    }
+    function setStartDate(){
+        return $this->startDate;
+    }
+    function setEndDate(){
+        return $this->endDate;
+    }
+    function setCourseCode($courseCode){
+        $this->courseCode = $courseCode;
+    }
+    function setTrainer($trainerID){
         $this->trainer = $trainerID;
     }
-    public function getTrainer(){
-        return $this->getTrainer;
+    function setTrainee($trainee) {
+        $this->trainee = $trainee;
+    }
+    function setSectionList(){
+        return $this->sectionList;
     }
 
-    public function addTrainee($traineeID){
+    //insert statement
+    function addTrainee($traineeID){
         $this->trainee[] = $traineeID;
     }
 
-    public function removeTrainee($traineeID) {
+
+    function createSection($sectionNum){
+        array_push($this->sectionList,new Section($this->courseCode, $this->courseRunID, $sectionNum));
+        // No need sql statement 
+    }
+    
+    function removeTrainee($traineeID) {
         $index = array_search($traineeID, $this->trainee);
         if($index == -1){
             return false;
         }
-        
-
         unset($this->trainee[$index]);
         return true;
     }
@@ -60,7 +99,7 @@ class CourseRun{
     
 
     function uploadCourseRunMaterials(){
-        // See the materials 
+        // See the materials, return true or false and using try can catch 
 
     }
 

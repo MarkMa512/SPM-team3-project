@@ -4,6 +4,7 @@ class Forum{
     private $topic;
     private $post;
     
+    
 }
 
 

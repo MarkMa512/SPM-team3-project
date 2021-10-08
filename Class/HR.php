@@ -7,11 +7,40 @@ class HR extends Employee {
     }
 
     function displayAllCourse(){
-        // use select
+        // use select sql (sql + fornt end)
     }
 
     function createCourse($courseCode, $courseTitle, $prerequisite=[]){
         // call function __construct from course 
+
+    }
+
+    function getCourseObject($courseCode){
+        
+        $courseCode = "";
+        $courseTitle ="";
+        $prerequisite ="";
+        $courseRunList = [];
+        // select and update the variable 
+
+        // if return result ==>  NA/NULL return false 
+
+        // continue
+        $crrCourse = new Course($courseCode, $courseTitle, $prerequisite, $courseRunList); 
+        return $crrCourse;
+    }
+
+    function getCourseRunObject($courseCode, $courseRunID){
+        
+        $startDate = "";
+        $endDate = "";
+        $trainer = "";
+        // select and update the variable 
+
+        // continue  same as getCourseObject
+        
+        $crrCourseRun = new CourseRun($courseCode, $courseRunID, $startDate, $endDate, $trainer); 
+        return $crrCourseRun;
     }
 
 }

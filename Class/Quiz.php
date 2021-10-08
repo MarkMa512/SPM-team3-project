@@ -5,7 +5,7 @@ class Quiz{
     private $quizType;
     private $quizQuestion;
     //quizAnswer will be array if mutiple answer, it will be 
-    private $quizAnswer;
+    private $quizAnswer; //list
     private $grade;
     
 
@@ -18,21 +18,20 @@ class Quiz{
 
     function autoGrade($answer){
         
-        if($this->type == 0){
+        if($this->quizType == 0){
             if($answer == $this->answer[0]){
                 return 1;
-            }
+            }return 0;
         }else{
             $total_question = sizeof($this->quizAnswer);
             $correct = 0;
-            $answers = [];
             for($i=0; $i<sizeof($this->answer); $i++){
                 if(in_array($answer[$i], $this->quizAnswer)){
                     $correct++;
                 }
             }
             return $correct/$total_question;
-        }return 0;
+        }
     }
 
     
@@ -40,3 +39,4 @@ class Quiz{
 }
 
 ?>
+

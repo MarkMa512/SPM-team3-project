@@ -2,19 +2,23 @@
 
 class Learner extends Engineer{
 
-    function viewCourseProgress($courseID){
-        // need to use sql to get progress 
+    function viewCourseProgress($courseCode, $courseRunID){
+        // need to use sql to get progress (sql + fornt end)
     }
 
-    function viewMaterial($courseID){
-        // need to use sql
+    function viewMaterial($courseCode, $courseRunID){
+        // need to use sql (sql + fornt end)
     }
 
-    function messageTrainer($courseID){
-        $crrCourse = $this->getCourseClass($courseID);
+    function messageTrainer($courseCode){
+        $crrCourse = $this->getCourseClass($courseCode);
+        
         // message function 
+
         
     }
+
+
 
     function getCourseClass($courseID){
         $courseRunID = "";
