@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <html>
+    <head>
+    <!--Bootstrap, CSS only-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
+        crossorigin="anonymous">
+    <!--JQuery-->
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous"
+    ></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" 
+        crossorigin="anonymous"
+    ></script>
+    <!--Vue-->
+    <script 
+        src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"
+    ></script>
+
+    <style>
+        body{
+            margin: 50px;
+        }
+    </style>
+
+    <body>
+        <div id="app">
+            <div class="row">
+                <div class="col-6">
+                    <form id="answerForm">
+                        <h1>{{title}}</h1>
+                        <div v-for="question in questions">
+                            <h2>{{question.qnName}} </h2>
+                                <div v-if = "question.type == 'text'">
+                                    <input type = "text" class="form-control" placeholder="Answer:">
+                                </div>
+                                <div v-else-if = "question.type == 'mcq'">
+                                    <div v-for="option in question.option">
+                                        <input type = "radio" v-bind:name="question.id" v-bind:id="option.id">
+                                        <label v-bind:for="option.id">{{option.value}} </label><br>
+                                    </div>
+                                </div>
+                                <div v-else-if = "question.type == 'checkbox'">
+                                    <div v-for="option in question.option">
+                                        <input type = "checkbox" v-bind:name="question.id" v-bind:id="option.id">
+                                        <label v-bind:for="option.id">{{option.value}} </label><br>
+                                    </div>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>    
+    </body>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                title: "Test Quiz",
+                questions: [
+                    {"qnName" : "Question 1","type" : "text", "id" : "q1"},
+                    {"qnName" : "Question 2","type" : "mcq", "option":[{"id": "q1-1", "value": "Option 1"}, {"id": "q1-2", "value": "Option 2"}, {"id": "q1-3", "value": "Option 3"}], "id" : "q2"},
+                    {"qnName" : "Question 3","type" : "checkbox", "option":[{"id": "q2-1", "value": "Option 1"}, {"id": "q2-2", "value": "Option 3"}, {"id": "q2-3", "value": "Option 3"}], "id" : "q3"}
+                    ]
+            }
+        })
+    </script>
+
+
+
+</html>
