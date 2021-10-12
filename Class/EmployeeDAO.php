@@ -4,7 +4,7 @@ require_once "autoload.php";
 
 class EmployeeDAO {
 
-    function get($emp_id) {
+    function GetAll($emp_id) {
         
         // connect to database
         $connMgr = new ConnectionManager();
@@ -35,7 +35,7 @@ class EmployeeDAO {
         return $employee;
     }
     
-    function create($employee) {
+    function CreateNewEmployee($employee) {
         $result = true;
 
         // connect to database
