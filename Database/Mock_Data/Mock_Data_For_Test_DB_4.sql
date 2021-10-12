@@ -124,7 +124,7 @@ VALUES
     ; 
 
 -- Insertion 12 
-INSERT INTO Answer(Course_Code, Course_Run_ID, Section_ID, Question_Number, Answer_Number, Anwser, Is_Correct)
+INSERT INTO Answer(Course_Code, Course_Run_ID, Section_ID, Question_Number, Answer_Number, Answer, Is_Correct)
 VALUES
     ('SR101', 1, 1, 1, 'A', 'This is the correct option', TRUE),
     ('SR101', 1, 1, 1, 'B', 'This is not a correct option', FALSE), 

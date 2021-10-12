@@ -168,15 +168,15 @@ CREATE TABLE Answer(
     Course_Run_ID INT NOT NULL, 
     Section_ID INT NOT NULL, 
     Question_Number INT NOT NULL,
-    Anwser_Number VARCHAR(5), 
+    Answer_Number VARCHAR(5), 
 
-    Anwser VARCHAR(255), 
+    Answer VARCHAR(255), 
     Is_Correct BOOLEAN, 
 
-    CONSTRAINT Answer_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number, Anwser_Number), 
+    CONSTRAINT Answer_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number, Answer_Number), 
     CONSTRAINT Answer_FK1 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number) 
     REFERENCES Question(Course_Code, Course_Run_ID, Section_ID, Question_Number)
-)
+);
 
 -- Table 13
 CREATE TABLE Access_Record(
