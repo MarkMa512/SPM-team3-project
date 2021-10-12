@@ -1,12 +1,14 @@
 <?php
 
+require_once "autoload.php";
+
 class EmployeeDAO {
 
     function get($emp_id) {
         
         // connect to database
         $connMgr = new ConnectionManager();
-        $conn = $connMgr->connect();
+        $conn = $connMgr->getConnection();
         
         // prepare select
         $sql = "SELECT Employee_ID, Employee_Password_Hash FROM Employee WHERE Employee_ID = :emp_id";
@@ -38,7 +40,7 @@ class EmployeeDAO {
 
         // connect to database
         $connMgr = new ConnectionManager();
-        $conn = $connMgr->connect();
+        $conn = $connMgr->getConnection();
         
         // prepare insert
         $sql = "INSERT INTO Employee (Employee_ID,First_Name,Last_Name,Employee_Type,Employee_Password_Hash) VALUES (:Employee_ID,:First_Name,:Last_Name,:Employee_Type,:Employee_Password_Hash)";
@@ -76,7 +78,7 @@ class EmployeeDAO {
 
         // connect to database
         $connMgr = new ConnectionManager();
-        $conn = $connMgr->connect();
+        $conn = $connMgr->getConnection();
         
         // prepare insert
         $sql = "UPDATE Employee SET Employee_Password_Hash = :passwordHash  WHERE Employee_ID = :EmpID";
