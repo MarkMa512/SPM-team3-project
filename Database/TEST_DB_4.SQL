@@ -1,10 +1,12 @@
 -- created based on ER diagrame V6
 
+DROP DATABASE IF EXISTS TestDatabase4; 
 CREATE DATABASE TestDatabase4; 
 
 USE TestDatabase4; 
 
 -- Table 1
+DROP TABLE IF EXISTS Employee; 
 CREATE TABLE Employee(
     Employee_ID INT NOT NULL, 
 
@@ -17,6 +19,7 @@ CREATE TABLE Employee(
 );
 
 -- Table 2
+DROP TABLE IF EXISTS Engineer; 
 CREATE TABLE Engineer(
     Engineer_ID INT NOT NULL, 
 
@@ -26,6 +29,7 @@ CREATE TABLE Engineer(
 );
 
 -- Table 3
+DROP TABLE IF EXISTS Course; 
 CREATE TABLE Course(
     Course_Code CHAR(5) NOT NULL, -- Course Code is a 5 digit alpha numeric code
 
@@ -37,6 +41,7 @@ CREATE TABLE Course(
 ); 
 
 -- Table 4 
+DROP TABLE IF EXISTS Prerequisite; 
 CREATE TABLE Prerequisite(
     Course_Code CHAR(5) NOT NULL, 
     Prerequisite_Course_Code CHAR(5),
@@ -47,6 +52,7 @@ CREATE TABLE Prerequisite(
 );
 
 -- Table 5
+DROP TABLE IF EXISTS Qualification; 
 CREATE TABLE Qualification(
 
     Employee_ID INT NOT NULL, 
@@ -61,6 +67,7 @@ CREATE TABLE Qualification(
 ); 
 
 -- Table 6
+DROP TABLE IF EXISTS Course_Run; 
 CREATE TABLE Course_Run(
     -- Course_Run is a Weak Entity of Course
     Course_Code CHAR(5) NOT NULL, 
@@ -76,6 +83,7 @@ CREATE TABLE Course_Run(
 ); 
 
 -- Table 7 
+DROP TABLE IF EXISTS Assignment; 
 CREATE TABLE Assignment(
     HR_ID INT NOT NULL, 
     Instructor_ID INT NOT NULL, 
@@ -91,6 +99,7 @@ CREATE TABLE Assignment(
 );
 
 -- Table 8
+DROP TABLE IF EXISTS Enrollment_Record; 
 CREATE TABLE Enrollment_Record(
     Learner_ID INT NOT NULL,
     Course_Code VARCHAR(5) NOT NULL, 
@@ -104,6 +113,7 @@ CREATE TABLE Enrollment_Record(
 );
 
 -- Table 9 
+DROP TABLE IF EXISTS Section; 
 CREATE TABLE Section(
     Course_Code CHAR(5) NOT NULL, 
     Course_Run_ID INT NOT NULL, 
@@ -128,6 +138,7 @@ CREATE TABLE Section(
 -- );
 
 -- Table 10 
+DROP TABLE IF EXISTS Material; 
 CREATE TABLE Material(
     -- Material is a weak entity of section
     -- This allows search of material by course run or by course
@@ -144,6 +155,7 @@ CREATE TABLE Material(
 ); 
 
 -- Table 11
+DROP TABLE IF EXISTS Question; 
 CREATE TABLE Question(
     -- Question is a weak entity of Section
     Course_Code CHAR(5) NOT NULL, 
@@ -161,6 +173,7 @@ CREATE TABLE Question(
 ); 
 
 -- Table 12
+DROP TABLE IF EXISTS Answer; 
 CREATE TABLE Answer(
     -- Newly implemented in TestDatabase 4 
     -- Answer is a weak entity of Section
@@ -179,6 +192,7 @@ CREATE TABLE Answer(
 );
 
 -- Table 13
+DROP TABLE IF EXISTS Access_Record; 
 CREATE TABLE Access_Record(
     Learner_ID INT NOT NULL,
     Course_Code CHAR(5) NOT NULL,
@@ -193,6 +207,7 @@ CREATE TABLE Access_Record(
 );
 
 -- Table 14
+DROP TABLE IF EXISTS Quiz_Record; 
 CREATE TABLE Quiz_Record(
     Learner_ID INT NOT NULL,
     Course_Code CHAR(5) NOT NULL,
@@ -210,6 +225,7 @@ CREATE TABLE Quiz_Record(
 
 -- Table 15 
 -- newly added in TestDatabase4; 
+DROP TABLE IF EXISTS Forum_Post; 
 CREATE TABLE Forum_Post(
     Post_ID INT NOT NULL, 
     Topic VARCHAR(255), 
