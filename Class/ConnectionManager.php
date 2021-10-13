@@ -5,8 +5,8 @@ class ConnectionManager {
     public function getConnection() {
         // for development / testing purposes only! 
         // fill up based on your own configurations
-        $servername = '';
-        $username = '';
+        $servername = 'localhost';
+        $username = 'root';
         $password = '';
         $dbname = 'TestDatabase4';
 

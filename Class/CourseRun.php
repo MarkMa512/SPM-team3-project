@@ -28,9 +28,14 @@ class CourseRun{
         // insert statement to check if $courseCode and $courseRunID (PKs) exisited 
 
     }
+    function courseRunInsertDB(){
+        // insert courseRun to database 
+
+    }
 
     // return method by object refers back to Course.php class, pls rmb to use $courseCode, $courseRunID
     function getCourseRunID(){
+        
         return $this->courseRunID;
     }
     function getStartDate(){

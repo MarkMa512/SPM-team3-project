@@ -16,6 +16,11 @@ class Quiz{
         $this->quizAnswer = $quizAnswer;
     }
 
+    function quizInsertDB(){
+        // insert quiz to database 
+
+    }
+
     function autoGrade($answer){
         
         if($this->quizType == 0){

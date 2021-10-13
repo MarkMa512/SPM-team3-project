@@ -17,12 +17,14 @@ class Section{
 
     }
 
+    function sectionInsertDB(){
+        // insert section to database 
+
+    }
     
 
     function autoGetQuizResult($quizID, $answer){
         //answer is list and $quizID is also list
-
-
         // return $answer with its quiz ID
         $result = [];
         for($i=0; $i< sizeof($answer); $i++){

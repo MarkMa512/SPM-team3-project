@@ -14,7 +14,14 @@ class Course{
         $this->courseRunList= $courseRunList;
         // insert statement join statement 
 
+        
     }
+
+    function courseInsertDB(){
+        // insert course to database 
+
+    }
+    
 
     function createCourseRun($courseRunID, $startDate, $endDate){
         array_push($this->courseRunList,new CourseRun($this->courseCode,$courseRunID, $startDate, $endDate));
