@@ -35,7 +35,7 @@ class EmployeeDAO {
         return $employee;
     }
     
-    function CreateNewEmployee($employee) {
+    function createNewEmployee($employee) {
         $result = true;
 
         // connect to database
