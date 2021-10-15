@@ -25,7 +25,7 @@ class EmployeeDAO {
             
         }
         else {
-            $connMgr->handleError($stmt, $sql );
+            // $connMgr->handleError($stmt, $sql );
         }
         
         // close connections
@@ -62,7 +62,7 @@ class EmployeeDAO {
         $result = $stmt->execute();
         if (! $result ){ // encountered error
             $parameters = [ "employee" => $employee, ];
-            $connMgr->handleError( $stmt, $sql, $parameters );
+            // $connMgr->handleError( $stmt, $sql, $parameters );
         }
         
         // close connections
@@ -94,7 +94,7 @@ class EmployeeDAO {
         $result = $stmt->execute();
         if (! $result ){ // encountered error
             $parameters = [ "user" => $employee, ];
-            $connMgr->handleError( $stmt, $sql, $parameters );
+            // $connMgr->handleError( $stmt, $sql, $parameters );
         }
         
         // close connections
