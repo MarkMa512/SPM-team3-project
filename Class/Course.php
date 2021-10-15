@@ -2,26 +2,27 @@
 class Course{
     private $courseCode; //IS216 => edit 
     private $prerequisiteList = [];
-    private $courseTitle;
+    private $courseName;
     private $courseRunList = [];
 
     
 
-    function __construct($courseCode, $courseTitle, $prerequisite, $courseRunList=[]){
+    // function __construct($courseCode, $courseName, $prerequisite, $courseRunList=[]){
+    //     $this->courseCode = $courseCode;
+    //     $this->courseName = $courseName;
+    //     $this->prerequisite = $prerequisite;
+    //     $this->courseRunList= $courseRunList;
+    //     // insert statement join statement; 
+    // }
+
+    function __construct($courseCode, $courseName, $prerequisiteList =[], $courseRunList=[]){
         $this->courseCode = $courseCode;
-        $this->courseTitle = $courseTitle;
-        $this->prerequisite = $prerequisite;
+        $this->courseName = $courseName;
+        $this->prerequisite = $prerequisiteList;
         $this->courseRunList= $courseRunList;
         // insert statement join statement 
 
-        
     }
-
-    function courseInsertDB(){
-        // insert course to database 
-
-    }
-    
 
     function createCourseRun($courseRunID, $startDate, $endDate){
         array_push($this->courseRunList,new CourseRun($this->courseCode,$courseRunID, $startDate, $endDate));
@@ -41,8 +42,8 @@ class Course{
     function getPrerequisiteList(){
         return $this->coursprerequisiteListe;
     }
-    function getCourseTitle(){
-        return $this->courseTitle;
+    function getCourseName(){
+        return $this->courseName;
     }
     function getCourseRunList(){
         return $this->courseRunList;
@@ -59,10 +60,10 @@ class Course{
         // update 
         $this->coursprerequisiteList = $coursprerequisiteList;
     }
-    function setCourseTitle($courseTitle){
+    function setCourseName($courseName){
         // update use $this->getCourseCode() method
         
-        $this->courseTitle = $courseTitle;
+        $this->courseName = $courseName;
     }
     function setCourseRunList($courseRunList){
         // update 
@@ -73,7 +74,7 @@ class Course{
     //     if($updatePart == 1){
     //         return $this->setPrerequisiteList($para);
     //     }else if($updatePart == 2){
-    //         return $this->setCourseTitle($para);
+    //         return $this->setCourseName($para);
     //     }
     // }
 
