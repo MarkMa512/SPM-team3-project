@@ -24,8 +24,8 @@ class Course{
 
     }
 
-    function createCourseRun($courseRunID, $startDate, $endDate){
-        array_push($this->courseRunList,new CourseRun($this->courseCode,$courseRunID, $startDate, $endDate));
+    function createCourseRun($courseRunID, $startDate, $endDate, $capacity){
+        array_push($this->courseRunList,new CourseRun($this->courseCode,$courseRunID, $capacity, $startDate, $endDate));
 
     }
 

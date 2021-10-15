@@ -1,17 +1,20 @@
 <?php 
 class HR extends Employee {
 
-    function __construct($name, $empID, $empType){
+    function __construct($First_Name, $Last_Name,$Employee_ID, $Employee_Type,$Employee_Password_Hash){
         // i'm not sure for this part 
-        Employee::__construct($name, $empID, $empType);
+        Employee::__construct($First_Name, $Last_Name,$Employee_ID, $Employee_Type,$Employee_Password_Hash);
     }
 
     function displayAllCourse(){
         // use select sql (sql + fornt end)
+
     }
 
-    function createCourse($courseCode, $courseTitle, $prerequisite=[]){
+    function createCourse($courseCode, $courseName, $prerequisiteList =[], $courseRunList=[]){
         // call function __construct from course 
+        $course = new Course($courseCode, $courseName, $prerequisiteList);
+        
 
     }
 

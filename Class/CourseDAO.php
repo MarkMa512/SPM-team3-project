@@ -28,11 +28,14 @@ class CourseDAO{
         return $result; 
     }
 
-    function getCourseRun($course){
+    // rephase function name 
+    function getCourseRunIDList($course){
         // input: a course object 
         // output: a list of course run of the courses the object
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
+
+        
         $sql = "SELECT * FROM Course_Run WHERE course_code = :course_code;"; 
         $stmt = $pdo->prepare($sql); 
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 

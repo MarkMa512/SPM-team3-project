@@ -3,6 +3,7 @@
 class CourseRun{
     private $courseCode;
     private $courseRunID;
+    private $capacity;
     private $startDate;
     private $endDate;
     private $sectionList = [];
@@ -17,7 +18,7 @@ class CourseRun{
 
     
 
-    function __construct($courseCode, $courseRunID, $startDate, $endDate, $trainer=""){
+    function __construct($courseCode, $courseRunID, $capacity, $startDate, $endDate, $trainer=""){
         // $courseCode, $courseRunID as the primary key 
         $this->courseCode = $courseCode;
         $this->trainer = $trainer; //if trainer return "" if not exist
@@ -25,6 +26,7 @@ class CourseRun{
         $this->courseRunID = $courseRunID;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
+        $this->$capacity = $capacity;
         // insert statement to check if $courseCode and $courseRunID (PKs) exisited 
 
     }
