@@ -18,7 +18,21 @@ class CourseRunDAO{
         $stmt->bindParam(":end_date", $endDate, PDO::PARAM_STR); 
         // $stmt->bindParam(":trainer", $trainer, PDO::PARAM_STR); 
 
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
     }
+
+    
+
+
 
 }
 

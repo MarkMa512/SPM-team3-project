@@ -14,6 +14,8 @@ class HRDAO{
         return $courseInfo->addCourse($course);
     }
 
+    
+
     function getCourse($courseCode){
         // input: a course object 
         // output: a list of course run of the courses the object

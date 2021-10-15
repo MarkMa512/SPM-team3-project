@@ -60,7 +60,7 @@ class CourseRun{
     }
 
     // return method by object refers back to Course.php class set
-    // set 
+    // since it is part of PK, and no recommend to edit it 
     function setCourseRunID($courseRunID){
         $this->courseRunID = $courseRunID;
     }
@@ -73,6 +73,7 @@ class CourseRun{
     function setCourseCode($courseCode){
         $this->courseCode = $courseCode;
     }
+    // since it is part of PK, and no recommend to edit it 
     function setTrainer($trainerID){
         $this->trainer = $trainerID;
     }
