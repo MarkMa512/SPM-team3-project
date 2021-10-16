@@ -2,12 +2,15 @@
 class Section{
     private $courseCode;
     private $courseRunID;
-    private $sectionNum;
+    private $sectionID;
+    private $sectionName; 
+    private $materialList; //????
     private $quizList = [];
-    function __construct($courseCode, $courseRunID, $sectionNum){
+    function __construct($courseCode, $courseRunID, $sectionID, $sectionName){
         $this->courseCode = $courseCode;
         $this->courseRunID = $courseRunID;
-        $this->sectionNum = $sectionNum;
+        $this->sectionID = $sectionID;
+        $this->sectionName = $sectionName; 
         $this->quizList = [];
 
         // sql select for quiz List 
@@ -49,6 +52,9 @@ class Section{
         return new Quiz($quizID, $quizType, $quizQuestion, $quizAnswer);
     }
 
+    function uploadMaterials($material){
+        //???
+    }
 }
 
 ?>
