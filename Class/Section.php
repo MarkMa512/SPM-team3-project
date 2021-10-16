@@ -6,6 +6,7 @@ class Section{
     private $sectionName; 
     private $materialList; //????
     private $quizList = [];
+    private $isGRaded = FALSE; // to indicate if the quiz is graded or not
     function __construct($courseCode, $courseRunID, $sectionID, $sectionName){
         $this->courseCode = $courseCode;
         $this->courseRunID = $courseRunID;
