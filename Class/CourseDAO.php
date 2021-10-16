@@ -74,6 +74,11 @@ class CourseDAO{
         }
         $stmt->closeCursor();
         $pdo = NULL; 
+
+        foreach ($result as $object){
+            // insert Prerequisite list and courseRunList
+        }
+
         return $result; 
     }
 
@@ -127,6 +132,9 @@ class CourseDAO{
         return $status; 
     }
 
+    function updateCourse($courseCode){
+        // under Construction 
+    }
 
 }
 
