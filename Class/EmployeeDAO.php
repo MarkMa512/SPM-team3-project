@@ -95,6 +95,7 @@ class EmployeeDAO {
         if (! $result ){ // encountered error
             $parameters = [ "user" => $employee, ];
             // $connMgr->handleError( $stmt, $sql, $parameters );
+            
         }
         
         // close connections
