@@ -75,9 +75,11 @@ class CourseDAO{
         $stmt->closeCursor();
         $pdo = NULL; 
 
-        foreach ($result as $object){
-            // insert Prerequisite list and courseRunList
-        }
+        // NO need this line because we use the add function when condition apply 
+        // foreach ($result as $object){
+        //     // insert Prerequisite list and courseRunList
+
+        // }
 
         return $result; 
     }
