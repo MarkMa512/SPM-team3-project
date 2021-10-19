@@ -42,18 +42,18 @@
       <h5>Create New Course</h5>
       <br>
 
-       <form id='addCourseForm'> 
+       <form id='addCourseForm' action="AddCourse.php" method="post"> 
         <div class="form-group">
             <label for="code">Course Code</label>
-            <input type="text" class="form-control" id="code" placeholder="Enter Course Code">
+            <input type="text" class="form-control" id="code" name="code" placeholder="Enter Course Code">
         </div>
         <div class="form-group">
             <label for="name">Course Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter Course Name">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Course Name">
         </div>
         <div class="form-group">
-            <label for="badgeName">Price</label>
-            <input type="text" class="form-control" id="badgeName" placeholder="Enter Badge Name">
+            <label for="badgeName">Badge Name</label>
+            <input type="text" class="form-control" id="badgeName" name="badgeName" placeholder="Enter Badge Name">
         </div>
         <div>
             <label for="formFileLg" class="form-label">Badge Image</label>

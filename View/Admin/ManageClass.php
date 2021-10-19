@@ -39,21 +39,40 @@
     <div id="nav"></div>
 
     <!-- picture can edit -->
+    <?php 
+  session_start();
+  require_once "../../Class/autoload.php";
+  
+  // $_SESSION["user"] = $empDao->getAll();
+  $courseDao = new CourseDAO();
+  // var_dump($courseDao-> getAllCourse());
+?>
     <br>
     <div class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h6 class="border-bottom border-gray pb-2 mb-0">List of Employees</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">PT101</strong>
-              <a href="UpdateCourse.php">Edit</a>
-              <a>Delete</a>
-            </div>
-            <span class="d-block">Intro to Ink Printers</span>
-          </div>
-        </div>
+        <h6 class="border-bottom border-gray pb-2 mb-0">List of Courses</h6>
+        <?php 
+          $courseDao = new CourseDAO();
+          $courses = $courseDao->getAllCourse();
+          foreach ($courses as $course){
+            
+            $courseCode = $course->getCourseCode();
+            $courseName = $course->getCourseName();
+            echo "
+            <div class=\"media text-muted pt-3\">
+              <img data-src=\"holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1\" alt=\"\" class=\"mr-2 rounded\">
+              <div class=\"media-body pb-3 mb-0 small lh-125 border-bottom border-gray\">
+                <div class=\"d-flex justify-content-between align-items-center w-100\">
+                  <strong class=\"text-gray-dark\">{$courseCode}</strong>
+                  <a href=\"UpdateCourse.php?coursecode={$courseCode}\">Edit</a>
+                  <a>Delete</a>
+                </div>
+                <span class=\"d-block\">{$courseName}</span>
+              </div>
+            </div>";
+          }
+        ?>
+        
         <div class="media text-muted pt-3">
           <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -66,7 +85,7 @@
           </div>
         </div>
         <br>
-        <a class="btn btn-outline-primary btn-primary" href="CreateCourse.html" role="button">Create New Course</a>
+        <a class="btn btn-outline-primary btn-primary" href="CreateCourse.php" role="button">Create New Course</a>
       </div>
     </div>
 

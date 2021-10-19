@@ -5,7 +5,7 @@ require_once "autoload.php";
 class EmployeeDAO {
 
     
-    function GetAll() {
+    function getAll() {
         
         // connect to database
         $connMgr = new ConnectionManager();

@@ -3,6 +3,7 @@ class Course{
     private $courseCode; //IS216 => edit 
     private $prerequisiteList = [];
     private $courseName;
+    private $badgeName;
     private $courseRunList = [];
 
     
@@ -15,11 +16,12 @@ class Course{
     //     // insert statement join statement; 
     // }
 
-    function __construct($courseCode, $courseName, $prerequisiteList =[], $courseRunList=[]){
+    function __construct($courseCode, $courseName, $badgeName, $prerequisiteList =[], $courseRunList=[]){
         $this->courseCode = $courseCode;
         $this->courseName = $courseName;
         $this->prerequisite = $prerequisiteList;
         $this->courseRunList= $courseRunList;
+        $this->badgeName = $badgeName;
         // insert statement join statement 
 
     }
@@ -48,6 +50,9 @@ class Course{
     function getCourseRunList(){
         return $this->courseRunList;
     }
+    function getBadgeName(){
+        return $this->badgeName;
+    }
 
 
     // please use try and catch method, if success then you run e.g $this->courseID = $courseID; and return true 
@@ -69,7 +74,11 @@ class Course{
         // update 
         $this->courseRunList = $courseRunList;
     }
+    function setBadgeName($badgeName){
+        $this->badgeName = $badgeName;
+    }
 
+    
     // function updatestatement($updatePart, $para){
     //     if($updatePart == 1){
     //         return $this->setPrerequisiteList($para);

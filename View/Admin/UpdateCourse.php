@@ -32,6 +32,19 @@
          margin-bottom:0;
         }
   </style>
+  <?php 
+    session_start();
+    require_once "../../Class/autoload.php";
+    $courseCode = $_GET["coursecode"];
+    $courseDAO = new CourseDAO();
+    $course = $courseDAO->getCourseByID($courseCode);
+    
+    $courseName = $course->getCourseName();
+    $badgeName = $course->getBadgeName();
+
+
+    
+  ?>
 
 </head>
 <body>
@@ -45,15 +58,15 @@
        <form id='addCourseForm'> 
         <div class="form-group">
             <label for="code">Course Code</label>
-            <input type="text" class="form-control" id="code" placeholder="PT101">
+            <input type="text" class="form-control" id="code" value="<?php echo $courseCode ?>" >
         </div>
         <div class="form-group">
             <label for="name">Course Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Intro to Ink Printers">
+            <input type="text" class="form-control" id="name" value="<?php echo $courseName ?>">
         </div>
         <div class="form-group">
-            <label for="badgeName">Price</label>
-            <input type="text" class="form-control" id="badgeName" placeholder="Ink Badge">
+            <label for="badgeName">Badge Name</label>
+            <input type="text" class="form-control" id="badgeName" value="<?php echo $badgeName ?>">
         </div>
         <div>
             <label for="formFileLg" class="form-label">Badge Image</label>
