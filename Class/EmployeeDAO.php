@@ -4,8 +4,12 @@ require_once "autoload.php";
 
 class EmployeeDAO {
 
+<<<<<<< HEAD
     
     function getAll() {
+=======
+    function GetAllEmployee() {
+>>>>>>> ffb6e62f2756edbf9882b62d04c1519da5ef03ff
         
         // connect to database
         $connMgr = new ConnectionManager();
@@ -13,6 +17,39 @@ class EmployeeDAO {
         
         // prepare select
         $sql = "SELECT * FROM Employee";
+<<<<<<< HEAD
+=======
+        $stmt = $conn->prepare($sql);
+            
+        $employee = null;
+        if ( $stmt->execute() ) {
+            
+            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+                $user = new Employee($row["First_Name"], $row["Last_Name"],
+                $row["Employee_ID"],$row["Employee_Type"],$row["Employee_Password_Hash"]);
+            }
+            
+        }
+        else {
+            // $connMgr->handleError($stmt, $sql );
+        }
+        
+        // close connections
+        $stmt = null;
+        $conn = null;        
+        
+        return $employee;
+    }
+
+    function GetEmployee($emp_id) {
+        
+        // connect to database
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+        
+        // prepare select
+        $sql = "SELECT * FROM Employee WHERE Employee_ID = :emp_id";
+>>>>>>> ffb6e62f2756edbf9882b62d04c1519da5ef03ff
         $stmt = $conn->prepare($sql);
             
         $employee = null;
