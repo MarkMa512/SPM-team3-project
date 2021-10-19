@@ -27,6 +27,17 @@
         </form>
       </div>
       <div class="nav-item my-2 my-lg-0">
-        <a class="nav-item nav-link text-light" href="../signin.php">Log In</a>
+        <a class="nav-item nav-link text-light" href="../signin.php"><?php
+        require_once "../../Class/autoload.php";
+        session_start();
+        if($_SESSION){
+
+          echo "Hi " . $_SESSION['user']->getEmpLastName();
+
+        }else{
+          echo "Log In";
+        }
+        
+        ?></a>
       </div>
     </nav>

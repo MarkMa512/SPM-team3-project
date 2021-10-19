@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("navbarLearner.html");
+          $('#nav').load("navbarLearner.php");
           console.log("click");
         });
     </script>
@@ -39,7 +39,14 @@
 
 </head>
 <body>
+    <?php 
+      session_start();
+      require_once "../../Class/autoload.php";
+      $empDao = new EmployeeDAO();
+      $_SESSION["user"] = $empDao->getEmp(2001);
 
+      // var_dump($_SESSION["user"]);
+    ?>
     <div id="nav"></div>
 
     <!-- picture can edit -->
