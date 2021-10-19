@@ -4,34 +4,28 @@ require_once 'autoload.php';
 
 class CourseRunDAO{
     
-    // we should not use this method as it defeats the purpose of OOP 
-
-    // function addCourseRun($courseCode, $courseRunID, $capacity, $startDate, $endDate, $trainer=""){
-    //     $conn = new ConnectionManager(); 
-    //     $pdo = $conn-> getConnection(); 
-
-    //     $sql = "INSERT INTO course_run (Course_Code, Course_Run_ID, Capacity, Start_Date, End_Date) VALUES (:course_code, :course_name, :capacity, :start_date, :end_date);"; 
-
-    //     $stmt = $pdo->prepare($sql); 
-
-    //     $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
-    //     $stmt->bindParam(":course_name", $courseRunID, PDO::PARAM_STR); 
-    //     $stmt->bindParam(":capacity", $capacity, PDO::PARAM_INT);  
-    //     $stmt->bindParam(":start_date", $startDate, PDO::PARAM_STR); 
-    //     $stmt->bindParam(":end_date", $endDate, PDO::PARAM_STR); 
-    //     // $stmt->bindParam(":trainer", $trainer, PDO::PARAM_STR); 
-
-    //     $status = $stmt->execute(); 
-
-    //     if(!$status){
-    //         var_dump($stmt->errorinfo());
-    //         # output any error if database access has problem
-    //     }
-
-    //     $stmt->closeCursor(); 
-    //     $pdo = NULL; 
-    //     return $status; 
-    // }
+    function displayAllCourseRun(){
+        // output: display a list of CourseRun Object of all courses
+        $conn = new ConnectionManager(); 
+        $pdo = $conn->getConnection(); 
+        $sql = "SELECT C.Course_Code, Course_Name, Course_Run_ID, Capacity, Start_Date, End_Date 
+                FROM Course C, Course_Run CR WHERE C.Course_Code = CR.Course_Code;"; 
+        $stmt = $pdo->prepare($sql); 
+        
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = [$row["Course_Code"], $row["Course_Name"], $row["Course_Run_ID"], $row["Capacity"], $row["Start_date"], $row["End_Date"]]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        
+        return $result; 
+    }
 
     function getCourseRun($courseCode){
         // input: courseCode 
@@ -115,7 +109,7 @@ class CourseRunDAO{
         return $status;  
     }
 
-    function updateCourseStartDateEndDate($courseRun, $startDate, $endDate){
+    function updateCourseRunStartDateEndDate($courseRun, $startDate, $endDate){
         // input: a courserun objec to update the $startDate and $endDate
         // output: True if sucess 
         $conn = new ConnectionManager(); 
@@ -146,15 +140,94 @@ class CourseRunDAO{
     }
 
     function getTrainee($courseRun){
-        // under construction 
+        //input: A courseRun Object 
+        // output: A list of trainee enrolled in the current courserun 
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "SELECT * FROM Enrollment_Record 
+                WHERE Course_Code = :course_code AND Course_Run_ID = :course_run_id;"; 
+        $stmt = $pdo->prepare($sql); 
+
+        $courseCode = $courseRun->getCourseCode(); 
+        $courseRunID = $courseRun->getCourseRunID();
+        
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        while($row = $stmt->fetch()){
+            $result[] = [$row["Course_Code"], $row["Course_name"], $row["Course_Run_ID"], $row["Capacity"], $row["Start_date"], $row["End_Date"]]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result; 
     }
 
-    function getTrainer($courseRun){
-        // under construction
+    function getAssignedTrainer($courseRun){
+        // input: A courseRun Object 
+        // output: the trainer assigned to the course
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "SELECT E.Employee_ID, E.First_Name, E.Last_name 
+                FROM Assignment A, Employee E 
+                WHERE A.Instructor_ID = E.Employee_ID AND A.Course_Code = :course_code AND A.Course_Run_ID = :course_run_id;"; 
+        $stmt = $pdo->prepare($sql); 
+
+        $courseCode = $courseRun->getCourseCode(); 
+        $courseRunID = $courseRun->getCourseRunID();
+        
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        while($row = $stmt->fetch()){
+            $result[] = [$row["Employee_ID"], $row["First_Name"], $row["Last_name"]]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result; 
     }
 
-    function getSection($courseRun){
-        // under construction
+    function assignTrainer($instructorID, $HRID, $courseRun, $assignment_date = NULL){
+        // input: Assign a Trainer to the course 
+        // output: true if success
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO Assignment (HR_ID, Instructor_ID, Course_Code, Course_Run_ID, Assignment_Date) 
+                VALUES      (:hr_id, instructor_id,:course_code,:course_run_id, :assignment_date);"; 
+        $stmt = $pdo->prepare($sql); 
+        
+        $courseCode = $courseRun->getCourseCode(); 
+        $courseRunID = $courseRun->getCourseRunID();
+        $stmt->bindParam(":hr_id", $HRID, PDO::PARAM_STR); 
+        $stmt->bindParam(":instructor_id", $instructorID, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_ID", $courseRunID, PDO::PARAM_STR); 
+        $stmt->bindParam(":assignment_date", $assignment_date, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+
     }
 }
 
