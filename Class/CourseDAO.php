@@ -110,15 +110,13 @@ class CourseDAO{
         return $status; 
     }
 
-    function removeCourse($course){
+    function removeCourse($course_code){
         // input: a course to be removed from the database
         // output: Trye if sucess 
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
         $sql = "DELETE FROM Course WHERE course_code = :course_code;"; 
         $stmt = $pdo->prepare($sql); 
-        
-        $courseCode = $course->getCourseCode(); 
 
         $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
 

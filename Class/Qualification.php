@@ -7,7 +7,7 @@ class Qualification{
     private $badgeDate;
     
     // further information 
-
+    
 
 }
 
