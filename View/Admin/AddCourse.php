@@ -5,7 +5,7 @@
         $name = $_POST['name'];
         $code = $_POST['code'];
         $badgeName = $_POST['badgeName'];
-        $course = new Course($name, $code, $badgeName);
+        $course = new Course($code, $name, $badgeName);
         $courseDAO = new CourseDAO();
         $courseDAO->addCourse($course);
     }

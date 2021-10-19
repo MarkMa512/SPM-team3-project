@@ -121,7 +121,7 @@ class CourseDAO{
         $sql = "INSERT INTO Course (Course_Code, Course_Name, Bagde_Name) VALUES (:course_code, :course_name, :badge_name);"; 
         $stmt = $pdo->prepare($sql); 
         
-        $courseCode = $course->getCourseCode(); 
+        $courseCode = trim($course->getCourseCode()); 
         $courseName = $course->getCourseName(); 
         $courseBadge = $course->getBadgeName();
 
@@ -163,8 +163,32 @@ class CourseDAO{
         return $status; 
     }
 
-    function updateCourse($courseCode){
+    function updateCourse($course){
         // under Construction 
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "UPDATE Course SET Course_Name=:course_name, Bagde_Name=:bagde_name WHERE course_code = :course_code;"; 
+        $stmt = $pdo->prepare($sql); 
+
+        $coursename = $course->getCourseName();
+        $coursecode = $course->getCourseCode();
+        $bagde_name = $course->getBadgeName();
+
+        $stmt->bindParam(":course_code", $coursecode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_name", $coursename, PDO::PARAM_STR);
+        $stmt->bindParam(":bagde_name", $bagde_name, PDO::PARAM_STR);
+
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
     }
 
 }

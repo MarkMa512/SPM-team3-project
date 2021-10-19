@@ -35,7 +35,12 @@
 
 </head>
 <body>
-
+        <?php
+          require_once "../../Class/autoload.php";
+          $empDAO = new EmployeeDAO();
+          // var_dump($empDAO->getAllInstructors());
+          $instructors = $empDAO->getAllInstructors();
+        ?>
     <div id="nav"></div>
 
     <!-- picture can edit -->
@@ -43,76 +48,27 @@
     <div class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">List of Employees</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">1001</strong>
-              <a href="ViewSection.html">Assign</a>
+
+        <?php
+        foreach($instructors as $instructor){
+          $empID = $instructor->getEmpID();
+          $name = $instructor->getEmpFirstName(). " " .$instructor->getEmpLastName();
+
+
+          echo "<div class=\"media text-muted pt-3\">
+          <img data-src=\"holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1\" alt=\"\" class=\"mr-2 rounded\">
+          <div class=\"media-body pb-3 mb-0 small lh-125 border-bottom border-gray\">
+            <div class=\"d-flex justify-content-between align-items-center w-100\">
+              <strong class=\"text-gray-dark\">{$empID}</strong>
+              <a href=\"AssignTo.php?empID={$empID}\">Assign</a>
             </div>
-            <span class="d-block">Albert Wong</span>
+            <span class=\"d-block\">{$name}</span>
           </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">1002</strong>
-              <a href="ViewSection.html">Assign</a>
-            </div>
-            <span class="d-block">Intro to Ink Printers</span>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">1003</strong>
-              <a href="ViewSection.html">Assign</a>
-            </div>
-            <span class="d-block">Thomas Ching</span>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">1004</strong>
-              <a href="ViewSection.html">Assign</a>
-            </div>
-            <span class="d-block">Lucas Lew</span>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">1005</strong>
-              <a href="ViewSection.html">Assign</a>
-            </div>
-            <span class="d-block">Robert Lim</span>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">1006</strong>
-              <a href="ViewSection.html">Assign</a>
-            </div>
-            <span class="d-block">Guan Yu</span>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">1007</strong>
-              <a href="ViewSection.html">Assign</a>
-            </div>
-            <span class="d-block">Joel Lim</span>
-          </div>
-        </div>
+        </div>";
+        }
+        ?>
+        
+        
         <!--
           <small class="d-block text-right mt-3">
           <a href="#">All Class</a>

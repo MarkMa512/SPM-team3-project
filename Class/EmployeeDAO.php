@@ -35,6 +35,36 @@ class EmployeeDAO {
         
         return $employee;
     }
+    function getAllInstructors() {
+        
+        // connect to database
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+        // prepare select
+        $sql = "SELECT * FROM Employee WHERE Employee_ID IN (SELECT Engineer_ID FROM engineer WHERE Engineer_Type='I')";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":emp_id", $emp_id, PDO::PARAM_INT);
+            
+        $employee = null;
+        if ( $stmt->execute() ) {
+            
+            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+                $employee[] = new Employee($row["First_Name"], $row["Last_Name"],
+                $row["Employee_ID"],$row["Employee_Type"],$row["Employee_Password_Hash"]);
+            }
+            
+        }
+        else {
+            // $connMgr->handleError($stmt, $sql );
+        }
+        
+        // close connections
+        $stmt = null;
+        $conn = null;        
+        
+        return $employee;
+    }
+
     function getEmp($emp_id) {
         
         // connect to database

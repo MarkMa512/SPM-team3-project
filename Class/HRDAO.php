@@ -68,11 +68,6 @@ class HRDAO{
         $pdo = NULL; 
         return $result; 
     }
-
-
-
-    
-
 }
 
 $t = new HRDAO(); 

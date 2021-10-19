@@ -41,9 +41,6 @@
     
     $courseName = $course->getCourseName();
     $badgeName = $course->getBadgeName();
-
-
-    
   ?>
 
 </head>
@@ -55,18 +52,18 @@
       <h5>Edit Course</h5>
       <br>
 
-       <form id='addCourseForm'> 
+       <form id='addCourseForm' action="UpdateCouseProcess.php" method="get" > 
         <div class="form-group">
             <label for="code">Course Code</label>
-            <input type="text" class="form-control" id="code" value="<?php echo $courseCode ?>" >
+            <input type="text" class="form-control" id="code" id="code" value="<?php echo $courseCode ?>" >
         </div>
         <div class="form-group">
             <label for="name">Course Name</label>
-            <input type="text" class="form-control" id="name" value="<?php echo $courseName ?>">
+            <input type="text" class="form-control" id="name" id="name" value="<?php echo $courseName ?>">
         </div>
         <div class="form-group">
             <label for="badgeName">Badge Name</label>
-            <input type="text" class="form-control" id="badgeName" value="<?php echo $badgeName ?>">
+            <input type="text" class="form-control" id="badgeName" id="badgeName" value="<?php echo $badgeName ?>">
         </div>
         <div>
             <label for="formFileLg" class="form-label">Badge Image</label>
