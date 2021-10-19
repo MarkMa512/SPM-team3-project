@@ -35,7 +35,20 @@
 
 </head>
 <body>
+    <?php 
+      session_start();
+      require_once "../../Class/autoload.php";
 
+
+      $learnerDAO = new LearnerDAO();
+      // var_dump($_SESSION);
+      // // $empID = $_SESSION["user"]->getEmpType();
+      // $crrUser = $_SESSION["user"];
+      // $crrUser->getEmpType();
+      // var_dump($crrUser);
+      $classes = $learnerDAO->getClassesByID($_SESSION['userID']);
+      var_dump($classes);
+    ?>
     <div id="nav"></div>
 
     <!-- picture can edit -->
@@ -43,17 +56,24 @@
     <div class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">My Class</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">101</strong>
-              <a href="#">View</a>
+        <?php 
+          foreach ($classes as $class) {
+            echo "
+            <div class=\"media text-muted pt-3\">
+              <img data-src=\"holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1\" alt=\"\" class=\"mr-2 rounded\">
+              <div class=\"media-body pb-3 mb-0 small lh-125 border-bottom border-gray\">
+                <div class=\"d-flex justify-content-between align-items-center w-100\">
+                  <strong class=\"text-gray-dark\">{$class[0]->getCourseCode()}</strong>
+                  <a href=\"#\">View</a>
+                </div>
+                <span class=\"d-block\">{$class[1]}</span>
+              </div>
             </div>
-            <span class="d-block">Intro to Printer Servicing</span>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
+            ";
+          }
+        ?>
+        
+        <!-- <div class="media text-muted pt-3">
           <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
@@ -63,16 +83,16 @@
             <span class="d-block">Intro to Ink Printers</span>
           </div>
         </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+        <div class="media text-muted pt-3"> -->
+          <!-- <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark">201</strong>
               <a href="#">View</a>
             </div>
             <span class="d-block">Intermideate Printer Servicing</span>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
         <!--
           <small class="d-block text-right mt-3">
           <a href="#">All Class</a>

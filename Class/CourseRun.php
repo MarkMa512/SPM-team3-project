@@ -90,8 +90,8 @@ class CourseRun{
     }
 
 
-    function createSection($sectionNum){
-        array_push($this->sectionList,new Section($this->courseCode, $this->courseRunID, $sectionNum));
+    function createSection($sectionNum, $sectionName){
+        array_push($this->sectionList,new Section($this->courseCode, $this->courseRunID, $sectionNum, $sectionName));
         // No need sql statement 
     }
     

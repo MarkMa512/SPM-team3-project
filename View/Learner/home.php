@@ -44,8 +44,9 @@
       require_once "../../Class/autoload.php";
       $empDao = new EmployeeDAO();
       $_SESSION["user"] = $empDao->getEmp(2001);
-
-      // var_dump($_SESSION["user"]);
+      
+      $_SESSION["userID"] = $_SESSION["user"]->getEmpID();
+      var_dump($_SESSION);
     ?>
     <div id="nav"></div>
 

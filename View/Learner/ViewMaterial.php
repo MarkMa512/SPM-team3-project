@@ -23,7 +23,6 @@
         color:#4b4c4d;
         }
 
-
         .footer-basic .copyright {
          margin-top:15px;
          text-align:center;

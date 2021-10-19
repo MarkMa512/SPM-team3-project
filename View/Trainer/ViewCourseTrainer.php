@@ -35,7 +35,14 @@
 
 </head>
 <body>
-
+  <?php
+          require_once "../../Class/autoload.php";
+          session_start();
+          $trainerDAO = new TrainerDAO();
+          // var_dump($empDAO->getAllInstructors());
+          $classes = $trainerDAO->getClassesByID($_SESSION["user"]->getEmpID());
+          var_dump($classes);
+        ?>
     <div id="nav"></div>
 
     <!-- picture can edit -->
@@ -43,28 +50,26 @@
     <div class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">My Class</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">101</strong>
-              <a href="ViewSection.html">Quiz</a>
-              <a href="ViewSection.html">Material</a>
+
+        <?php 
+          foreach($classes as $class){
+            echo "
+            <div class=\"media text-muted pt-3\">
+          <img data-src=\"holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1\" alt=\"\" class=\"mr-2 rounded\">
+          <div class=\"media-body pb-3 mb-0 small lh-125 border-bottom border-gray\">
+            <div class=\"d-flex justify-content-between align-items-center w-100\">
+              <strong class=\"text-gray-dark\">{$class[0]->getCourseCode()}</strong>
+              <a href=\"ViewSection.php\">Quiz</a>
+              <a href=\"ViewSection.php\">Material</a>
             </div>
-            <span class="d-block">Intro to Printer Servicing</span>
+            <span class=\"d-block\">{$class[1]}</span>
           </div>
         </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">102</strong>
-              <a href="ViewSection.html">Quiz</a>
-              <a href="ViewSection.html">Material</a>
-            </div>
-            <span class="d-block">Intro to Ink Printers</span>
-          </div>
-        </div>
+            ";
+          }
+        ?>
+        
+
 
         <!--
           <small class="d-block text-right mt-3">

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <link rel="shortcut icon" type="image/x-icon" href="../img/logo.jpg" />
+  <link rel="shortcut icon" type="image/x-icon" href="../img/logo2.png" />
 
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #7395AE;">
        <a class="navbar-brand" href="./home.php"><img src="../img/logo.jpg" alt="Logo" style="width: 45px; height:auto;"></a>
