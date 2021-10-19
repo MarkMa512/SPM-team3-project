@@ -4,14 +4,44 @@ require_once "autoload.php";
 
 class EmployeeDAO {
 
-    function GetAll($emp_id) {
+    function GetAllEmployee() {
         
         // connect to database
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
         
         // prepare select
-        $sql = "SELECT Employee_ID, Employee_Password_Hash FROM Employee WHERE Employee_ID = :emp_id";
+        $sql = "SELECT * FROM Employee";
+        $stmt = $conn->prepare($sql);
+            
+        $employee = null;
+        if ( $stmt->execute() ) {
+            
+            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+                $user = new Employee($row["First_Name"], $row["Last_Name"],
+                $row["Employee_ID"],$row["Employee_Type"],$row["Employee_Password_Hash"]);
+            }
+            
+        }
+        else {
+            // $connMgr->handleError($stmt, $sql );
+        }
+        
+        // close connections
+        $stmt = null;
+        $conn = null;        
+        
+        return $employee;
+    }
+
+    function GetEmployee($emp_id) {
+        
+        // connect to database
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+        
+        // prepare select
+        $sql = "SELECT * FROM Employee WHERE Employee_ID = :emp_id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":emp_id", $emp_id, PDO::PARAM_INT);
             
