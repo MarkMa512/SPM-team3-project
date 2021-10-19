@@ -11,7 +11,7 @@
     // example to handle log in user to different start page 
     
     
-    session_start();
+    // session_start();
     // we need to find the real location for each start page
     // if(!$_SESSION["username"]){
     //     header("Location:./login.php");

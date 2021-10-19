@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("navbarAdmin.html");
+          $('#nav').load("navbarAdmin.php");
           console.log("click");
         });
     </script>
@@ -48,7 +48,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark">PT101</strong>
-              <a href="UpdateCourse.html">Edit</a>
+              <a href="UpdateCourse.php">Edit</a>
               <a>Delete</a>
             </div>
             <span class="d-block">Intro to Ink Printers</span>
@@ -59,7 +59,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark">PT102</strong>
-              <a href="UpdateCourse.html">Edit</a>
+              <a href="UpdateCourse.php">Edit</a>
               <a>Delete</a>
             </div>
             <span class="d-block">Intro to Laserjet Printers</span>

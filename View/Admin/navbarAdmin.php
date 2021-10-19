@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="homeAdmin.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="ManageClass.php">Manage Class</a>
@@ -30,6 +30,17 @@
         </form>
       </div>
       <div class="nav-item my-2 my-lg-0">
-        <a class="nav-item nav-link text-light" href="../signin.php">Log In</a>
+        <a class="nav-item nav-link text-light" href="../signin.php"><?php
+        require_once "../../Class/autoload.php";
+        session_start();
+        if($_SESSION){
+
+          echo "Hi " . $_SESSION['user']->getEmpLastName();
+
+        }else{
+          echo "Log In";
+        }
+        
+        ?></a>
       </div>
     </nav>
