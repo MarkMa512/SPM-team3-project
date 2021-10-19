@@ -70,7 +70,7 @@ class HRDAO{
     }
 }
 
-$t = new HRDAO(); 
-$t->getAllCourse();
+// $t = new HRDAO(); 
+// $t->getAllCourse();
 
 ?>

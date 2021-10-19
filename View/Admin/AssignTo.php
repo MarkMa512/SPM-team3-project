@@ -35,7 +35,13 @@
 
 </head>
 <body>
-
+      <?php
+          require_once "../../Class/autoload.php";
+          $courseRunDAO = new CourseRunDAO();
+          // var_dump($empDAO->getAllInstructors());
+          $courseRuns = $courseRunDAO->displayAllCourseRun();
+          var_dump($courseRuns[0]);
+        ?>
     <div id="nav"></div>
 
     <!-- picture can edit -->
@@ -52,39 +58,34 @@
                 <thead class="thead-dark">
                     <tr>
                       <th scope="col">Course ID</th>
+                      <th scope="col">Course Run ID</th>
                       <th scope="col">Course Name</th>
-                      <th scope="col">Section</th>
+                      <!-- <th scope="col">Section</th> -->
                       <th scope="col">Start Date</th>
                       <th scope="col">Avaiable Slots</th>
                       <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                  <?php foreach ($courseRuns as $courseRun){
+                    // remove section <td>Section 1</td>
+                    echo "
                     <tr>
-                      <th scope="row">IS112-S1</th>
-                      <td>Intro to Database</td>
-                      <td>Section 1</td>
-                      <td>2021-12-1</td>
-                      <td>20</td>
-                      <td><button class="btn btn-outline-primary">Assign</button></td>
+                      <th scope=\"row\">{$courseRun[0]}</th>
+                      <td>{$courseRun[2]}</td>
+                      <td>{$courseRun[1]}</td>
+                      <td>{$courseRun[4]}</td>
+                      <td>{$courseRun[3]}</td>
+                      <td><a href=\"./AssignProcess.php?empID={$_GET['empID']}&CourseID={$courseRun[0]}&CourseRUNID={$courseRun[2]}\"><button class=\"btn btn-outline-primary\">Assign</button></a></td>
                     </tr>
-                    <tr>
-                      <th scope="row">IS112-S1</th>
-                      <td>Intro to Database</td>
-                      <td>Section 2</td>
-                      <td>2021-12-10</td>
-                      <td>10</td>
-                      <td><button class="btn btn-outline-primary">Assign</button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">IS112-S1</th>
-                      <td>Web App Development</td>
-                      <td>Section 3</td>
-                      <td>2021-12-20</td>
-                      <td>1</td>
-                      <td><button class="btn btn-outline-primary">Assign</button></td>
+                    
+                    ";
+                  }
 
-                    </tr>
+
+
+                  ?>
+                    
                   </tbody>
             </table>
 
