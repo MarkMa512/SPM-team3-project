@@ -31,8 +31,10 @@
          color:#aaa;
          margin-bottom:0;
         }
+        
   </style>
-
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
         <?php
@@ -76,6 +78,14 @@
         -->
       </div>
     </div>
+    <div id="app" class="container">
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+      <h6 class="border-bottom border-gray pb-2 mb-0">List of Employees</h6>
+      {{ data[0].EmpID }}
+      <ListItem v-for="d in data" v-bind:empID="d.EmpID" v-bind:empName="d.Name"></ListItem>
+
+
+    </div>
 
 
         <div class="footer-basic">
@@ -84,7 +94,47 @@
             <p class="copyright">LMS - Group 3 © 2021</p>
         </footer>
     </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                  data: [] // array of post objects
+                }
+            },
+            created() { 
+                axios.get('http://localhost/SPM-team3-project/View/Admin/getAssignClassData.php')
+                .then(response => {
+                    this.data = response.data;
+                    console.log(this.data);
+                    
+                })
+                .catch(error => {
+                    this.posts = [{ entry: 'There was an error: ' + error.message }]
+                })
+            }
+        })
+        app.component('ListItem', {
+          props:['empID', 'empName'],
 
+          template:`
+              <div>
+                <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">{{ empID }}</strong>
+                    <a href="AssignTo.php?empID={{ empID }}">Assign</a>
+                  </div>
+                  <span class="d-block">{{ empName }}</span>
+                </div>
+              </div>
+              </div>
+          `
+        })
+        
+
+        app.mount('#app');
+    </script>
 
 </body>
 
