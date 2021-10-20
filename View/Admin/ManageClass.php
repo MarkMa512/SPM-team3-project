@@ -54,6 +54,7 @@
         <?php 
           $courseDao = new CourseDAO();
           $courses = $courseDao->getAllCourse();
+          var_dump($courses[0]);
           foreach ($courses as $course){
             
             $courseCode = $course->getCourseCode();

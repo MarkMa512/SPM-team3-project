@@ -40,7 +40,9 @@
           $courseRunDAO = new CourseRunDAO();
           // var_dump($empDAO->getAllInstructors());
           $courseRuns = $courseRunDAO->displayAllCourseRun();
-          var_dump($courseRuns[0]);
+          
+          session_start();
+          var_dump($_SESSION);
         ?>
     <div id="nav"></div>
 

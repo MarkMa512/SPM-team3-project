@@ -44,7 +44,7 @@
   $empDao = new EmployeeDAO();
   $_SESSION["user"] = $empDao->getEmp(1);
 
-  var_dump($_SESSION["user"]);
+  var_dump($_SESSION["user"]->getEmpID());
 ?>
 <body>
 
