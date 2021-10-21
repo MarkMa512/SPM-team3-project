@@ -141,7 +141,7 @@ class CourseDAO{
         return $status; 
     }
 
-    function removeCourse($course_code){
+    function removeCourse($courseCode){
         // input: a course to be removed from the database
         // output: Trye if sucess 
         $conn = new ConnectionManager(); 

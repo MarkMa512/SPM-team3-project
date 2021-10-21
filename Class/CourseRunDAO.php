@@ -44,7 +44,7 @@ class CourseRunDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new CourseRun($row["Course_Code"], $row["Course_Run_ID"], $row["Capacity"], $row["Start_date"], $row["End_Date"]); 
+            $result[] = new CourseRun($row["Course_Code"], $row["Course_Run_ID"], $row["Capacity"], $row["Start_Date"], $row["End_Date"]); 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -200,12 +200,12 @@ class CourseRunDAO{
         return $result; 
     }
 
-    function assignTrainer($HRID, $instructorID,  $courseCode, $courseRunID,  $assignment_date = NULL){
+    function assignTrainer($HRID, $instructorID,  $courseCode, $courseRunID){
         // input: Assign a Trainer to the course 
         // output: true if success
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO Assignment (HR_ID, Instructor_ID, Course_Code, Course_Run_ID, Assignment_Date) VALUES (:hr_id, instructor_id,:course_code,:course_run_id, :assignment_date);"; 
+        $sql = "INSERT INTO Assignment (HR_ID, Instructor_ID, Course_Code, Course_Run_ID) VALUES (:hr_id, :instructor_id,:course_code,:course_run_id);"; 
         $stmt = $pdo->prepare($sql); 
         
         // $courseCode = $courseRun->getCourseCode(); 
@@ -213,8 +213,7 @@ class CourseRunDAO{
         $stmt->bindParam(":hr_id", $HRID, PDO::PARAM_INT); 
         $stmt->bindParam(":instructor_id", $instructorID, PDO::PARAM_INT); 
         $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
-        $stmt->bindParam(":course_run_ID", $courseRunID, PDO::PARAM_INT); 
-        $stmt->bindParam(":assignment_date", $assignment_date, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_INT); 
         
         $status = $stmt->execute(); 
 
@@ -226,7 +225,6 @@ class CourseRunDAO{
         $stmt->closeCursor(); 
         $pdo = NULL; 
         return $status; 
-
     }
 }
 
