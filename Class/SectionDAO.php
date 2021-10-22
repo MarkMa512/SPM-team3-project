@@ -115,6 +115,60 @@ class SectionDAO{
     function addMaterial($courseCode, $courseRunID, $sectionID){
         // under construction 
     }
+
+    function generateSectionById($empID, $courseCode, $courseRunID){
+        $conn = new ConnectionManager(); 
+        $pdo = $conn->getConnection(); 
+        $sql = "SELECT * FROM section s, assignment a WHERE s.Course_Code=a.Course_Code AND s.Course_Run_ID=a.Course_Run_ID AND a.Instructor_ID=:empID AND s.Course_Code=:courseCode AND s.Course_Run_ID=:courseRunId;";
+        // 1001
+        $stmt = $pdo->prepare($sql); 
+        $stmt->bindParam(":empID", $empID, PDO::PARAM_INT); 
+        $stmt->bindParam(":courseCode", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":courseRunId", $courseRunID, PDO::PARAM_INT); 
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $result = [];
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = [$row["Material_ID"], $row["Material"]]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        
+        return $result; 
+    }
+    function getSectionByID($trainerID){
+
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+
+        $sql = "SELECT c.Course_Name, s.Course_Code, s.Course_Run_ID, s.Section_ID FROM section s, assignment a, course c WHERE s.Course_Code=a.Course_Code AND s.Course_Run_ID=a.Course_Run_ID AND c.Course_Code = s.Course_Code AND a.Instructor_ID =:trainerID;";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
+
+        $result = [];
+
+        if ($stmt->execute()) {
+            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+                $result[] = [
+                    "CourseCode"=>$row['Course_Code'], 
+                    "CourseRunID"=>$row['Course_Run_ID'], 
+                    "SectionID"=>$row['Section_ID'],
+                    "CourseName"=>$row['Course_Name']
+                ];
+            }
+        }else{
+
+        }
+        $stmt = null;
+        $conn = null;        
+        
+        return $result;
+    }
 }
 
 ?>

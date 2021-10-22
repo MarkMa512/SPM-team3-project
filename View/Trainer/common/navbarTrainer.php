@@ -15,16 +15,17 @@
             <a class="nav-link" href="HomeTrainer.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="ViewCourseTrainer.html">My Class</a>
+            <a class="nav-link" href="ViewCourseTrainer.html">Class Management</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="SectionListForQuiz.html">Quiz Management</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="ForumTrainer.html">Forum</a>
           </li>
-          <!--
-          <li class="nav-item active">
-            <a class="nav-link" href="ViewMaterial.html">Material</a>
-          </li>
-          -->
+          
+          
+         
         
         </ul>
         <form class="form-inline my-2 my-md-0">
