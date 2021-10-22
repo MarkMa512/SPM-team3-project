@@ -41,9 +41,11 @@
     <!-- picture can edit -->
     <br>
     <div id="app" class="container">
+      
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">My Class</h6>
         <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName"></list-item>
+        
       </div>
     </div>
 
@@ -62,10 +64,10 @@
             }
         },
         created() { // created is a hook that executes as soon as Vue instance is created
-            axios.get('http://localhost/SPM-team3-project/View/Learner/getData/getViewCourseData.php')
+            axios.get('http://localhost/spM-team3-project/View/Trainer/getData/getViewCourseTrainerData.php')
             .then(response => {
                 // this gets the data, which is an array
-                this.posts = response.data
+                this.posts = response.data;
                 console.log(response.data);
             })
             .catch(error => {
