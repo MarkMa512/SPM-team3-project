@@ -1,7 +1,7 @@
 <?php 
 class Course{
     private $courseCode; //IS216 => edit 
-    private $prerequisiteList = [];
+    private $coursprerequisiteList = [];
     private $courseName;
     private $courseRunList = [];
 
@@ -18,7 +18,7 @@ class Course{
     function __construct($courseCode, $courseName, $prerequisiteList =[], $courseRunList=[]){
         $this->courseCode = $courseCode;
         $this->courseName = $courseName;
-        $this->prerequisite = $prerequisiteList;
+        $this->coursprerequisiteList = $prerequisiteList;
         $this->courseRunList= $courseRunList;
         // insert statement join statement 
 
@@ -30,7 +30,7 @@ class Course{
     }
 
     function addPrerequisite($prerequisite){
-        array_push($this->prerequisiteList,$prerequisite);
+        array_push($this->coursprerequisiteList,$prerequisite);
         // SQL statement insert statement 
 
     }
@@ -40,7 +40,7 @@ class Course{
         return $this->courseCode;
     }
     function getPrerequisiteList(){
-        return $this->coursprerequisiteListe;
+        return $this->coursprerequisiteList;
     }
     function getCourseName(){
         return $this->courseName;
