@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("navbarAdmin.php");
+          $('#nav').load("./common/navbarAdmin.php");
           console.log("click");
         });
     </script>
@@ -52,18 +52,19 @@
       <h5>Edit Course</h5>
       <br>
 
-       <form id='addCourseForm' action="UpdateCouseProcess.php" method="get" > 
+       <form id='addCourseForm' action="./postData/UpdateCouseProcess.php" method="get" > 
+
         <div class="form-group">
             <label for="code">Course Code</label>
-            <input type="text" class="form-control" id="code" id="code" value="<?php echo $courseCode ?>" >
+            <input type="text" class="form-control" name="code" id="code" value="<?php echo $courseCode ?>" >
         </div>
         <div class="form-group">
             <label for="name">Course Name</label>
-            <input type="text" class="form-control" id="name" id="name" value="<?php echo $courseName ?>">
+            <input type="text" class="form-control" name="name" id="name" value="<?php echo $courseName ?>">
         </div>
         <div class="form-group">
             <label for="badgeName">Badge Name</label>
-            <input type="text" class="form-control" id="badgeName" id="badgeName" value="<?php echo $badgeName ?>">
+            <input type="text" class="form-control" name="badgeName" id="badgeName" value="<?php echo $badgeName ?>">
         </div>
         <div>
             <label for="formFileLg" class="form-label">Badge Image</label>

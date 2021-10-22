@@ -1,5 +1,5 @@
 <?php
-    require_once "../../Class/autoload.php";
+    require_once "../../../Class/autoload.php";
     $empDAO = new EmployeeDAO();
     // var_dump($empDAO->getAllInstructors());
     $instructors = $empDAO->getAllInstructors();

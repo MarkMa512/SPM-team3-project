@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("navbarAdmin.php");
+          $('#nav').load("./common/navbarAdmin.php");
           console.log("click");
         });
     </script>
@@ -78,7 +78,7 @@
                       <td>{$courseRun[1]}</td>
                       <td>{$courseRun[4]}</td>
                       <td>{$courseRun[3]}</td>
-                      <td><a href=\"./AssignProcess.php?empID={$_GET['empID']}&CourseID={$courseRun[0]}&CourseRUNID={$courseRun[2]}\"><button class=\"btn btn-outline-primary\">Assign</button></a></td>
+                      <td><a href=\"./postData/AssignTrainerProcess.php?empID={$_GET['empID']}&CourseID={$courseRun[0]}&CourseRUNID={$courseRun[2]}\"><button class=\"btn btn-outline-primary\">Assign</button></a></td>
                     </tr>
                     
                     ";
@@ -94,6 +94,14 @@
         </div>
         
     </div>
+    <?php 
+
+      if(isset($_SESSION['error_msg'])){
+        echo "<div class='alert alert-danger' role='alert'>
+          {$_SESSION['error_msg']}</div>";
+          unset($_SESSION['error_msg']);
+      }
+    ?>
 
 
         <div class="footer-basic">

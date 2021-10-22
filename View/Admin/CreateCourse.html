@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("navbarAdmin.php");
+          $('#nav').load("./common/navbarAdmin.php");
           console.log("click");
         });
     </script>
@@ -42,7 +42,7 @@
       <h5>Create New Course</h5>
       <br>
 
-       <form id='addCourseForm' action="AddCourse.php" method="post"> 
+       <form action="./postData/AddCourse.php" method="post"> 
         <div class="form-group">
             <label for="code">Course Code</label>
             <input type="text" class="form-control" id="code" name="code" placeholder="Enter Course Code">

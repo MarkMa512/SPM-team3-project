@@ -1,5 +1,5 @@
 <?php
-  require_once "../../Class/autoload.php";
+  require_once "../../../Class/autoload.php";
   session_start();
   $courseRunDAO = new CourseRunDAO();
   // var_dump($empDAO->getAllInstructors());
