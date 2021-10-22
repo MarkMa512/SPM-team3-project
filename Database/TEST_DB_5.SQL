@@ -60,7 +60,7 @@ CREATE TABLE Qualification(
     Course_Code CHAR(5) NOT NULL,
 
     -- added in TestDatabase 5: auto capture of the date 
-    Qualification_Date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    Qualification_Date DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     Badge_Assign_Date DATE, -- if Badge_Assign_date == null, means the bagde has yet been assigned
 
     CONSTRAINT Qualification_PK PRIMARY KEY (Employee_ID, Course_Code),  
@@ -92,7 +92,7 @@ CREATE TABLE Assignment(
     Course_Code CHAR(5) NOT NULL, 
     Course_Run_ID INT NOT NULL, 
 
-    Assignment_Date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Assignment_Date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT Assignment_PK PRIMARY KEY (HR_ID, Instructor_ID, Course_Code, Course_Run_ID),
     CONSTRAINT Assignment_FK1 FOREIGN KEY (HR_ID) REFERENCES Employee(Employee_ID),
@@ -108,7 +108,7 @@ CREATE TABLE Enrollment_Record(
     Course_Run_ID INT NOT NULL,
 
     -- added in TestDatabase 5: auto capture of the date 
-    Enroll_Date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    Enroll_Date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
     CONSTRAINT Enrollment_Record_PK PRIMARY KEY (Learner_ID, Course_Code, Course_Run_ID),
     CONSTRAINT Enrollment_Record_FK1 FOREIGN KEY (Learner_ID) REFERENCES Employee(Employee_ID),
