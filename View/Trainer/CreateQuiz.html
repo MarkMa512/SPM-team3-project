@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--Vue-->
+    <script 
+        src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"
+    ></script>
+    <script>
+        $(function(){
+          $('#nav').load("navbarTrainer.html");
+          console.log("click");
+        });
+    </script>
+
+      <style>
+          .footer-basic {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding:40px 0;
+        background-color:#ffffff;
+        color:#4b4c4d;
+        }
+
+
+        .footer-basic .copyright {
+         margin-top:15px;
+         text-align:center;
+         font-size:13px;
+         color:#aaa;
+         margin-bottom:0;
+        }
+  </style>
+
+</head>
+<body>
+
+    <div id="nav"></div>
+
+    <!-- picture can edit -->
+    <br>
+     <div class="container">
+        <div class="row mapD">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Create Quiz</h6>
+            <br>
+            <div id="app">
+            <form id="quizForm">
+                <div class="mb-3">
+                <br>
+                  <label for="quizTitle" class="form-label">Quiz Title</label>
+                  <input type="text" class="form-control" id="quizTitle" >
+                </div>
+                <!--Question 1-->
+                <div class="mb-3">
+                  <label for="questionType" class="form-label">Question 1 Type</label>
+                  <select class = "form-select mb-3" v-model = "question1Type" v-on:change = "question1OptionCount = 1">
+                      <option value="" disabled selected>Select question type</option>
+                      <option value = "mcq">Multiple Choice</option>
+                      <option value = "checkbox">True and False</option>
+                  </select>
+                  <input type="text" class = "form-control mb-3" placeholder="Question 1" id="Question"></inpuut>
+                  <div v-if = "question1Type == 'text'">
+                    <input type = "text" class="form-control" placeholder="Question 1 Answer"> 
+                  </div>
+                  <div v-else-if = "question1Type == 'mcq'">
+                    <input type = "text" class="form-control" placeholder="Answer 1">
+                    <input class="form-check-input" type = "radio" id = "q1Option1" name = "radio1" value="1">
+                    <label class="form-check-label" for="q1Option1">This is the correct answer</label><br><br>
+                    <div v-if = "question1OptionCount > 1">
+                        <input type = "text" class="form-control" placeholder="Answer 2">
+                        <input class="form-check-input" type = "radio" id = "q1Option2" name = "radio1" value="2">
+                        <label class="form-check-label" for="q1Option2">This is the correct answer</label><br><br>
+                    </div>
+                    <div v-if = "question1OptionCount > 2">
+                        <input type = "text" class="form-control" placeholder="Answer 3">
+                        <input class="form-check-input" type = "radio" id = "q1Option3" name = "radio1" value="3">
+                        <label class="form-check-label" for="q1Option3">This is the correct answer</label><br><br>
+                    </div>
+                    <div v-if = "question1OptionCount > 3">
+                        <input type = "text" class="form-control" placeholder="Answer 4">
+                        <input class="form-check-input" type = "radio" id = "q1Option4" name = "radio1" value="4">
+                        <label class="form-check-label" for="q1Option4">This is the correct answer</label><br><br>
+                    </div>
+                   
+                    <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question1OptionCount')" type="button">Add option</button>
+                  </div>
+                  <div v-else-if = "question1Type == 'checkbox'">
+                    <input type = "text" class="form-control" placeholder="Answer 1">
+                    <input class="form-check-input" type = "radio" id = "q1Option1" name = "checkbox1"  value="1">
+                    <label class="form-check-label" for="q1Option1">This is a correct answer</label><br><br>
+                    <div v-if = "question1OptionCount > 1">
+                        <input type = "text" class="form-control" placeholder="Answer 2">
+                        <input class="form-check-input" type = "radio" id = "q1Option2" name = "checkbox1"  value="2">
+                        <label class="form-check-label" for="q1Option2">This is a correct answer</label><br><br>
+                    </div>
+
+                   
+                    <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question1OptionCount')" type="button">Add option</button>
+                  </div>
+                </div>
+
+                <!--Question 2-->
+                <div class="mb-3" v-if = "questionCount > 1">
+                    <label for="questionType" class="form-label">Question 2 Type</label>
+                    <select class = "form-select mb-3" v-model = "question2Type" v-on:change = "question2OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                       
+                        <option value = "mcq">Multiple Choice</option>
+                      <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 2" id="Question"></inpuut>
+                    <div v-if = "question2Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 2 Answer"> 
+                    </div>
+                    <div v-else-if = "question2Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q2Option1" name = "radio2" value="1">
+                        <label class="form-check-label" for="q2Option1">This is the correct answer</label><br><br>
+                      <div v-if = "question2OptionCount > 1">
+                          <input type = "text" class="form-control" placeholder="Answer 2">
+                          <input class="form-check-input" type = "radio" id = "q2Option2" name = "radio2" value="2">
+                          <label class="form-check-label" for="q2Option2">This is the correct answer</label><br><br>
+                      </div>
+                      <div v-if = "question2OptionCount > 2">
+                          <input type = "text" class="form-control" placeholder="Answer 3">
+                          <input class="form-check-input" type = "radio" id = "q2Option3" name = "radio2" value="3">
+                          <label class="form-check-label" for="q2Option3">This is the correct answer</label><br><br>
+                      </div>
+                      <div v-if = "question2OptionCount > 3">
+                          <input type = "text" class="form-control" placeholder="Answer 4">
+                          <input class="form-check-input" type = "radio" id = "q2Option4" name = "radio2" value="4">
+                          <label class="form-check-label" for="q2Option4">This is the correct answer</label><br><br>
+                      </div>
+
+                      <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question2OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question2Type == 'checkbox'">
+                      <input type = "text" class="form-control" placeholder="Answer 1">
+                      <input class="form-check-input" type = "radio" id = "q2Option1" name = "checkbox2"  value="1">
+                      <label class="form-check-label" for="q2Option1">This is a correct answer</label><br><br>
+                      <div v-if = "question2OptionCount > 1">
+                          <input type = "text" class="form-control" placeholder="Answer 2">
+                          <input class="form-check-input" type = "radio" id = "q2Option2" name = "checkbox2"  value="2">
+                          <label class="form-check-label" for="q2Option2">This is a correct answer</label><br><br>
+                      </div>
+
+                      <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question2OptionCount')" type="button">Add option</button>
+                    </div>
+                  </div>
+
+                <!--Question 3-->
+                <div class="mb-3" v-if = "questionCount > 2">
+                    <label for="questionType" class="form-label">Question 3 Type</label>
+                    <select class = "form-select mb-3" v-model = "question3Type" v-on:change = "question3OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                      <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 3" id="Question"></inpuut>
+                    <div v-if = "question3Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 3 Answer"> 
+                    </div>
+                    <div v-else-if = "question3Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q3Option1" name = "radio3" value="1">
+                        <label class="form-check-label" for="q3Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question3OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q3Option2" name = "radio3" value="2">
+                            <label class="form-check-label" for="q3Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question3OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q3Option3" name = "radio3" value="3">
+                            <label class="form-check-label" for="q3Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question3OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q3Option4" name = "radio3" value="4">
+                            <label class="form-check-label" for="q3Option4">This is the correct answer</label><br><br>
+                        </div>
+                        
+                    <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question3OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question3Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q3Option1" name = "checkbox3"  value="1">
+                        <label class="form-check-label" for="q3Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question3OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q3Option2" name = "checkbox3"  value="2">
+                            <label class="form-check-label" for="q3Option2">This is a correct answer</label><br><br>
+                        </div>
+          
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question3OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+                <!--Question 4-->
+                <div class="mb-3" v-if = "questionCount > 3">
+                    <label for="questionType" class="form-label">Question 4 Type</label>
+                    <select class = "form-select mb-3" v-model = "question4Type" v-on:change = "question4OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                      <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 4" id="Question"></inpuut>
+                    <div v-if = "question4Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 4 Answer"> 
+                    </div>
+                    <div v-else-if = "question4Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q4Option1" name = "radio4" value="1">
+                        <label class="form-check-label" for="q4Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question4OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q4Option2" name = "radio4" value="2">
+                            <label class="form-check-label" for="q4Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question4OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q4Option3" name = "radio4" value="3">
+                            <label class="form-check-label" for="q4Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question4OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q4Option4" name = "radio4" value="4">
+                            <label class="form-check-label" for="q4Option4">This is the correct answer</label><br><br>
+                        </div>
+                       
+                        
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question4OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question4Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q4Option1" name = "checkbox4"  value="1">
+                        <label class="form-check-label" for="q4Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question4OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q4Option2" name = "checkbox4"  value="2">
+                            <label class="form-check-label" for="q4Option2">This is a correct answer</label><br><br>
+                        </div>
+                        
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question4OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+                <!--Question 5-->
+                <div class="mb-3" v-if = "questionCount > 4">
+                    <label for="questionType" class="form-label">Question 5 Type</label>
+                    <select class = "form-select mb-3" v-model = "question5Type" v-on:change = "question5OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                        <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 5" id="Question"></inpuut>
+                    <div v-if = "question5Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 5 Answer"> 
+                    </div>
+                    <div v-else-if = "question5Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q5Option1" name = "radio5" value="1">
+                        <label class="form-check-label" for="q5Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question5OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q5Option2" name = "radio5" value="2">
+                            <label class="form-check-label" for="q5Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question5OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q5Option3" name = "radio5" value="3">
+                            <label class="form-check-label" for="q5Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question5OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q5Option4" name = "radio5" value="4">
+                            <label class="form-check-label" for="q5Option4">This is the correct answer</label><br><br>
+                        </div>
+                       
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question5OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question5Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q5Option1" name = "checkbox5"  value="1">
+                        <label class="form-check-label" for="q5Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question5OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q5Option2" name = "checkbox5"  value="2">
+                            <label class="form-check-label" for="q5Option2">This is a correct answer</label><br><br>
+                        </div>
+                       
+                       
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question5OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+                <!--Question 6-->
+                <div class="mb-3" v-if = "questionCount > 5">
+                    <label for="questionType" class="form-label">Question 6 Type</label>
+                    <select class = "form-select mb-3" v-model = "question6Type" v-on:change = "question6OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                        <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 6" id="Question"></inpuut>
+                    <div v-if = "question6Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 6 Answer"> 
+                    </div>
+                    <div v-else-if = "question6Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q6Option1" name = "radio6" value="1">
+                        <label class="form-check-label" for="q6Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question6OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q6Option2" name = "radio6" value="2">
+                            <label class="form-check-label" for="q6Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question6OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q6Option3" name = "radio6" value="3">
+                            <label class="form-check-label" for="q6Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question6OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q6Option4" name = "radio6" value="4">
+                            <label class="form-check-label" for="q6Option4">This is the correct answer</label><br><br>
+                        </div>
+                      
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question6OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question6Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q6Option1" name = "checkbox6"  value="1">
+                        <label class="form-check-label" for="q6Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question6OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q6Option2" name = "checkbox6"  value="2">
+                            <label class="form-check-label" for="q6Option2">This is a correct answer</label><br><br>
+                        </div>
+                       
+                       
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question6OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+                <!--Question 7-->
+                <div class="mb-3" v-if = "questionCount > 6">
+                    <label for="questionType" class="form-label">Question 7 Type</label>
+                    <select class = "form-select mb-3" v-model = "question7Type" v-on:change = "question7OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                        <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 7" id="Question"></inpuut>
+                    <div v-if = "question7Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 7 Answer"> 
+                    </div>
+                    <div v-else-if = "question7Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q7Option1" name = "radio7" value="1">
+                        <label class="form-check-label" for="q7Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question7OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q7Option2" name = "radio7" value="2">
+                            <label class="form-check-label" for="q7Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question7OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q7Option3" name = "radio7" value="3">
+                            <label class="form-check-label" for="q7Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question7OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q7Option4" name = "radio7" value="4">
+                            <label class="form-check-label" for="q7Option4">This is the correct answer</label><br><br>
+                        </div>
+                        
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question7OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question7Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q7Option1" name = "checkbox7"  value="1">
+                        <label class="form-check-label" for="q7Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question7OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q7Option2" name = "checkbox7"  value="2">
+                            <label class="form-check-label" for="q7Option2">This is a correct answer</label><br><br>
+                        </div>
+                      
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question7OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+                <!--Question 8-->
+                <div class="mb-3" v-if = "questionCount > 7">
+                    <label for="questionType" class="form-label">Question 8 Type</label>
+                    <select class = "form-select mb-3" v-model = "question8Type" v-on:change = "question8OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                        <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 8" id="Question"></inpuut>
+                    <div v-if = "question8Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 8 Answer"> 
+                    </div>
+                    <div v-else-if = "question8Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q8Option1" name = "radio8" value="1">
+                        <label class="form-check-label" for="q8Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question8OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q8Option2" name = "radio8" value="2">
+                            <label class="form-check-label" for="q8Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question8OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q8Option3" name = "radio8" value="3">
+                            <label class="form-check-label" for="q8Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question8OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q8Option4" name = "radio8" value="4">
+                            <label class="form-check-label" for="q8Option4">This is the correct answer</label><br><br>
+                        </div>
+                        
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question8OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question8Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q8Option1" name = "checkbox8"  value="1">
+                        <label class="form-check-label" for="q8Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question8OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q8Option2" name = "checkbox8"  value="2">
+                            <label class="form-check-label" for="q8Option2">This is a correct answer</label><br><br>
+                        </div>
+                        
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question8OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+                <!--Question 9-->
+                <div class="mb-3" v-if = "questionCount > 8">
+                    <label for="questionType" class="form-label">Question 9 Type</label>
+                    <select class = "form-select mb-3" v-model = "question9Type" v-on:change = "question9OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                        <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 9" id="Question"></inpuut>
+                    <div v-if = "question9Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 9 Answer"> 
+                    </div>
+                    <div v-else-if = "question9Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q9Option1" name = "radio9" value="1">
+                        <label class="form-check-label" for="q9Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question9OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q9Option2" name = "radio9" value="2">
+                            <label class="form-check-label" for="q9Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question9OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q9Option3" name = "radio9" value="3">
+                            <label class="form-check-label" for="q9Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question9OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q9Option4" name = "radio9" value="4">
+                            <label class="form-check-label" for="q9Option4">This is the correct answer</label><br><br>
+                        </div>
+                        
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question9OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question9Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q9Option1" name = "checkbox9"  value="1">
+                        <label class="form-check-label" for="q9Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question9OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q9Option2" name = "checkbox9"  value="2">
+                            <label class="form-check-label" for="q9Option2">This is a correct answer</label><br><br>
+                        </div>
+                      
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question9OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+                <!--Question 10-->
+                <div class="mb-3" v-if = "questionCount > 9">
+                    <label for="questionType" class="form-label">Question 10 Type</label>
+                    <select class = "form-select mb-3" v-model = "question10Type" v-on:change = "question10OptionCount = 1">
+                        <option value="" disabled selected>Select question type</option>
+                        <option value = "mcq">Multiple Choice</option>
+                        <option value = "checkbox">True and False</option>
+                    </select>
+                    <input type="text" class = "form-control mb-3" placeholder="Question 10" id="Question"></inpuut>
+                    <div v-if = "question10Type == 'text'">
+                        <input type = "text" class="form-control" placeholder="Question 10 Answer"> 
+                    </div>
+                    <div v-else-if = "question10Type == 'mcq'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q10Option1" name = "radio10" value="1">
+                        <label class="form-check-label" for="q10Option1">This is the correct answer</label><br><br>
+                        <div v-if = "question10OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q10Option2" name = "radio10" value="2">
+                            <label class="form-check-label" for="q10Option2">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question10OptionCount > 2">
+                            <input type = "text" class="form-control" placeholder="Answer 3">
+                            <input class="form-check-input" type = "radio" id = "q10Option3" name = "radio10" value="3">
+                            <label class="form-check-label" for="q10Option3">This is the correct answer</label><br><br>
+                        </div>
+                        <div v-if = "question10OptionCount > 3">
+                            <input type = "text" class="form-control" placeholder="Answer 4">
+                            <input class="form-check-input" type = "radio" id = "q10Option4" name = "radio10" value="4">
+                            <label class="form-check-label" for="q10Option4">This is the correct answer</label><br><br>
+                        </div>
+                        
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question10OptionCount')" type="button">Add option</button>
+                    </div>
+                    <div v-else-if = "question10Type == 'checkbox'">
+                        <input type = "text" class="form-control" placeholder="Answer 1">
+                        <input class="form-check-input" type = "radio" id = "q10Option1" name = "checkbox10"  value="1">
+                        <label class="form-check-label" for="q10Option1">This is a correct answer</label><br><br>
+                        <div v-if = "question10OptionCount > 1">
+                            <input type = "text" class="form-control" placeholder="Answer 2">
+                            <input class="form-check-input" type = "radio" id = "q10Option2" name = "checkbox10"  value="2">
+                            <label class="form-check-label" for="q10Option2">This is a correct answer</label><br><br>
+                        </div>
+                       
+                        <button id = "btn-add" class="btn btn-primary" v-on:click="addOption('question10OptionCount')" type="button">Add option</button>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button id = "btn-add" class="btn btn-primary" v-on:click="addQuestion" type="button">Add Question</button>
+                <p>Number of Questions: {{questionCount}}</p>
+              </form>
+              </div>
+
+        </div>
+        <br>
+        
+       
+    </div>
+
+
+        
+
+
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            questionCount: 1,
+            question1Type: '',
+            question2Type: '',
+            question3Type: '',
+            question4Type: '',
+            question5Type: '',
+            question6Type: '',
+            question7Type: '',
+            question8Type: '',
+            question9Type: '',
+            question10Type: '',
+            question1OptionCount: 1,
+            question2OptionCount: 1,
+            question3OptionCount: 1,
+            question4OptionCount: 1,
+            question5OptionCount: 1,
+            question6OptionCount: 1,
+            question7OptionCount: 1,
+            question8OptionCount: 1,
+            question9OptionCount: 1,
+            question10OptionCount: 1
+        },
+        methods:{
+            addQuestion: function(event) {
+                myCount = this.questionCount;
+                myCount++;
+                this.questionCount = myCount
+                console.log(myCount);
+            } ,
+
+            addOption: function(optionCount){
+                myCount = this[optionCount];
+                myCount++;
+                this[optionCount] = myCount
+                console.log(myCount);
+
+            }
+        } 
+    })
+    
+    BtnAdd = document.getElementById("btn-test");
+    BtnAdd.onclick = function(){
+        var newDiv = document.createElement("div");
+        var newBtn =document.createElement("button")
+        newBtn.setAttribute("class", "btn btn-secondary")
+        newBtn.innerHTML = "Test"
+        newDiv.appendChild(newBtn)
+        console.log("add")
+        document.body.appendChild(newDiv)
+    }
+</script>
+
+</html>
