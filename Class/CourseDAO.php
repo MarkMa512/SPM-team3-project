@@ -77,7 +77,6 @@ class CourseDAO{
            
         }
         if($row = $stmt->fetch()){
-            var_dump($row);
             $result = new Course($row['Course_Code'], $row['Course_Name'], $row['Bagde_Name']); 
         }
         $stmt->closeCursor();

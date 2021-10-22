@@ -42,7 +42,7 @@
           $courseRuns = $courseRunDAO->displayAllCourseRun();
           
           session_start();
-          var_dump($_SESSION);
+
         ?>
     <div id="nav"></div>
 

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         $(function(){
           $('#nav').load("./common/navbarLearner.php");
@@ -38,48 +40,54 @@
     <div id="nav"></div>
 
     <br>
-         <div class="container">
+      <div id="app" class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Materials</h6>
         <br>
-        <div class="card">
-          <div class="card-header">
-            IS112
-          </div>
-        <div class="card-body">
-          <h5 class="card-title">Section 1</h5>
-          <p class="card-text">Begin Your Service Journey</p>
-          <a href="#" class="btn btn-primary">Download</a>
-            </div>
-        </div>
-        <br>
+        <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:crid="data.CourseRunID" v-bind:mid="data.MaterialID" v-bind:mname="data.Name" v-bind:sid="data.SectionID" v-bind:link=""></list-item>
 
-        <div class="card">
-          <div class="card-header">
-            IS112
-          </div>
-        <div class="card-body">
-          <h5 class="card-title">Section 2</h5>
-          <p class="card-text">Intro to Ink Printers</p>
-          <a href="#" class="btn btn-primary">Download</a>
-            </div>
-        </div>
-        <br>
-
-        <div class="card">
-          <div class="card-header">
-            IS112
-          </div>
-        <div class="card-body">
-          <h5 class="card-title">Section 3</h5>
-          <p class="card-text">Different types of Ink Printers</p>
-          <a href="#" class="btn btn-primary">Download</a>
-            </div>
-        </div>
    
       </div>
     </div>
-
+<script>
+  const app = Vue.createApp({
+    data() {
+        return {
+            posts: [] // array of post objects
+        }
+    },
+    created() { // created is a hook that executes as soon as Vue instance is created
+        axios.get('http://localhost/spM-team3-project/View/Learner/getData/getViewMaterialData.php')
+        .then(response => {
+            // this gets the data, which is an array
+            this.posts = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            this.posts = [{ entry: 'There was an error: ' + error.message }]
+            })
+            
+        }
+        
+    });
+    app.component('list-item', {
+        props:['cid', 'cname', 'crid', 'mid','mname','sid'],
+        template:`
+        <div class="card">
+          <div class="card-header">
+            {{ cid }}-R{{ crid }} {{ cname }}
+          </div>
+        <div class="card-body">
+          <h5 class="card-title">Section {{ sid }}</h5>
+          <p class="card-text">{{ mname }}</p>
+          <a href="#" class="btn btn-primary">Download</a>
+            </div>
+        </div>
+        <br>
+        `
+      });
+    app.mount('#app');
+</script>
 
 </body>
 

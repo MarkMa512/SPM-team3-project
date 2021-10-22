@@ -11,6 +11,8 @@
       // $crrUser->getEmpType();
       // var_dump($crrUser);
       $classes = $learnerDAO->getClassesByID($_SESSION['userID']);
+      // var_dump($classes);
+
       $result = [];
       foreach ($classes as $class) {
         $result[] = ["CourseName"=>$class[1], "CourseCode"=>$class[0]->getCourseCode()];
