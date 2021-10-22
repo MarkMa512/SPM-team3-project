@@ -59,8 +59,8 @@
           <div class=\"media-body pb-3 mb-0 small lh-125 border-bottom border-gray\">
             <div class=\"d-flex justify-content-between align-items-center w-100\">
               <strong class=\"text-gray-dark\">{$class[0]->getCourseCode()}</strong>
-              <a href=\"ViewSection.php\">Quiz</a>
-              <a href=\"ViewSection.php\">Material</a>
+              <a href=\"CreateQuiz.html\">Quiz</a>
+              <a href=\"ManageMaterial.html\">Material</a>
             </div>
             <span class=\"d-block\">{$class[1]}</span>
           </div>
