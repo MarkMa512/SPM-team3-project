@@ -48,7 +48,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark"></strong>
-              <a href="ViewMaterial.php">View</a>
+              <a href="TakeQuiz.html">Quiz</a>
             </div>
             <span class="d-block">Section 1</span>
           </div>
@@ -58,7 +58,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark"></strong>
-              <a href="ViewMaterial.php">View</a>
+              <a href="TakeQuiz.html">Quiz</a>
             </div>
             <span class="d-block">Section 2</span>
           </div>
@@ -68,7 +68,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark"></strong>
-              <a href="ViewMaterial.php">View</a>
+              <a href="TakeQuiz.html">Quiz</a>
             </div>
             <span class="d-block">Section 3</span>
           </div>
