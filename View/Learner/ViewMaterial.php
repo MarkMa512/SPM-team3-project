@@ -37,56 +37,49 @@
 
     <div id="nav"></div>
 
-    <!-- picture can edit -->
     <br>
-    <div class="container">
+        <div class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Materials</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark"></strong>
-              <a href="">Download</a>
-            </div>
-            <span class="d-block">Begin Your Service Journey</span>
+        <br>
+        <div class="card">
+          <div class="card-header">
+            IS112
           </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark"></strong>
-              <a href="">Download</a>
+        <div class="card-body">
+          <h5 class="card-title">Section 1</h5>
+          <p class="card-text">Begin Your Service Journey</p>
+          <a href="#" class="btn btn-primary">Download</a>
             </div>
-            <span class="d-block">Intro to Ink Printers</span>
-          </div>
         </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark"></strong>
-              <a href="">Download</a>
+        <br>
+
+        <div class="card">
+          <div class="card-header">
+            IS112
+          </div>
+        <div class="card-body">
+          <h5 class="card-title">Section 2</h5>
+          <p class="card-text">Intro to Ink Printers</p>
+          <a href="#" class="btn btn-primary">Download</a>
             </div>
-            <span class="d-block">Different types of Ink Printers</span>
-          </div>
         </div>
-        <!--
-          <small class="d-block text-right mt-3">
-          <a href="#">All Class</a>
-        </small>
-        -->
+        <br>
+
+        <div class="card">
+          <div class="card-header">
+            IS112
+          </div>
+        <div class="card-body">
+          <h5 class="card-title">Section 3</h5>
+          <p class="card-text">Different types of Ink Printers</p>
+          <a href="#" class="btn btn-primary">Download</a>
+            </div>
+        </div>
       </div>
     </div>
 
 
-        <div class="footer-basic">
-        <footer>
-          
-            <p class="copyright">LMS - Group 3 © 2021</p>
-        </footer>
-    </div>
 
 
 </body>
