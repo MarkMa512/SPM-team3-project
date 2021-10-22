@@ -22,9 +22,12 @@ class Quiz{
     }
 
     function autoGrade($answer){
-        
+        // more than expected input rewards 0 
+        if(sizeof($answer) > sizeof($this->quizAnswer)){} {
+            return 0;
+        }
         if($this->quizType == 0){
-            if($answer == $this->answer[0]){
+            if($answer[0] == $this->quizAnswer[0]){
                 return 1;
             }return 0;
         }else{

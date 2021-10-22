@@ -4,6 +4,8 @@ class Learner extends Engineer{
 
     function viewCourseProgress($courseCode, $courseRunID){
         // need to use sql to get progress (sql + fornt end)
+        
+            
     }
 
     function viewMaterial($courseCode, $courseRunID){

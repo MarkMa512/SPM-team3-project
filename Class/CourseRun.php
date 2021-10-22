@@ -3,6 +3,7 @@
 class CourseRun{
     private $courseCode;
     private $courseRunID;
+    private $capacity;
     private $startDate;
     private $endDate;
     private $sectionList = [];
@@ -17,7 +18,7 @@ class CourseRun{
 
     
 
-    function __construct($courseCode, $courseRunID, $startDate, $endDate, $trainer=""){
+    function __construct($courseCode, $courseRunID, $capacity, $startDate, $endDate, $trainer=""){
         // $courseCode, $courseRunID as the primary key 
         $this->courseCode = $courseCode;
         $this->trainer = $trainer; //if trainer return "" if not exist
@@ -25,6 +26,7 @@ class CourseRun{
         $this->courseRunID = $courseRunID;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
+        $this->$capacity = $capacity;
         // insert statement to check if $courseCode and $courseRunID (PKs) exisited 
 
     }
@@ -58,7 +60,7 @@ class CourseRun{
     }
 
     // return method by object refers back to Course.php class set
-    // set 
+    // since it is part of PK, and no recommend to edit it 
     function setCourseRunID($courseRunID){
         $this->courseRunID = $courseRunID;
     }
@@ -71,6 +73,7 @@ class CourseRun{
     function setCourseCode($courseCode){
         $this->courseCode = $courseCode;
     }
+    // since it is part of PK, and no recommend to edit it 
     function setTrainer($trainerID){
         $this->trainer = $trainerID;
     }
@@ -87,8 +90,8 @@ class CourseRun{
     }
 
 
-    function createSection($sectionNum){
-        array_push($this->sectionList,new Section($this->courseCode, $this->courseRunID, $sectionNum));
+    function createSection($sectionNum, $sectionName){
+        array_push($this->sectionList,new Section($this->courseCode, $this->courseRunID, $sectionNum, $sectionName));
         // No need sql statement 
     }
     
