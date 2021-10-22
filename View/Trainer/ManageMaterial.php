@@ -71,7 +71,7 @@
                   </tbody>
             </table>
 
-            <a class="btn btn-outline-primary btn-primary" href="CreateCourse.html" role="button">Upload New Material</a>
+            <a class="btn btn-outline-primary btn-primary" href="UploadNewMaterial.html" role="button">Upload New Material</a>
             
         </div>
         
