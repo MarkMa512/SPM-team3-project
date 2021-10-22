@@ -226,6 +226,33 @@ class CourseRunDAO{
         $pdo = NULL; 
         return $status; 
     }
+    function generateMaterials($courseCode, $courseRunID){
+        // 
+        // SELECT * FROM material WHERE Course_Code='SR101' AND Course_Run_ID=1
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection();
+        $sql = "SELECT * FROM material WHERE Course_Code=:course_code AND Course_Run_ID=:course_run_id";
+        $stmt = $pdo->prepare($sql); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_INT);
+        $result = []; 
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        while($row = $stmt->fetch()){
+            $result[] = ["CourseCode"=>$row["Course_Code"], "CourseRunID"=>$row["Course_Run_ID"], "SectionID"=>$row["Section_ID"], "MaterialID"=>$row["Material_ID"], "Material"=>$row["Material"], "Name"=>$row["Name"]]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result; 
+
+
+
+    }
 }
 
 ?>
