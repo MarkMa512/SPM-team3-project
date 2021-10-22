@@ -38,7 +38,7 @@
     <div id="nav"></div>
 
     <br>
-        <div class="container">
+         <div class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Materials</h6>
         <br>
@@ -76,10 +76,9 @@
           <a href="#" class="btn btn-primary">Download</a>
             </div>
         </div>
+   
       </div>
     </div>
-
-
 
 
 </body>
