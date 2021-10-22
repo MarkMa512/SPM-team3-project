@@ -21,7 +21,7 @@
             <a class="nav-link" href="AssignClass.php">Assign Class</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="ViewMaterial.php">Manage Enrollment</a>
+            <a class="nav-link" href="AssignLearner.html">Manage Enrollment</a>
           </li>
         
         </ul>
