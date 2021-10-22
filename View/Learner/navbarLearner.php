@@ -15,10 +15,16 @@
             <a class="nav-link" href="learnerHome.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
+            <a class="nav-link" href="SelfAssignTo.html">Self-Enrollment</a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="ViewCourse.php">My Course</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="ViewMaterial.php">Material</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="ForumLearner.html">Forum</a>
           </li>
         
         </ul>
