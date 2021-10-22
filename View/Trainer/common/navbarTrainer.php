@@ -21,6 +21,9 @@
             <a class="nav-link" href="SectionListForQuiz.html">Quiz Management</a>
           </li>
           <li class="nav-item active">
+            <a class="nav-link" href="ManageMaterial.html">Material Management</a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="ForumTrainer.html">Forum</a>
           </li>
           

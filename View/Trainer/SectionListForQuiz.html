@@ -48,21 +48,7 @@
         
         <div id="app">
             <!-- example -->
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">Course ID</th>
-                      <th scope="col">Course Run ID</th>
-                      <th scope="col">Course Name</th>
-                      <th scope="col">Section</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:crid="data.CourseRunID" v-bind:sid="data.SectionID" v-bind:link="'CreateQuiz.html?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID"></list-item>
-                    
-                  </tbody>
-            </table>
+            <tbodys v-bind:posts="posts"></tbodys>
 
         </div>
         
@@ -98,6 +84,28 @@
             
         }
         
+    });
+    app.component('tbodys',{
+        props: ["posts"],
+        template:`
+            <div>
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Course ID</th>
+                          <th scope="col">Course Run ID</th>
+                          <th scope="col">Course Name</th>
+                          <th scope="col">Section</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:crid="data.CourseRunID" v-bind:sid="data.SectionID" v-bind:link="'CreateQuiz.html?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID"></list-item>
+                        
+                      </tbody>
+                </table>
+            </div>
+        `
     });
     app.component('list-item', {
         props:['cid', 'cname', "crid", "sid","link"],

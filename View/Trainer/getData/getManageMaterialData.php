@@ -1,14 +1,16 @@
 <?php
 require_once "../../../Class/autoload.php";
-if(isset($_GET["coursecode"]) && isset($_GET["crid"])){
+session_start();
+if(isset($_GET)){
     // var_dump($_GET);
-    $courseRunDao = new CourseRunDao();
+    $courseDao = new CourseDao();
     // var_dump($courseRunDao->generateMaterials());
-    $postJSON = json_encode($courseRunDao->generateMaterials($_GET["coursecode"], $_GET["crid"]));
+    $postJSON = json_encode($courseDao->getSectionMaterialById($_SESSION['user']->getEmpID()));
     // $postJSON = json_encode($_GET);
     // $postJSON = json_encode($courseRunDao->generateMaterials("SR101", 1));
     // var_dump($courseRunDao->generateMaterials("SR101", 1));
     echo $postJSON;
+    
 }
 
 
