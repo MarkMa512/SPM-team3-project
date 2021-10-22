@@ -3,7 +3,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="../img/logo.jpg" />
 
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #7395AE;">
-       <a class="navbar-brand" href="./homeAdmin.html"><img src="../img/logo2.png" alt="Logo" style="width: 45px; height:auto;"></a>
+       <a class="navbar-brand" href="./HomeAdmin.html"><img src="../img/logo2.png" alt="Logo" style="width: 45px; height:auto;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <button class="navbar-toggler" type="button" data-toggle="collapse"  aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="homeAdmin.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="HomeAdmin.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="ManageClass.html">Manage Class</a>

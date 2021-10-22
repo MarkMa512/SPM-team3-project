@@ -1,6 +1,6 @@
 
   <?php
-          require_once "../../Class/autoload.php";
+          require_once "../../../Class/autoload.php";
           session_start();
           $trainerDAO = new TrainerDAO();
           // var_dump($empDAO->getAllInstructors());

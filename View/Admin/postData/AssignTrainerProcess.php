@@ -20,11 +20,13 @@
             $courseRunDAO->assignTrainer($HRID, $instructorID, $courseID, $courseRunID, "2021-10-19 12:13:09.556438");
         }catch(PDOException $e){
             $_SESSION['error_msg'] = "PDO issues";
+            header("Location:./../AssignTrainerTo?empID={$instructorID}");
         }
     }else{
         $_SESSION['error_msg'] = "Invalid Input";
+        header("Location:./../AssignTrainerTo?empID={$instructorID}");
     }
-    header("Location:./../AssignTrainerTo?empID={$instructorID}");
-
+    
+    header("Location:./../AssignTrainer");
 
 ?>
