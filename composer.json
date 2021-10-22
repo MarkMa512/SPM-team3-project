@@ -1,0 +1,5 @@
+{
+    "require": {
+        "sanmai/pipeline": "^5.2"
+    }
+}

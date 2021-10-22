@@ -1,0 +1,47 @@
+{
+    "name": "sanmai/pipeline",
+    "type": "library",
+    "description": "General-purpose collections pipeline",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Alexey Kopytko",
+            "email": "alexey@kopytko.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1 || ^8.0"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.8",
+        "friendsofphp/php-cs-fixer": "^3",
+        "infection/infection": ">=0.10.5",
+        "league/pipeline": "^1.0 || ^0.3",
+        "phan/phan": ">=1.1",
+        "php-coveralls/php-coveralls": "^2.4.1",
+        "phpstan/phpstan": ">=0.10",
+        "phpunit/phpunit": "^7.4 || ^8.1 || ^9.4",
+        "vimeo/psalm": ">=2"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "v5.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Pipeline\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Pipeline\\": "tests/"
+        }
+    }
+}
