@@ -44,7 +44,7 @@
     <div id="app" class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">List of Learners</h6>
-        <list-item v-for="d in posts" v-bind:id="d.EmpID" v-bind:name="d.Name" v-bind:link="'AssignTrainerTo?empID='+d.EmpID"></list-item>
+        <list-item v-for="d in posts" v-bind:id="d.EmpID" v-bind:name="d.Name" v-bind:link="'EnrollLearnerTo.php?empID='+d.EmpID"></list-item>
           
         <!--
           <small class="d-block text-right mt-3">

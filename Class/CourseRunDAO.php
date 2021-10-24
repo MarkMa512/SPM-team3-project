@@ -253,6 +253,31 @@ class CourseRunDAO{
 
 
     }
+    function assignLearner($learnerID,  $courseCode, $courseRunID){
+        // input: Assign a Trainer to the course 
+        // output: true if success
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO enrollment_record (Learner_ID, Course_Code, Course_Run_ID) VALUES ( :learner_id,:course_code,:course_run_id);"; 
+        $stmt = $pdo->prepare($sql); 
+        
+        // $courseCode = $courseRun->getCourseCode(); 
+        // $courseRunID = $courseRun->getCourseRunID();
+        $stmt->bindParam(":learner_id", $learnerID, PDO::PARAM_INT); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_INT); 
+        
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+    }
 }
 
 ?>
