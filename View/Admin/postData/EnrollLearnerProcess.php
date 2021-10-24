@@ -14,12 +14,12 @@
         }catch(Exception $e){
             echo "Error: ".$e->getMessage();
             $_SESSION['error_msg'] = "PDO issues";
-            header("Location:./../AssignTrainerTo?empID={$learnerID}");
+            header("Location:./../EnrollLearnerTo.php?empID={$learnerID}");
             exit();
         }
     }else{
         $_SESSION['error_msg'] = "Invalid Input";
-        header("Location:./../AssignTrainerTo?empID={$learnerID}");
+        header("Location:./../EnrollLearnerTo.php?empID={$learnerID}");
         exit();
     }
     header("Location:./../EnrollLearner.html");
