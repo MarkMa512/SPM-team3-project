@@ -137,11 +137,11 @@ Class Post{
         $this->postAuthor = $postAuthor;
         $this->postDateTime = $postDateTime; 
         $this->postReplyTo = $postReplyTo; 
-        // select statement 
+        // select statement => to be implemented via PostDAO class
     }
 
     
-
+    // to be implemented via PostDAO Class
     // function editPost(){
     //     // under construction 
     //     return NULL; 
