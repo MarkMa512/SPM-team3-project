@@ -53,10 +53,6 @@ class LearnerDAO{
         
         return $result;
     }
-
-    function enrolledLearner($learnerID, $courseCode, $courseRunID){
-        
-    }
 }
 
 

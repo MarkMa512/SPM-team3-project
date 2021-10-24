@@ -14,8 +14,6 @@ class Trainer extends Engineer{
         
     }
 
-    
-
 }
 
 ?>
