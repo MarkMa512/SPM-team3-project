@@ -68,6 +68,33 @@ class HRDAO{
         $pdo = NULL; 
         return $result; 
     }
+    function getAvailableAssigntClass($trainerID){
+        $conn = new ConnectionManager(); 
+        $pdo = $conn->getConnection(); 
+        $sql = "SELECT * FROM assignment a, course_run cr, course c WHERE a.Course_Code=cr.Course_Code AND c.Course_Code=a.Course_Code AND a.Course_Run_ID=cr.Course_Run_ID AND a.Instructor_ID<>:trainer_id;"; 
+        $stmt = $pdo->prepare($sql); 
+
+        $stmt->bindParam(":trainer_id", $trainerID, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = [
+                "CourseCode" =>$row['Course_Code'], 
+                "CourseName" =>$row['Course_Name'],
+                "CourseRunID" =>$row['Course_Run_ID'],
+                "StartDate" =>$row['Start_Date'],
+                "Capacity" =>$row['Capacity'],
+            ]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        
+        return $result; 
+    }
 }
 
 // $t = new HRDAO(); 

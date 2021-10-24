@@ -226,6 +226,42 @@ class CourseRunDAO{
         $pdo = NULL; 
         return $status; 
     }
+
+
+    function enrolLearner($leanerID,  $courseCode, $courseRunID){
+        // input: Assign a Trainer to the course 
+        // output: true if success
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO enrollment_record (Learner_ID, Course_Code, Course_Run_ID) VALUES (:leaner_id,:course_code,:course_run_id);"; 
+        $stmt = $pdo->prepare($sql); 
+        
+        // $courseCode = $courseRun->getCourseCode(); 
+        // $courseRunID = $courseRun->getCourseRunID();
+        $stmt->bindParam(":leaner_id", $leanerID, PDO::PARAM_INT); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_INT); 
+        
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+    }
+
+
+
+
+
+
+
+
+
     function generateMaterials($courseCode, $courseRunID){
         // 
         // SELECT * FROM material WHERE Course_Code='SR101' AND Course_Run_ID=1
@@ -237,21 +273,16 @@ class CourseRunDAO{
         $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_INT);
         $result = []; 
         $status = $stmt->execute(); 
-
         if(!$status){
             var_dump($stmt->errorinfo());
             # output any error if database access has problem
         }
-
         while($row = $stmt->fetch()){
             $result[] = ["CourseCode"=>$row["Course_Code"], "CourseRunID"=>$row["Course_Run_ID"], "SectionID"=>$row["Section_ID"], "MaterialID"=>$row["Material_ID"], "Material"=>$row["Material"], "Name"=>$row["Name"]]; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
         return $result; 
-
-
-
     }
 }
 
