@@ -1,19 +1,18 @@
 <?php 
 class Quiz{
     private $quizID;
-    // assumption true and false: type is 0; multiple answer will be 1;
-    private $quizType;
-    private $quizQuestion;
+    private $quizTitle;
+    private $quizQuestionList;
     //quizAnswer will be array if mutiple answer, it will be 
-    private $quizAnswer; //list
+    private $quizAnswerList; //list
     private $grade;
     
 
-    function __construct($quizID, $quizType, $quizQuestion, $quizAnswer){
+    function __construct($quizID, $quizType, $quizQuestionList, $quizAnswerList){
         $this->quizID = $quizID;
         $this->quizType = $quizType;
-        $this->quizQuestion = $quizQuestion;
-        $this->quizAnswer = $quizAnswer;
+        $this->quizQuestionList = $quizQuestion;
+        $this->quizAnswerList = $quizAnswer;
     }
 
     function quizInsertDB(){
@@ -42,7 +41,21 @@ class Quiz{
         }
     }
 
+    function getQuizID(){
+        return $this->quizID;
+    }
     
+    function getQuizTitle(){
+        return $this->quizTitle;
+    }
+
+    function getQuizQuestionList(){
+        return $this->quizQuestionList;
+    }
+
+    function getQuizAnswerList(){
+        return $this->quizAnswerList;
+    }
 
 }
 
