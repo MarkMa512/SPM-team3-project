@@ -44,7 +44,7 @@
     <div id="app" class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">My Class</h6>
-        <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:crid="data.CourseRunID" v-bind:qlink="'SectionListForQuiz.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID" v-bind:mlink="'ManageMaterial.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID"></list-item>
+        <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:crid="data.CourseRunID" v-bind:qlink="'CreateCourseRun.html?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID" v-bind:mlink="'ManageMaterial.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID"></list-item>
 
         
 
@@ -84,8 +84,7 @@
               <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <div class="d-flex justify-content-between align-items-center w-100">
                   <strong class="text-gray-dark">{{ cid }} - {{ crid }} </strong>
-                  <a :href="qlink">Quiz</a>
-                  <a :href="mlink">Material</a>
+                  <a :href="qlink">Create Course Run</a>
                 </div>
                 <span class="d-block">{{ cname }}</span>
               </div>
