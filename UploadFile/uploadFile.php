@@ -23,6 +23,7 @@
     }
       if(empty($errors)==true){
          move_uploaded_file($file_tmp,"Files/{$_POST['user']}/".$file_name);
+         echo "Files/{$_POST['user']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
          echo "Success";
       }else{
          print_r($errors);
