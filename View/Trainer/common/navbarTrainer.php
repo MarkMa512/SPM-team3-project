@@ -18,6 +18,9 @@
             <a class="nav-link" href="ViewCourseTrainer.html">Class Management</a>
           </li>
           <li class="nav-item active">
+            <a class="nav-link" href="ViewProgress.html">View Progress</a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="SectionListForQuiz.html">Quiz Management</a>
           </li>
           <li class="nav-item active">
