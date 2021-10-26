@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":267:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:5:{s:37:"CourseRunTest::testConstructGetParams";d:0.003;s:29:"CourseRunTest::testSetsParams";d:0;s:32:"CourseRunTest::testCreateSection";d:0;s:29:"CourseRunTest::testAddTrainee";d:0;s:32:"CourseRunTest::testRemoveTrainee";d:0;}}}

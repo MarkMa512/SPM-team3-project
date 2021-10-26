@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../Class/CourseRun.php';
 require __DIR__ . '/../Class/Section.php';
-require 'phpunit';
+#require 'phpunit';
 use PHPUnit\Framework\TestCase;
 
 class CourseRunTest extends TestCase
