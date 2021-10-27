@@ -2,6 +2,7 @@
 require_once "autoload.php";
 
 class CourseDAO{
+
     function getPrerequisite($course){
         // input: a course object 
         // output: a list of prerequisite courses of the object
@@ -140,6 +141,29 @@ class CourseDAO{
         return $status; 
     }
 
+    // removed this function as we are not supposed to  delete a course
+    // function removeCourse($courseCode){
+    //     // input: a course to be removed from the database
+    //     // output: Trye if sucess 
+    //     $conn = new ConnectionManager(); 
+    //     $pdo = $conn-> getConnection(); 
+    //     $sql = "DELETE FROM Course WHERE course_code = :course_code;"; 
+    //     $stmt = $pdo->prepare($sql); 
+
+    //     $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+
+    //     $status = $stmt->execute(); 
+
+    //     if(!$status){
+    //         var_dump($stmt->errorinfo());
+    //         # output any error if database access has problem
+    //     }
+
+    //     $stmt->closeCursor(); 
+    //     $pdo = NULL; 
+    //     return $status; 
+    // }
+
     function removeCourse($courseCode){
         // input: a course to be removed from the database
         // output: Trye if sucess 
@@ -189,6 +213,7 @@ class CourseDAO{
         $pdo = NULL; 
         return $status; 
     }
+    
     function getSectionMaterialById($empID) {
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
