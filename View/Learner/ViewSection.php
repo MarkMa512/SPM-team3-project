@@ -82,12 +82,6 @@
     </div>
 
 
-        <div class="footer-basic">
-        <footer>
-          
-            <p class="copyright">LMS - Group 3 © 2021</p>
-        </footer>
-    </div>
 
 
 </body>
