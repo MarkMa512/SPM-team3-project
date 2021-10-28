@@ -147,5 +147,10 @@ class Course{
     function addPrerequisite($prerequisite){
         array_push($this->coursprerequisiteList,$prerequisite);
     }
+
+    // a function that deactivates the course
+    function deactivateCourse(){
+        $this->courseStatus = FALSE; 
+    }
 }
 ?>

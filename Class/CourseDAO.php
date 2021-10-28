@@ -142,6 +142,7 @@ class CourseDAO{
     }
 
     // removed this function as we are not supposed to  delete a course
+    // implemet via updateCourse to deactivate the course instead
     // function removeCourse($courseCode){
     //     // input: a course to be removed from the database
     //     // output: Trye if sucess 
@@ -164,43 +165,24 @@ class CourseDAO{
     //     return $status; 
     // }
 
-    function removeCourse($courseCode){
-        // input: a course to be removed from the database
-        // output: Trye if sucess 
-        $conn = new ConnectionManager(); 
-        $pdo = $conn-> getConnection(); 
-        $sql = "DELETE FROM Course WHERE course_code = :course_code;"; 
-        $stmt = $pdo->prepare($sql); 
-
-        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
-
-        $status = $stmt->execute(); 
-
-        if(!$status){
-            var_dump($stmt->errorinfo());
-            # output any error if database access has problem
-        }
-
-        $stmt->closeCursor(); 
-        $pdo = NULL; 
-        return $status; 
-    }
 
     function updateCourse($course){
-        // under Construction 
+        // input: a course object with attributes to be updated in the Database 
+        // output: sucess 
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "UPDATE Course SET Course_Name=:course_name, Bagde_Name=:bagde_name WHERE course_code = :course_code;"; 
+        $sql = "UPDATE Course SET Course_Name=:course_name, Bagde_Name=:bagde_name, Course_Status=:course_status WHERE course_code = :course_code;"; 
         $stmt = $pdo->prepare($sql); 
 
-        $coursename = $course->getCourseName();
-        $coursecode = $course->getCourseCode();
-        $bagde_name = $course->getBadgeName();
+        $courseName = $course->getCourseName();
+        $courseCode = $course->getCourseCode();
+        $bagdeName = $course->getBadgeName();
+        $courseStatus = $course->getCourseStatus(); 
 
-        $stmt->bindParam(":course_code", $coursecode, PDO::PARAM_STR); 
-        $stmt->bindParam(":course_name", $coursename, PDO::PARAM_STR);
-        $stmt->bindParam(":bagde_name", $bagde_name, PDO::PARAM_STR);
-
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_name", $courseName, PDO::PARAM_STR);
+        $stmt->bindParam(":bagde_name", $bagdeName, PDO::PARAM_STR);
+        $stmt->bindParam(":course_status", $courseStatus, PDO::PARAM_STR);
 
         $status = $stmt->execute(); 
 
@@ -214,6 +196,7 @@ class CourseDAO{
         return $status; 
     }
     
+    // why is this function here? 
     function getSectionMaterialById($empID) {
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
