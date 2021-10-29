@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>View Sections</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("navbarLearner.php");
+          $('#nav').load("./common/navbarLearner.php");
           console.log("click");
         });
     </script>
@@ -48,7 +48,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark"></strong>
-              <a href="ViewMaterial.php">View</a>
+              <a href="TakeQuiz.html">Quiz</a>
             </div>
             <span class="d-block">Section 1</span>
           </div>
@@ -58,7 +58,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark"></strong>
-              <a href="ViewMaterial.php">View</a>
+              <a href="TakeQuiz.html">Quiz</a>
             </div>
             <span class="d-block">Section 2</span>
           </div>
@@ -68,7 +68,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark"></strong>
-              <a href="ViewMaterial.php">View</a>
+              <a href="TakeQuiz.html">Quiz</a>
             </div>
             <span class="d-block">Section 3</span>
           </div>
@@ -82,12 +82,6 @@
     </div>
 
 
-        <div class="footer-basic">
-        <footer>
-          
-            <p class="copyright">LMS - Group 3 © 2021</p>
-        </footer>
-    </div>
 
 
 </body>

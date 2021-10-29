@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+          $('#nav').load("./common/navbarLearner.php");
+          console.log("click");
+        });
+    </script>
+
+      <style>
+          .footer-basic {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding:40px 0;
+        background-color:#ffffff;
+        color:#4b4c4d;
+        }
+
+
+        .footer-basic .copyright {
+         margin-top:15px;
+         text-align:center;
+         font-size:13px;
+         color:#aaa;
+         margin-bottom:0;
+        }
+  </style>
+
+</head>
+<body>
+
+    <div id="nav"></div>
+
+    <!-- picture can edit -->
+    <br>
+    <div class="container">
+       <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Take Quiz</h6>
+        <br>
+        <form action="#">    
+          <h6> Question 1: This is a Test MCQ Quesion, select from the options belowL </h6>  
+          <input type="radio" id="defaultRadio" name="optionA">  
+          <label for="defaultRadio"> This is the correct option </label>  
+          <br>  
+          <input type="radio" id="defaultRadio" name="optionB">  
+          <label for="defaultRadio"> This is not a correct option </label>  
+          <br>  
+          <input type="radio" id="defaultRadio" name="optionC">  
+          <label for="defaultRadio">  This is not a correct option </label>  
+          <br>  
+          <input type="radio" id="defaultRadio" name="optionD">  
+          <label for="defaultRadio">  This is not a correct option </label>  
+          <br>  
+          <input type="submit" value="submit">  
+        </form>  
+
+  </div>
+  </div>
+
+
+
+</body>
+
+</html>

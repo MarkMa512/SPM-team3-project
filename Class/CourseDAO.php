@@ -2,6 +2,7 @@
 require_once "autoload.php";
 
 class CourseDAO{
+
     function getPrerequisite($course){
         // input: a course object 
         // output: a list of prerequisite courses of the object
@@ -77,7 +78,6 @@ class CourseDAO{
            
         }
         if($row = $stmt->fetch()){
-            var_dump($row);
             $result = new Course($row['Course_Code'], $row['Course_Name'], $row['Bagde_Name']); 
         }
         $stmt->closeCursor();
@@ -141,15 +141,48 @@ class CourseDAO{
         return $status; 
     }
 
-    function removeCourse($course_code){
-        // input: a course to be removed from the database
-        // output: Trye if sucess 
+    // removed this function as we are not supposed to  delete a course
+    // implemet via updateCourse to deactivate the course instead
+    // function removeCourse($courseCode){
+    //     // input: a course to be removed from the database
+    //     // output: Trye if sucess 
+    //     $conn = new ConnectionManager(); 
+    //     $pdo = $conn-> getConnection(); 
+    //     $sql = "DELETE FROM Course WHERE course_code = :course_code;"; 
+    //     $stmt = $pdo->prepare($sql); 
+
+    //     $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+
+    //     $status = $stmt->execute(); 
+
+    //     if(!$status){
+    //         var_dump($stmt->errorinfo());
+    //         # output any error if database access has problem
+    //     }
+
+    //     $stmt->closeCursor(); 
+    //     $pdo = NULL; 
+    //     return $status; 
+    // }
+
+
+    function updateCourse($course){
+        // input: a course object with attributes to be updated in the Database 
+        // output: sucess 
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "DELETE FROM Course WHERE course_code = :course_code;"; 
+        $sql = "UPDATE Course SET Course_Name=:course_name, Bagde_Name=:bagde_name, Course_Status=:course_status WHERE course_code = :course_code;"; 
         $stmt = $pdo->prepare($sql); 
 
+        $courseName = $course->getCourseName();
+        $courseCode = $course->getCourseCode();
+        $bagdeName = $course->getBadgeName();
+        $courseStatus = $course->getCourseStatus(); 
+
         $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_name", $courseName, PDO::PARAM_STR);
+        $stmt->bindParam(":bagde_name", $bagdeName, PDO::PARAM_STR);
+        $stmt->bindParam(":course_status", $courseStatus, PDO::PARAM_STR);
 
         $status = $stmt->execute(); 
 
@@ -162,33 +195,33 @@ class CourseDAO{
         $pdo = NULL; 
         return $status; 
     }
-
-    function updateCourse($course){
-        // under Construction 
+    
+    // why is this function here? 
+    function getSectionMaterialById($empID) {
         $conn = new ConnectionManager(); 
-        $pdo = $conn-> getConnection(); 
-        $sql = "UPDATE Course SET Course_Name=:course_name, Bagde_Name=:bagde_name WHERE course_code = :course_code;"; 
+        $pdo = $conn-> getConnection();
+        $sql="SELECT * FROM assignment a, material m, course c WHERE a.Course_Code=m.Course_Code AND a.Course_Run_ID=m.Course_Run_ID AND c.Course_Code=m.Course_Code AND a.Instructor_ID=:empID";
         $stmt = $pdo->prepare($sql); 
-
-        $coursename = $course->getCourseName();
-        $coursecode = $course->getCourseCode();
-        $bagde_name = $course->getBadgeName();
-
-        $stmt->bindParam(":course_code", $coursecode, PDO::PARAM_STR); 
-        $stmt->bindParam(":course_name", $coursename, PDO::PARAM_STR);
-        $stmt->bindParam(":bagde_name", $bagde_name, PDO::PARAM_STR);
-
-
+        $stmt->bindParam(":empID", $empID, PDO::PARAM_INT);
         $status = $stmt->execute(); 
-
         if(!$status){
             var_dump($stmt->errorinfo());
             # output any error if database access has problem
         }
-
-        $stmt->closeCursor(); 
+        while($row = $stmt->fetch()){
+            $result[] = [
+                "empID"=>$row["Instructor_ID"],
+                "CourseName"=>$row["Course_Name"],
+                "CourseCode"=>$row["Course_Code"],
+                "CourseRunID"=>$row["Course_Run_ID"],
+                "SectionID"=>$row["Section_ID"],
+                "MaterialID"=>$row["Material_ID"],
+                "Name"=>$row["Name"]
+            ]; 
+        }
+        $stmt->closeCursor();
         $pdo = NULL; 
-        return $status; 
+        return $result;
     }
 
 }

@@ -26,6 +26,33 @@ class LearnerDAO{
         
         return $result;
     }
+    function getMaterialsById($learnerID){
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+        $sql="SELECT * FROM enrollment_record er, material m, course c WHERE er.Course_Code=m.Course_Code AND er.Course_Run_ID=m.Course_Run_ID AND c.Course_Code=er.Course_Code AND Learner_ID=:trainerID";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":trainerID", $learnerID, PDO::PARAM_INT);
+        $result = [];
+
+        if ($stmt->execute()) {
+            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+                $result[] = [
+                    "CourseName"=>$row["Course_Name"],
+                    "CourseCode"=>$row["Course_Code"],
+                    "CourseRunID"=>$row["Course_Run_ID"],
+                    "SectionID"=>$row["Section_ID"],
+                    "MaterialID"=>$row["Material_ID"],
+                    "Name"=>$row["Name"]
+                ];
+            }
+        }else{
+
+        }
+        $stmt = null;
+        $conn = null;        
+        
+        return $result;
+    }
 }
 
 
