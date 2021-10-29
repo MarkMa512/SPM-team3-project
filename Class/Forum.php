@@ -1,8 +1,11 @@
 <?php 
 class Forum{
-    private $ID;
+    private $postID;
     private $topic;
     private $post;
+    private $content;
+    private $authorID;
+    private $replyID; 
     
     
 }

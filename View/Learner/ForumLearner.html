@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+          $('#nav').load("./common/navbarLearner.php");
+          console.log("click");
+        });
+    </script>
+
+      <style>
+          .footer-basic {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding:40px 0;
+        background-color:#ffffff;
+        color:#4b4c4d;
+        }
+
+
+        .footer-basic .copyright {
+         margin-top:15px;
+         text-align:center;
+         font-size:13px;
+         color:#aaa;
+         margin-bottom:0;
+        }
+  </style>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <div id="nav"></div>
+    
+
+    <br>
+    <div id="app" class="container">
+    <!-- <div class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="media flex-wrap w-100 align-items-center"> 
+                        <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">Tom Harry</a>
+                            <div class="text-muted small">Learner</div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p> For me, getting my business website made was a lot of tech wizardry things. Thankfully i get an ad on Facebook ragarding commence website. I get connected with BBB team. They made my stunning website live in just 3 days. With the increase demand of online customers. I had to take my business online. BBB Team guided me at each step and enabled me to centralise my work and have control on all aspect of my online business. </p>
+                </div>
+                <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                    <div class="px-4 pt-3"> <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> <i class="fa fa-heart text-danger"></i>&nbsp;  </a> <span class="text-muted d-inline-flex align-items-center align-middle ml-4"> <i class="fa fa-eye text-muted fsize-3"></i>&nbsp;  </span> </div>
+                    <div class="px-4 pt-3"> <button type="button" class="btn btn-primary"><i class="ion ion-md-create"></i>&nbsp; Reply</button> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="media flex-wrap w-100 align-items-center"> 
+                        <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">Tom Harry</a>
+                            <div class="text-muted small">Learner</div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p> For me, getting my business website made was a lot of tech wizardry things. Thankfully i get an ad on Facebook ragarding commence website. I get connected with BBB team. They made my stunning website live in just 3 days. With the increase demand of online customers. I had to take my business online. BBB Team guided me at each step and enabled me to centralise my work and have control on all aspect of my online business. </p>
+                </div>
+                <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                    <div class="px-4 pt-3"> <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> <i class="fa fa-heart text-danger"></i>&nbsp;  </a> <span class="text-muted d-inline-flex align-items-center align-middle ml-4"> <i class="fa fa-eye text-muted fsize-3"></i>&nbsp;  </span> </div>
+                    <div class="px-4 pt-3"> <button type="button" class="btn btn-primary"><i class="ion ion-md-create"></i>&nbsp; Reply</button> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="container-fluid mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="media flex-wrap w-100 align-items-center"> 
+                        <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">Hello  LMS Forum</a>
+                            <div class="text-muted small">Albert Wong</div>
+                        </div>
+                        <div class="text-muted small ml-3">
+                            <div>Created Time：<strong>2021-01-01 08:00:00</strong></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p> Hi LMS learning Community, Albert here, I hope you enjoy this learning platform!",</p>
+                </div>
+                <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                    <div class="px-4 pt-3"> <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> &nbsp; </a> </span> </div>
+                    <div class="px-4 pt-3"> <a class="btn btn-primary" href="ReplyForumLearner.html" role="button">Reply</a> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+    <list-item v-for="data in posts" v-bind:author="data.author" v-bind:authorName="data.authorName" v-bind:content="data.content" v-bind:createTime="data.createTime" v-bind:postID="data.postID" v-bind:replyToID="data.replyToID" v-bind:topic="data.topic"></list-item>
+
+
+    </div>
+    </div>
+
+
+
+
+
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                posts: [] // array of post objects
+            }
+        },
+        created() { // created is a hook that executes as soon as Vue instance is created
+            axios.get('http://localhost/SPM-team3-project/View/Trainer/getData/getForumData.php')
+            .then(response => {
+                // this gets the data, which is an array
+                this.posts = response.data
+                console.log(response.data);
+            })
+            .catch(error => {
+                this.posts = [{ entry: 'There was an error: ' + error.message }]
+                })
+                
+            }
+            
+        });
+        app.component('list-item', {
+            props:['author', 'authorName', "content", "createTime", "postID", "replyToID", "topic"],
+            template:`
+            <div class="container-fluid mt-100">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <div class="media flex-wrap w-100 align-items-center"> 
+                                    <div class="media-body ml-3"> 
+                                        <a href="javascript:void(0)" data-abc="true">{{ authorName }}</a>
+                                        <div class="text-muted small">
+                                            {{ createTime }}
+                                        </div>
+                                    </div>
+                                    
+            
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p> {{ content }} </p>
+                            </div>
+                            <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                                <div class="px-4 pt-3"> 
+                                    <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> 
+                                    <i class="fa fa-heart text-danger"></i>&nbsp;</a> 
+                                    <span class="text-muted d-inline-flex align-items-center align-middle ml-4"> 
+                                        <i class="fa fa-eye text-muted fsize-3"></i>&nbsp;  
+                                    </span> 
+                                </div>
+                                <div class="px-4 pt-3"> 
+                                    <button type="button" class="btn btn-primary"><i class="ion ion-md-create"></i>Reply</button> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+          });
+        app.mount('#app');
+</script>
+
+</html>

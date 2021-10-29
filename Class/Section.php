@@ -21,11 +21,70 @@ class Section{
 
     }
 
-    function sectionInsertDB(){
-        // insert section to database 
+    // Ningzhi: Refer to DAO classes 
+    // function sectionInsertDB(){
+    //     // insert section to database 
 
-    }
+    // }
     
+    // Getter: 
+    /**
+     * Get the value of courseCode
+     */ 
+    public function getCourseCode()
+    {
+        return $this->courseCode;
+    }
+
+    /**
+     * Get the value of courseRunID
+     */ 
+    public function getCourseRunID()
+    {
+        return $this->courseRunID;
+    }
+
+    /**
+     * Get the value of sectionID
+     */ 
+    public function getSectionID()
+    {
+        return $this->sectionID;
+    }
+
+    /**
+     * Get the value of sectionName
+     */ 
+    public function getSectionName()
+    {
+        return $this->sectionName;
+    }
+
+    /**
+     * Get the value of materialList
+     */ 
+    public function getMaterialList()
+    {
+        return $this->materialList;
+    }
+
+    /**
+     * Get the value of quizList
+     */ 
+    public function getQuizList()
+    {
+        return $this->quizList;
+    }
+
+    /**
+     * Get the value of isGRaded
+     */ 
+    public function getIsGRaded()
+    {
+        return $this->isGRaded;
+    }
+
+
 
     function autoGetQuizResult($quizID, $answer){
         //answer is list and $quizID is also list
@@ -57,5 +116,5 @@ class Section{
         //???
     }
 }
-
+    
 ?>
