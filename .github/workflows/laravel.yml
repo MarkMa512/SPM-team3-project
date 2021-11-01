@@ -24,19 +24,74 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
+    - name: Execute test1 (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/CourseRunTest.php
+
+    - name: Execute test2 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/CourseTest.php
+
+    - name: Execute test3 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/EmployeeTest.php
+    
+    - name: Execute test4 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/EngineerTest.php
+
+    - name: Execute test5 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/ForumTest.php
+
+    - name: Execute test6 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/HRTest.php
+
+    - name: Execute test7 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/LearnerTest.php
+
+    - name: Execute test8 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/MessageTest.php
+
+    - name: Execute test9 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/PostTest.php
+
+    - name: Execute test10 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/QualificationTest.php
+
+    - name: Execute test11 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/SectionTest.php
+
+    - name: Execute test12 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/TrainerTest.php
