@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ Quiz-Pages ]
+    branches: [ main ]
   pull_request:
-    branches: [ Quiz-Pages ]
+    branches: [ main ]
 
 jobs:
   laravel-tests:
@@ -29,3 +29,14 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/CourseRunTest.php
+      run: php vendor/bin/phpunit Testing/CourseTest.php
+      run: php vendor/bin/phpunit Testing/EmployeeTest.php
+      run: php vendor/bin/phpunit Testing/EngineerTest.php
+      run: php vendor/bin/phpunit Testing/ForumTest.php
+      run: php vendor/bin/phpunit Testing/HRTest.php
+      run: php vendor/bin/phpunit Testing/LearnerTest.php
+      run: php vendor/bin/phpunit Testing/MessageTest.php
+      run: php vendor/bin/phpunit Testing/PostTest.php
+      run: php vendor/bin/phpunit Testing/QualificationTest.php
+      run: php vendor/bin/phpunit Testing/SectionTest.php
+      run: php vendor/bin/phpunit Testing/TrainerTest.php
