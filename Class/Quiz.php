@@ -5,8 +5,6 @@ class Quiz{
     private $quizQuestionList;
     //quizAnswer will be array if mutiple answer, it will be 
     private $quizAnswerList; //list
-    private $grade;
-    
 
     function __construct($quizID, $quizType, $quizQuestionList, $quizAnswerList){
         $this->quizID = $quizID;
