@@ -1,15 +1,16 @@
 <?php
 require __DIR__ . '/../Class/Course.php';
 require __DIR__ . '/../Class/CourseRun.php';
-require 'phpunit';
 use PHPUnit\Framework\TestCase;
 
 
 class CourseTest extends TestCase
 {
     public function testConstructGetParams(){
-        $course = new Course("TestCode", "TestName", "TestBadge", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
-        $this -> assertEquals("TestCode", $course->getCourseCode());
+        $course = new Course("Test1", "TestName", "TestBadge", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
+        $this -> assertEquals("Test1", $course->getCourseCode());
+        echo 'This';
+        echo $course->getCourseCode();
         $this -> assertEquals("TestName", $course->getCourseName());
         $this -> assertEquals("TestBadge", $course->getBadgeName());
         $this -> assertEquals(["PreReq1", "PreReq2"], $course->getPrerequisiteList());
@@ -17,14 +18,14 @@ class CourseTest extends TestCase
     }
 
     public function testCreateCourseRun(){
-        $course = new Course("TestCode", "TestName", "TestBadge", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
+        $course = new Course("Test1", "TestName", "TestBadge", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
         $course -> createCourseRun("Test ID", "Test start date", 'Test end date', 50);
         $courseRunList = $course ->getCourseRunList();
         $this -> assertEquals(3, count($courseRunList));
     }
 
     public function testAddPrerequisite(){
-        $course = new Course("TestCode", "TestName", "TestBadge", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
+        $course = new Course("Test1", "TestName", "TestBadge", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
         $course -> addPrerequisite("PreReq3");
         $preReqList = $course ->getPrerequisiteList();
         $this -> assertEquals(3, count($preReqList));
@@ -33,7 +34,7 @@ class CourseTest extends TestCase
     
     /*Not tested yet
     public function testSetParams(){
-        $course = new Course("TestCode", "TestName", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
+        $course = new Course("Test1", "TestName", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
         $course -> setCourseID()
     }
 
