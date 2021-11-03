@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Sections</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         $(function(){
           $('#nav').load("./common/navbarLearner.php");
@@ -40,10 +42,14 @@
 
     <!-- picture can edit -->
     <br>
-    <div class="container">
+    <div class="container" id="app">
+      {{ posts }}
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Section</h6>
-        <div class="media text-muted pt-3">
+        <list-item v-for="data in posts" v-bind:cid="data.courseCode" v-bind:crid="data.CourseCode"
+        v-bind:sname="data.sectionName" v-bind:sid="data.sectionID" 
+        v-bind:link="'TakeQuiz.html?courseCode='+data.courseCode+'&CourseCode='+data.CourseCode+'&sectionID='+data.sectionID"></list-item>
+        <!-- <div class="media text-muted pt-3">
           <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
@@ -52,8 +58,8 @@
             </div>
             <span class="d-block">Section 1</span>
           </div>
-        </div>
-        <div class="media text-muted pt-3">
+        </div>  -->
+        <!-- <div class="media text-muted pt-3">
           <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
@@ -72,7 +78,7 @@
             </div>
             <span class="d-block">Section 3</span>
           </div>
-        </div>
+        </div> -->
         <!--
           <small class="d-block text-right mt-3">
           <a href="#">All Class</a>
@@ -81,7 +87,44 @@
       </div>
     </div>
 
-
+<script>
+  const app = Vue.createApp({
+        data() {
+            return {
+                posts: [] // array of post objects
+            }
+        },
+        created() { // created is a hook that executes as soon as Vue instance is created
+            axios.get('http://localhost/spM-team3-project/View/Learner/getData/getViewSection.php')
+            .then(response => {
+                // this gets the data, which is an array
+                this.posts = response.data;
+                console.log(response.data);
+            })
+            .catch(error => {
+                this.posts = [{ entry: 'There was an error: ' + error.message }]
+                })
+                
+            }
+            
+        });
+        app.component('list-item', {
+            props:['cid', 'sname', 'sid', 'crid','link'],
+            template:`
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">{{ sname }}</strong>
+                  <a :href="link">Quiz</a>
+                </div>
+                <span class="d-block">Section {{ sid }}</span>
+              </div>
+            </div>
+            `
+          });
+        app.mount('#app');
+</script>
 
 
 </body>
