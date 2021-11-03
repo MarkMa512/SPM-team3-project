@@ -20,7 +20,7 @@ class MessageDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Message($row['Sender_ID'], $row['Reciever_ID'], $row['Message_Content'], $row['Sent_Date_Time'], $row['Read_Status']); 
+            $result[] = new Message($row['Sender_ID'], $row['Reciever_ID'], $row['Message_Content'], $row['Sent_Date_Time']); 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -33,8 +33,8 @@ class MessageDAO{
         // output: true if the database insertion is successful
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content, Read_Status)
-                VALUES                 (:sender_id, :reciever_id, :message_content, :read_status);"; 
+        $sql = "INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content)
+                VALUES                 (:sender_id, :reciever_id, :message_content);"; 
         $stmt = $pdo->prepare($sql); 
         
         $senderID = $messageObject->getSenderID(); 
@@ -46,7 +46,7 @@ class MessageDAO{
         $stmt->bindParam(":sender_id", $senderID, PDO::PARAM_STR); 
         $stmt->bindParam(":reciever_id", $recieverID, PDO::PARAM_STR); 
         $stmt->bindParam(":message_content", $messageContent, PDO::PARAM_STR); 
-        $stmt->bindParam(":read_status", $readStatus, PDO::PARAM_STR); 
+        // $stmt->bindParam(":read_status", $readStatus, PDO::PARAM_STR); 
 
         $status = $stmt->execute(); 
 
@@ -60,11 +60,11 @@ class MessageDAO{
         return $status; 
     }
 
-    function readMessage($messageObject){
-        // input: a message object 
-        // output: true if the database update is successful
-        $messageObject->readMessage(); 
-        return 0; 
-    }
+    // function readMessage($messageObject){
+    //     // input: a message object 
+    //     // output: true if the database update is successful
+    //     $messageObject->readMessage(); 
+    //     return 0; 
+    // }
 }
 ?>
