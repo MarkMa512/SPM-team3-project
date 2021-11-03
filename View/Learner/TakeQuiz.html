@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--Vue-->
+    <script 
+        src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"
+    ></script>
     <script>
         $(function(){
           $('#nav').load("./common/navbarLearner.php");
@@ -40,26 +44,32 @@
 
     <!-- picture can edit -->
     <br>
-    <div class="container">
+    <div class="container" id="app">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Take Quiz</h6>
         <br>
-        <form action="#">    
-          <h6> Question 1: This is a Test MCQ Quesion, select from the options belowL </h6>  
-          <input type="radio" id="defaultRadio" name="optionA">  
-          <label for="defaultRadio"> This is the correct option </label>  
-          <br>  
-          <input type="radio" id="defaultRadio" name="optionB">  
-          <label for="defaultRadio"> This is not a correct option </label>  
-          <br>  
-          <input type="radio" id="defaultRadio" name="optionC">  
-          <label for="defaultRadio">  This is not a correct option </label>  
-          <br>  
-          <input type="radio" id="defaultRadio" name="optionD">  
-          <label for="defaultRadio">  This is not a correct option </label>  
-          <br>  
-          <input type="submit" value="submit">  
-        </form>  
+        <form id="answerForm" action="testsubmit2.php" method="post">
+          <h1>{{title}}</h1>
+          <div v-for="question in questions">
+              <h2>{{question.qnText}} </h2>
+                  <div v-if = "question.type == 'text'">
+                      <input type = "text" class="form-control" placeholder="Answer:">
+                  </div>
+                  <div v-else-if = "question.type == 'mcq'">
+                      <div v-for="option in question.options">
+                          <input type = "radio" v-bind:name="question.qnNumber" v-bind:id="option.id" v-bind:value="option.value">
+                          <label v-bind:for="option.id">{{option.optText}} </label><br>
+                      </div>
+                  </div>
+                  <div v-else-if = "question.type == 'checkbox'">
+                      <div v-for="option in question.options">
+                          <input type = "checkbox" v-bind:name="question.qnNumber + '[]'" v-bind:id="option.id" v-bind:value="option.value">
+                          <label v-bind:for="option.id">{{option.optText}} </label><br>
+                      </div>
+                  </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>  
 
   </div>
   </div>
@@ -67,5 +77,17 @@
 
 
 </body>
+<script>
+  var app = new Vue({
+      el: "#app",
+      data: {
+          title: "Test Quiz",
+          questions: [
+          {"qnNumber":1,"type":"mcq","qnText":"Q1","options":[{"id":"q1-1","optText":"A1","value":1},{"id":"q1-2","optText":"A2","value":2},{"id":"q1-3","optText":"A3","value":3}]},
+          {"qnNumber":2,"type":"checkbox","qnText":"Q2","options":[{"id":"q2-1","optText":"A4","value":1},{"id":"q2-2","optText":"A5","value":2},{"id":"q2-3","optText":"A6","value":3}]}
+              ]
+      }
+  })
+</script>
 
 </html>

@@ -15,7 +15,7 @@ require_once "../Class/autoload.php";
 
 $questionArray = [];
 $answerArray = [];
-
+/*
 try{
     for($i = 1; $i <= 10; $i ++){
 
@@ -31,20 +31,14 @@ try{
                 if(isset($_POST['question'. $i . 'Opt' . $x])){
                     $option = [];
                     $option['id'] = 'q' . $i . '-' . $x;
-                    $option['optText'] = $_POST['question'. $i . 'Opt' . $x];
-                    $option['value'] = $x;
+                    $option['value'] = $_POST['question'. $i . 'Opt' . $x];
                     array_push($optionArray, $option);
                 }
             }
 
             $question['options'] = $optionArray;
             $answer['qnNumber'] = $i;
-            if(isset($_POST['radio' . $i])){
-                $answer['answer'] = $_POST['radio' . $i];
-            }else{
-                $answer['answer'] = $_POST['checkbox' . $i];
-            }
-            
+            $answer['answer'] = $_POST['radio' . $i];
 
             array_push($questionArray, $question);
             array_push($answerArray, $answer);
@@ -53,8 +47,8 @@ try{
     }
 
     $quiz = new Quiz($_POST['quizTitle'], $questionArray, $answerArray);
-#    $quizDAO = new QuizDAO;
-#    $quizDAO -> addQuiz($quiz);
+    $quizDAO = new QuizDAO;
+    $quizDAO -> addQuiz($quiz);
 
 }catch(PDOException $e){
     $_SESSION['error_msg'] = "PDO issues";
@@ -63,10 +57,8 @@ try{
 }
 
 
-var_dump($quiz->getQuizQuestionList()[0]['options']);
-var_dump($quiz->getQuizAnswerList());
-echo json_encode($quiz->getQuizQuestionList());
-/*
+
+
 echo $quiz->getQuizTitle();
 var_dump($quiz->getQuizQuestionList()[1]);
 var_dump($quiz->getQuizAnswerList());

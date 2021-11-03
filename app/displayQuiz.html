@@ -34,26 +34,27 @@
         <div id="app">
             <div class="row">
                 <div class="col-6">
-                    <form id="answerForm">
+                    <form id="answerForm" action="testsubmit2.php" method="post">
                         <h1>{{title}}</h1>
                         <div v-for="question in questions">
-                            <h2>{{question.qnName}} </h2>
+                            <h2>{{question.qnText}} </h2>
                                 <div v-if = "question.type == 'text'">
                                     <input type = "text" class="form-control" placeholder="Answer:">
                                 </div>
                                 <div v-else-if = "question.type == 'mcq'">
-                                    <div v-for="option in question.option">
-                                        <input type = "radio" v-bind:name="question.id" v-bind:id="option.id">
-                                        <label v-bind:for="option.id">{{option.value}} </label><br>
+                                    <div v-for="option in question.options">
+                                        <input type = "radio" v-bind:name="question.qnNumber" v-bind:id="option.id" v-bind:value="option.value">
+                                        <label v-bind:for="option.id">{{option.optText}} </label><br>
                                     </div>
                                 </div>
                                 <div v-else-if = "question.type == 'checkbox'">
-                                    <div v-for="option in question.option">
-                                        <input type = "checkbox" v-bind:name="question.id" v-bind:id="option.id">
-                                        <label v-bind:for="option.id">{{option.value}} </label><br>
+                                    <div v-for="option in question.options">
+                                        <input type = "checkbox" v-bind:name="question.qnNumber + '[]'" v-bind:id="option.id" v-bind:value="option.value">
+                                        <label v-bind:for="option.id">{{option.optText}} </label><br>
                                     </div>
                                 </div>
                         </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -65,9 +66,8 @@
             data: {
                 title: "Test Quiz",
                 questions: [
-                    {"qnName" : "Question 1","type" : "text", "id" : "q2"},
-                    {"qnName" : "Question 2","type" : "mcq", "option":[{"id": "q2-1", "value": "Option 1"}, {"id": "q2-2", "value": "Option 2"}, {"id": "q2-3", "value": "Option 3"}], "id" : "q2"},
-                    {"qnName" : "Question 3","type" : "checkbox", "option":[{"id": "q3-1", "value": "Option 1"}, {"id": "q3-2", "value": "Option 3"}, {"id": "q3-3", "value": "Option 3"}], "id" : "q3"}
+                {"qnNumber":1,"type":"mcq","qnText":"Q1","options":[{"id":"q1-1","optText":"A1","value":1},{"id":"q1-2","optText":"A2","value":2},{"id":"q1-3","optText":"A3","value":3}]},
+                {"qnNumber":2,"type":"checkbox","qnText":"Q2","options":[{"id":"q2-1","optText":"A4","value":1},{"id":"q2-2","optText":"A5","value":2},{"id":"q2-3","optText":"A6","value":3}]}
                     ]
             }
         })

@@ -1,17 +1,7 @@
 <?php 
 
 var_dump($_POST);
-require_once "../Class/autoload.php";
-
-#$array = array
-/*if (isset($_POST['question1'])){
-    #$test = array('qnName' => $_POST['question1']) ;
-    $question1['qnNumber'] = 1;
-    $question1['type'] = $_POST['question1Type'];
-    $question1['qnText'] = $_POST['question1'];
-    var_dump($question1);
-    
-} */
+require_once "../../../Class/autoload.php";
 
 $questionArray = [];
 $answerArray = [];
@@ -53,28 +43,14 @@ try{
     }
 
     $quiz = new Quiz($_POST['quizTitle'], $questionArray, $answerArray);
-#    $quizDAO = new QuizDAO;
-#    $quizDAO -> addQuiz($quiz);
+    #$quizDAO = new QuizDAO;
+    #$quizDAO -> addQuiz($quiz);
 
 }catch(PDOException $e){
     $_SESSION['error_msg'] = "PDO issues";
-    #header("Location:./../AssignTrainerTo?empID={$instructorID}");
+    #header("Location:../CreateQuiz.html");
     exit();
 }
 
 
-var_dump($quiz->getQuizQuestionList()[0]['options']);
-var_dump($quiz->getQuizAnswerList());
-echo json_encode($quiz->getQuizQuestionList());
-/*
-echo $quiz->getQuizTitle();
-var_dump($quiz->getQuizQuestionList()[1]);
-var_dump($quiz->getQuizAnswerList());
-echo sizeof($quiz->getQuizAnswerList());
-$response = [['qnNumber' => 1, 'answer' => '2'], ['qnNumber' => 2, 'answer' => '1']];
-var_dump($quiz->autoGrade($response));
-*/
-#var_dump($questionArray);
-#var_dump($answerArray);
-#{"qnName" : "Question 2","type" : "mcq", "option":[{"id": "q2-1", "value": "Option 1"}, {"id": "q2-2", "value": "Option 2"}, {"id": "q2-3", "value": "Option 3"}], "id" : "q2"},
 ?>
