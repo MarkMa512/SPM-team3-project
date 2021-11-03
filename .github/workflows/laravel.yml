@@ -107,3 +107,10 @@ jobs:
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/TrainerTest.php
       continue-on-error: true
+
+    - name: Execute test13 (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php vendor/bin/phpunit Testing/QuizTest.php
+      continue-on-error: true

@@ -1,6 +1,7 @@
 <?php 
 
 var_dump($_POST);
+require_once "../Class/autoload.php";
 
 #$array = array
 /*if (isset($_POST['question1'])){
@@ -44,8 +45,16 @@ for($i = 1; $i <= 10; $i ++){
     }
 }
 
-var_dump($questionArray[1]);
-var_dump($answerArray);
+$quiz = new Quiz($_POST['quizTitle'], $questionArray, $answerArray);
 
+echo $quiz->getQuizTitle();
+var_dump($quiz->getQuizQuestionList()[1]);
+var_dump($quiz->getQuizAnswerList());
+#echo sizeof($quiz->getQuizAnswerList());
+$response = [['qnNumber' => 1, 'answer' => '2'], ['qnNumber' => 2, 'answer' => '1']];
+var_dump($quiz->autoGrade($response));
+
+#var_dump($questionArray);
+#var_dump($answerArray);
 #{"qnName" : "Question 2","type" : "mcq", "option":[{"id": "q2-1", "value": "Option 1"}, {"id": "q2-2", "value": "Option 2"}, {"id": "q2-3", "value": "Option 3"}], "id" : "q2"},
 ?>
