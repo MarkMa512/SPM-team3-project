@@ -151,7 +151,7 @@ CREATE TABLE Material(
     Course_Code CHAR(5) NOT NULL, 
     Course_Run_ID INT NOT NULL, 
     Section_ID INT NOT NULL, 
-    Material_ID INT NOT NULL, 
+    Material_ID INT NOT NULL AUTO_INCREMENT, 
     
     Material_Name VARCHAR(255), 
     Material VARCHAR(255), 
