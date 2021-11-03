@@ -40,18 +40,11 @@
          <input type="text" name="courseRunID" value='<?php echo $_GET['courseRunID'];?>' hidden>
         <div class="form-group">
             <label for="code">Section ID:</label>
-            <input type="text" class="form-control" id="code" placeholder="Enter Section ID" name="sid">
+            <input type="text" class="form-control" id="code" placeholder="Enter Section ID" name="sid" require>
         </div>
         <div class="form-group">
             <label for="sname">Section Name:</label>
-            <input type="text" class="form-control" id="capacity" placeholder="Enter Section Name" name="sname">
-        </div>
-        <div class="form-group">
-            <label for="isGrade">Is Graded Section:</label>
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="isGrade">
-              <option value="1">Yes</option>
-              <option value="0" selected>No</option>
-            </select>
+            <input type="text" class="form-control" id="capacity" placeholder="Enter Section Name" name="sname" require>
         </div>
         
         <br>
@@ -61,10 +54,16 @@
       
     </div>
      <?php
+     require_once "../../Class/autoload.php";
       var_dump($_POST);
       if($_POST){
 
+        $sectionDAO = new SectionDAO();
+        $sectionDAO->addSection(new Section($_POST['courseCode'], $_POST['courseRunID'],$_POST['sid'],$_POST['sname']));
+        header("Location:./ViewCourseTrainer.html");
+        exit();
       }
+
      ?>
 
 
