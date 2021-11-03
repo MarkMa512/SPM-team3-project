@@ -54,7 +54,7 @@
       <h5>Create New Course Run</h5>
       <br>
 
-       <form id='addCourseRunForm'> 
+       <form id='addCourseRunForm' method="post"> 
         <div class="form-group">
             <label for="code">Course Run ID:</label>
             <input type="text" class="form-control" id="code" placeholder="Enter ourse Run ID">
@@ -85,3 +85,4 @@
 </body>
 
 </html>
+
