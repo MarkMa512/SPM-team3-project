@@ -84,7 +84,8 @@
             
         <a href="Files/SR101/1/1/1/Presentaiton3_research_.pdf">download</a>
 <?php
-
+require_once "../../Class/autoload.php";
+session_start();
 var_dump($_GET);
 if(isset($_FILES['formFileLg']) && $_GET){
   $errors= array();
@@ -110,10 +111,10 @@ if(isset($_FILES['formFileLg']) && $_GET){
   }
   if(empty($errors)==true){
      move_uploaded_file($file_tmp,"./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/".$file_name);
-     echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
-     echo "Success";
-  }else{
-     print_r($errors);
+     $sectionDAO = new SectionDAO();
+     $sectionDAO->addMaterial($_GET['cid'], $_GET['crid'], $_GET['sid'], $_GET['mid'], $file_name, "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name");
+     //echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
+    //  echo "Success";
   }
 }
 ?>
