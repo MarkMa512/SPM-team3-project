@@ -42,7 +42,7 @@
 
     <br>
     <div id="app" class="container">
-    <!-- <div class="container-fluid mt-100">
+   <!-- <div class="container-fluid mt-100">
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
@@ -89,6 +89,16 @@
         </div>
     </div>
 </div> 
+-->
+
+<div class="row"> 
+    <div class="col-4">
+           <div class="col-4">
+                <a class="btn btn-primary" href="CreateTopicLearner.html" role="button">Create New Topic</a> 
+           </div>
+    </div>
+</div>
+<br>
 
 <div class="container-fluid mt-100">
     <div class="row">
@@ -115,7 +125,7 @@
         </div>
     </div>
 </div>
--->
+
     <list-item v-for="data in posts" v-bind:author="data.author" v-bind:authorName="data.authorName" v-bind:content="data.content" v-bind:createTime="data.createTime" v-bind:postID="data.postID" v-bind:replyToID="data.replyToID" v-bind:topic="data.topic"></list-item>
 
 
