@@ -333,6 +333,57 @@ class LearnerDAO{
         $pdo = NULL; 
         return $result;
     }
+    function selfAssign($learnerID, $courseCode, $courseRunCode ){
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO enrollment_record (Learner_ID, Course_Code, Course_Run_ID, Enroll_Date) 
+                VALUES      (:learner_id, :course_code, :course_run_id, :enroll_date);"; 
+        $stmt = $pdo->prepare($sql); 
+        $time =  Date("Y-m-d H:i:s");
+        $stmt->bindParam(":learner_id", $learnerID, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":enroll_date",$time, PDO::PARAM_STR); 
+        
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+    }
+
+
+    function getAllCourseRun($learnerID){
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection();
+        $sql = "SELECT * FROM quiz_record qr, enrollment_record er, course c WHERE qr.Course_Code=er.Course_Code AND qr.Course_Run_ID = er.Course_Run_ID 
+        AND c.Course_Code = er.Course_Code AND er.Learner_ID=:learnerID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
+        $status = $stmt->execute(); 
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        $result=[];
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[$row["Course_Code"]."-".$row["Course_Name"]." Course Run ".$row["Course_Run_ID"]][$row['Section_ID']]["result"][] = $row['Quiz_Score'];
+            $result[$row["Course_Code"]."-".$row["Course_Name"]." Course Run ".$row["Course_Run_ID"]][$row['Section_ID']]["Attempt"][] = $row['Attempt_Number']; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result;
+    }
+
     
 }
 
