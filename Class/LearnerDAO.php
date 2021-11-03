@@ -1,5 +1,7 @@
 <?php
+
 require_once "autoload.php";
+
 class LearnerDAO{
     function getClassesByID($trainerID){
         // input: trainerID 
@@ -200,6 +202,91 @@ class LearnerDAO{
         return $result;
     }
 
+    function checkPrerequisiete($learnerID, $courseCode){
+        // input: learnerID, courseCode 
+        // output: true if the learner met the prerequisite; false otherwise
+
+        $courseDAO = new CourseDAO(); 
+        
+        $prerequisteList = $courseDAO->getPrerequisite($courseCode); // obtain the prerequisite list
+
+        $passedCourseList = $this->getQualifiedCourse($learnerID); // obtain the passed courses
+
+        if (count($prerequisteList) == 0) {
+            // if there is no preprequisite for this course, return true
+            return True; 
+        }elseif (count($prerequisteList) != 0 && count($passedCourseList) == 0){
+            // if there is prerequisite for this course, but the learner did not take any course b4, return false
+            return False; 
+        }else{
+            $matchedPrerequisiteList = []; 
+            foreach ($passedCourseList as $passedCourse){
+                // for every passed course 
+                if (in_array($passedCourse,$prerequisteList)){
+                    // if the passed course is in the prerequisiteLis, add to the matchedPreprequisiteList
+                    $matchedPrerequisiteList [] = $passedCourse; 
+                }
+            }
+            if (count($matchedPrerequisiteList) == count($prerequisteList)){
+                // if all the preprequisite courses are met, return True
+                return True; 
+            }else{
+                return False; 
+            }
+        }
+    }
+
+    function checkAlreadyEnrolled($learnerID, $courseCode){
+        $enrolledCourseList = $this->getEnrolledCourses($learnerID); 
+        if (in_array($courseCode, $enrolledCourseList)){
+            // if the the learner has already enrolled into the course
+            return False; 
+        }else{
+            return True; 
+        }
+    }
+
+    function selfEnrollmentToDatabase($learnerID, $courseCode, $courseRunCode){
+        // input: a courserun object to be added into the database 
+        // output: True if success
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO Enrollment (Learner_ID, Course_Code, Course_Run_ID) 
+                VALUES      (:learner_id, :course_code, :course_run_id);"; 
+        $stmt = $pdo->prepare($sql); 
+    
+        $stmt->bindParam(":learner_id", $learnerID, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+    }
+
+    function selfEnrollment($learnerID, $courseCode, $courseRunCode){
+         if ($this->checkPrerequisiete($learnerID, $courseCode) && $this->checkAlreadyEnrolled($learnerID, $courseCode)){
+             // if the learner meets the preprequiste and has yet taken this course b4, 
+             if ($this->selfEnrollmentToDatabase($learnerID, $courseCode, $courseRunCode)){
+                // if the insertion is successful
+                return True; 
+            }else{
+                echo "PDO ERROR!"; 
+                return False; 
+            }
+         }else{
+             return False; 
+         }
+
+    }
 }
 
 
