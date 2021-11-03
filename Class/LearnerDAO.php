@@ -139,6 +139,56 @@ class LearnerDAO{
         return $result; 
 
     }
+
+    function getQualifiedCourse($learnerID){
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+
+        $sql="SELECT Course_Code from Qualification Where Employee_ID=:learnerID;";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":learner_ID", $learnerID, PDO::PARAM_STR);
+        $result = [];
+
+        if ($stmt->execute()) {
+            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+                $result[] = [
+                    $row["Course_Code"]
+                ];
+            }
+        }else{
+
+        }
+        $stmt = null;
+        $conn = null;        
+        
+        return $result;
+    }
+
+    function getEnrolledCourses($learnerID){
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+
+        $sql="SELECT Course_Code from Enrollment_Record Where Employee_ID=:learnerID;";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":learner_ID", $learnerID, PDO::PARAM_STR);
+        $result = [];
+
+        if ($stmt->execute()) {
+            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+                $result[] 
+                =[$row["Course_Code"]];
+            }
+        }else{
+
+        }
+        $stmt = null;
+        $conn = null;        
+        
+        return $result;
+    }
+
 }
 
 
