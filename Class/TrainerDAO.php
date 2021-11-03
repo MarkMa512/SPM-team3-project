@@ -32,13 +32,13 @@ class TrainerDAO{
     function getMaterialsById($trainerID){
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
-        $sql="SELECT * FROM enrollment_record er, material m, course c WHERE er.Course_Code=m.Course_Code AND er.Course_Run_ID=m.Course_Run_ID AND c.Course_Code=er.Course_Code AND Learner_ID=:trainerID";
+        $sql="SELECT * FROM ASSIGNMENT A, MATERIAL M WHERE A.Course_Code = M.Course_Code AND A.Course_Run_ID= M.Course_Run_ID AND A.Course_Code= M.Course_Code AND Instructor_ID=:trainerID;";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
         $result = [];
 
         if ($stmt->execute()) {
-            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC) ){
                 $result[] = $row;
             }
         }else{
