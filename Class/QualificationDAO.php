@@ -4,8 +4,8 @@ require_once "autoload.php";
 
 class QualificationDAO{
     function retrieveQualificationByEmployeeID($employeeID){
-        // input: courseCode 
-        // output: a list of CoursrRun Object of given courseCode
+        // input: employeeID 
+        // output: a list of Qualification Objects passed by the given employeeID. 
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
         $sql = "SELECT * FROM Qualification WHERE Employee_ID = :employee_id;"; 

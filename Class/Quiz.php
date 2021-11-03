@@ -9,8 +9,8 @@ class Quiz{
     function __construct($quizID, $quizType, $quizQuestionList, $quizAnswerList){
         $this->quizID = $quizID;
         $this->quizType = $quizType;
-        $this->quizQuestionList = $quizQuestion;
-        $this->quizAnswerList = $quizAnswer;
+        $this->quizQuestionList = $quizQuestionList;
+        $this->quizAnswerList = $quizAnswerList;
     }
 
     function quizInsertDB(){
