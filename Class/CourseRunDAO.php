@@ -39,6 +39,7 @@ class CourseRunDAO{
         
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         $status = $stmt->execute(); 
+        $result = [];
         if(!$status){
             var_dump($stmt->errorinfo());
             # output any error if database access has problem

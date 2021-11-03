@@ -287,6 +287,53 @@ class LearnerDAO{
          }
 
     }
+
+    function getAllAttendCourseByUserId($learnerID){
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection();
+
+        $sql = "SELECT DISTINCT Course_Code FROM enrollment_record WHERE Learner_ID=:learnerID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
+        $status = $stmt->execute(); 
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        $result=[];
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = $row["Course_Code"]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result;
+    }
+    function getAllNotAttendCourseByUserId($learnerID){
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection();
+        $sql = "SELECT DISTINCT Course_Code FROM course WHERE Course_Code NOT IN 
+        (SELECT Course_Code FROM enrollment_record WHERE Learner_ID=:learnerID)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
+        $status = $stmt->execute(); 
+        $result=[];
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = $row["Course_Code"]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result;
+    }
+    
 }
 
 
