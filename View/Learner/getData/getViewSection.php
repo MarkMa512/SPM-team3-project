@@ -4,18 +4,17 @@
       require_once "../../../Class/autoload.php";
 
 
-      $learnerDAO = new LearnerDAO();
+      $sectionDAO = new SectionDAO();
       // var_dump($_SESSION);
       // // $empID = $_SESSION["user"]->getEmpType();
       // $crrUser = $_SESSION["user"];
       // $crrUser->getEmpType();
       // var_dump($crrUser);
-      $classes = $learnerDAO->getClassesByID($_SESSION['userID']);
-      // var_dump($classes);
+      $classes = $sectionDAO->getAllSection("SR101","1");
 
       $result = [];
       foreach ($classes as $class) {
-        $result[] = ["CourseName"=>$class[1], "CourseCode"=>$class[0]->getCourseCode(), "CourseRunID"=>$class[0]->getCourseRunID()];
+        $result[] = ["sectionID"=>$class->getSectionID(), "sectionName"=>$class->getSectionName(), "courseCode"=>$class->getCourseCode(), "courseRunID"=>$class->getCourseRunID()];
       }
       $postJSON = json_encode($result);
       echo $postJSON;

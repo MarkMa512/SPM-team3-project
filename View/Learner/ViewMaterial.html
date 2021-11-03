@@ -43,10 +43,12 @@
       <div id="app" class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Materials</h6>
-        <br>
-        <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:crid="data.CourseRunID" v-bind:mid="data.MaterialID" v-bind:mname="data.Name" v-bind:sid="data.SectionID" v-bind:link=""></list-item>
+        <br> {{ post }}
+        <list-item v-for="data in posts" v-bind:cid="data.Course_Code" 
+        v-bind:cname="data.Course_Name" v-bind:crid="data.Course_Run_ID"
+         v-bind:mid="data.Material_ID"  v-bind:sid="data.Section_ID" v-bind:link="data.Material"></list-item>
 
-   
+          
       </div>
     </div>
 <script>
@@ -71,16 +73,16 @@
         
     });
     app.component('list-item', {
-        props:['cid', 'cname', 'crid', 'mid','mname','sid'],
+        props:['cid', 'cname', 'crid', 'mid','sid', 'link'],
         template:`
         <div class="card">
           <div class="card-header">
-            {{ cid }}-R{{ crid }} {{ cname }}
+            {{ cid }}-R{{ crid }}
           </div>
         <div class="card-body">
           <h5 class="card-title">Section {{ sid }}</h5>
           <p class="card-text">{{ mname }}</p>
-          <a href="#" class="btn btn-primary">Download</a>
+          <a :href="link" class="btn btn-primary">Download</a>
             </div>
         </div>
         <br>

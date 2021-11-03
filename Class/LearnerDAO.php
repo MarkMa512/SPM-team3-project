@@ -36,14 +36,7 @@ class LearnerDAO{
 
         if ($stmt->execute()) {
             while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
-                $result[] = [
-                    "CourseName"=>$row["Course_Name"],
-                    "CourseCode"=>$row["Course_Code"],
-                    "CourseRunID"=>$row["Course_Run_ID"],
-                    "SectionID"=>$row["Section_ID"],
-                    "MaterialID"=>$row["Material_ID"],
-                    "Name"=>$row["Name"]
-                ];
+                $result[] = $row;
             }
         }else{
 

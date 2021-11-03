@@ -24,7 +24,7 @@
             <a class="nav-link" href="ViewMaterial.html">Material</a>
           </li>
            <li class="nav-item active">
-            <a class="nav-link" href="ViewProgressLearner.html">Material</a>
+            <a class="nav-link" href="ViewProgressLearner.html">View Progress</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="ForumLearner.html">Forum</a>
