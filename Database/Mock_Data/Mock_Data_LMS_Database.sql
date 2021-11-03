@@ -159,7 +159,7 @@ VALUES
     ; 
 
 -- Insertion 16
-INSERT INTO MSG (Sender_ID. Reciever_ID, Message_Content,Sent_Date_Time, Read_Status)
+INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content,Sent_Date_Time, Read_Status)
 VALUES
     (1001, 0001, "Test Message", "2021-01-02 09:00:00", TRUE), 
      (0001, 1001, "Test Message", "2021-01-02 09:00:20", TRUE)

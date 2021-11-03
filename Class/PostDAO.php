@@ -17,7 +17,7 @@ class PostDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Creation_Date_Time"], $row["Author_ID"], $row["Reply_To_Post_ID"]); 
+            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"],  $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -42,7 +42,7 @@ class PostDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Creation_Date_Time"], $row["Author_ID"], $row["Reply_To_Post_ID"]); 
+            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -69,7 +69,7 @@ class PostDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Creation_Date_Time"], $row["Author_ID"], $row["Reply_To_Post_ID"]); 
+            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
