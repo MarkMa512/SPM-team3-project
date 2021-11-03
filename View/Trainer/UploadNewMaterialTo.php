@@ -69,21 +69,54 @@
 
         </div>
 
-           <form action="submit" method="post"> 
+        <form  method="POST" enctype="multipart/form-data">
      
               <div>
                 <label for="formFileLg" class="form-label">Upload New Material</label>
-                 <input class="form-control form-control-sm" id="formFileLg" type="file" multiple/>
+                 <input class="form-control form-control-sm" name="formFileLg" type="file" multiple/>
               </div>
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <br>
-    </form>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <br>
+        </form>
         </div>
         <br>
             
-   
+        <a href="Files/SR101/1/1/1/Presentaiton3_research_.pdf">download</a>
+<?php
 
+var_dump($_GET);
+if(isset($_FILES['formFileLg']) && $_GET){
+  $errors= array();
+  $file_name = str_replace(" ", "", $_FILES['formFileLg']['name']);
+  $file_size =$_FILES['formFileLg']['size'];
+  $file_tmp =$_FILES['formFileLg']['tmp_name'];
+  $file_type=$_FILES['formFileLg']['type'];
+  $file_names = explode('.',$_FILES['formFileLg']['name']);
+  $file_ext=strtolower($file_names[sizeof($file_names)-1]);
+  var_dump($file_ext);
+  $extensions= array("jpeg","jpg","png", "docx", "pptx", "zip", "ppt", "pdf");
+  
+  if(in_array($file_ext,$extensions)=== false){
+     $errors[]="extension not allowed, please choose a png, docx, pptx, jpeg, zip, ppt, pdf or jpg, file.";
+  }
+  
+  if($file_size > 104857600){
+     $errors[]='File size must no more than 100 MB';
+  }
+  // for user to create the file first time 
+  if (!file_exists("./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/")) {
+    mkdir("./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/", 0777, true);
+  }
+  if(empty($errors)==true){
+     move_uploaded_file($file_tmp,"./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/".$file_name);
+     echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
+     echo "Success";
+  }else{
+     print_r($errors);
+  }
+}
+?>
 
 </body>
 
