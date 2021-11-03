@@ -101,8 +101,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                <list-item v-for="data in posts" v-bind:cid="data.Course_Code" v-bind:crid="data.Course_Run_ID"  v-bind:mid="data.Material_ID"  v-bind:download="data.Material" v-bind:name="data.Name" v-bind:sid="data.Section_ID" v-bind:cname="data.Course_Name"
-                v-bind:link="'./UploadNewMaterialTo.php?cid='+data.Course_Code+'&crid='+data.Course_Run_ID+'&sid='+data.Section_ID+'&mid='+data.Material_ID"></list-item>
+                <list-item v-for="data in posts" v-bind:cid="data.Course_Code" v-bind:crid="data.Course_Run_ID"  v-bind:mid="data.Material_ID" 
+                 v-bind:download="data.Material" v-bind:name="data.Name" v-bind:sid="data.Section_ID" v-bind:cname="data.Course_Name"
+                v-bind:link="'./UploadNewMaterialTo.php?cid='+data.Course_Code+'&crid='+data.Course_Run_ID+'&sid='+data.Section_ID+'&mid='+data.Material_ID+'&cname='+data.Course_Name+'&sid='+data.Section_ID"></list-item>
                   </tbody>
             </table>
 

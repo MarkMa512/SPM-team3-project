@@ -73,7 +73,7 @@
                       <td>{$section['CourseRunID']}</td>
                       <td>{$section['CourseName']}</td>
                       <td>Section {$section['SectionID']}</td>
-                      <td><a class='btn btn-outline-primary btn-primary' href=\"UploadNewMaterialTo.php?courseCode={$section['CourseCode']}&courseRunID={$section['CourseRunID']}&SectionID={$section['SectionID']}\" role='button'>Upload</a></td>
+                      <td><a class='btn btn-outline-primary btn-primary' href=\"UploadNewMaterialTo.php?courseCode={$section['CourseCode']}&courseRunID={$section['CourseRunID']}&SectionID={$section['SectionID']}&CourseName={$section['CourseName']}\" role='button'>Upload</a></td>
                     </tr>
                     ";
                   }

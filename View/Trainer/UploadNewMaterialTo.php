@@ -57,12 +57,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                     <tr>
-                      <th scope="row">PT101</th>
-                      <td>1</td>
-                      <td>Intro to Ink Printers</td>
-                      <td>Section 1</td>
-                    </tr>
+                  <?php 
+                    if(isset($_GET['cid'])){
+                      echo "
+                      <tr>
+                        <th scope='row'>{$_GET['cid']}</th>
+                        <td>{$_GET['crid']}</td>
+                        <td>{$_GET['cname']}</td>
+                        <td>Section {$_GET['sid']}</td>
+                      </tr>
+                      ";
+                    }else if(isset($_GET['courseCode'])){
+                      echo "
+                      <tr>
+                        <th scope='row'>{$_GET['courseCode']}</th>
+                        <td>{$_GET['courseRunID']}</td>
+                        <td>{$_GET['CourseName']}</td>
+                        <td>Section {$_GET['SectionID']}</td>
+                      </tr>
+                      ";
+                    }
+                  
+                  
+                  ?>
+                     
                     
                   </tbody>
             </table>
@@ -82,7 +100,7 @@
         </div>
         <br>
             
-        <a href="Files/SR101/1/1/1/Presentaiton3_research_.pdf">download</a>
+        <!-- <a href="Files/SR101/1/1/1/Presentaiton3_research_.pdf">download</a> -->
 <?php
 require_once "../../Class/autoload.php";
 session_start();
@@ -115,6 +133,8 @@ if(isset($_FILES['formFileLg']) && isset($_GET['cid'])){
      $sectionDAO->updateMaterial($_GET['cid'], $_GET['crid'], $_GET['sid'], $_GET['mid'], $file_name, "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name");
      //echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
     //  echo "Success";
+    header("Location:./ManageMaterial.html");
+    exit();
   }
 }
 if(isset($_FILES['formFileLg']) && isset($_GET['courseCode'])){
@@ -145,6 +165,8 @@ if(isset($_FILES['formFileLg']) && isset($_GET['courseCode'])){
      $sectionDAO->addMaterial($_GET['courseCode'], $_GET['courseRunID'], $_GET['SectionID'], 1, $file_name, "./../Files/{$_GET['courseCode']}/{$_GET['courseRunID']}/{$_GET['SectionID']}/1/$file_name");
      //echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
     //  echo "Success";
+    header("Location:./ManageMaterial.html");
+    exit();
   }
 }
 ?>

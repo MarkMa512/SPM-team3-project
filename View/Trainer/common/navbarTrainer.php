@@ -46,7 +46,7 @@
 
         $empDao = new EmployeeDAO();
         $_SESSION["user"] = $empDao->getEmp(1001);
-
+        $_SESSION["userID"] = 1001;
         if($_SESSION){
           echo "Hi " . $_SESSION['user']->getEmpLastName();
         }else{

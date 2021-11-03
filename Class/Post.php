@@ -130,12 +130,12 @@ Class Post{
         return $this;
     }
 
-    function __construct($postID, $postTopic, $postContent, $postAuthor, $postDateTime, $postReplyTo){
-        $this->postID = $postID;
+    function __construct($postTopic, $postContent, $postAuthor, $postReplyTo){
+        $this->postID = time();
         $this->postTopic = $postTopic;
         $this->postContent = $postContent;
         $this->postAuthor = $postAuthor;
-        $this->postDateTime = $postDateTime; 
+        $this->postDateTime = Date("Y-m-d H:i:s"); 
         $this->postReplyTo = $postReplyTo; 
         // select statement => to be implemented via PostDAO class
     }
