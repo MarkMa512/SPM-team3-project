@@ -5,15 +5,15 @@ class Message{
     private $recieverID; 
     private $messageContent; 
     private $sentDateTime; 
-    private $readStatus; 
+    //private $readStatus; 
 
-    function __construct($senderID, $recieverID, $messageContent, $sentDateTime = NULL, $readStatus = FALSE)
+    function __construct($senderID, $recieverID, $messageContent, $sentDateTime = NULL)
     {
         $this->senderID = $senderID; 
         $this->recieverID = $recieverID; 
         $this->messageContent = $messageContent; 
         $this->sentDateTime = $sentDateTime; 
-        $this->readStatus = $readStatus; 
+        // $this->readStatus = $readStatus; 
     }
 
     /**
@@ -48,24 +48,24 @@ class Message{
         return $this->sentDateTime;
     }
 
-    /**
-     * Get the value of readStatus
-     */ 
-    public function getReadStatus()
-    {
-        return $this->readStatus;
-    }
+    // /**
+    //  * Get the value of readStatus
+    //  */ 
+    // public function getReadStatus()
+    // {
+    //     return $this->readStatus;
+    // }
 
-    function readMessage(){
-        // // set the readReadStatus = True once the reciever reads the message
-        // if ($recieverID == $this->recieverID){
-        //     // need to check if the reciever is the correct one or not
-        //     $this->readStatus = TRUE; 
-        // }else{
-        //     echo "Wrong Reciever!"; 
-        // }
-        $this->readStatus = TRUE; 
-    }
+    // function readMessage(){
+    //     // // set the readReadStatus = True once the reciever reads the message
+    //     // if ($recieverID == $this->recieverID){
+    //     //     // need to check if the reciever is the correct one or not
+    //     //     $this->readStatus = TRUE; 
+    //     // }else{
+    //     //     echo "Wrong Reciever!"; 
+    //     // }
+    //     $this->readStatus = TRUE; 
+    // }
 }
 
 ?>
