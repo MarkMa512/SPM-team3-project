@@ -2,7 +2,8 @@
 require_once "autoload.php";
 class LearnerDAO{
     function getClassesByID($trainerID){
-
+        // input: trainerID 
+        // output: A list of CourseRun Objects taught by the given trainer
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
@@ -26,7 +27,11 @@ class LearnerDAO{
         
         return $result;
     }
+
+
     function getMaterialsById($learnerID){
+        // input: learnerID
+        // a list of Information regarding the material by learner for the class he has taken. 
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
         $sql="SELECT * FROM enrollment_record er, material m, course c WHERE er.Course_Code=m.Course_Code AND er.Course_Run_ID=m.Course_Run_ID AND c.Course_Code=er.Course_Code AND Learner_ID=:trainerID";
@@ -49,7 +54,6 @@ class LearnerDAO{
 
 
     function getAccessedSectionRecord($learnerID, $courseCode, $courseRunID){
-        // to be shift to LearnerDAO
         // input: learnerID, courseCode, courseRunID
         // output: a list of distinct section the learner has accessed 
         $conn = new ConnectionManager(); 
@@ -76,9 +80,8 @@ class LearnerDAO{
     }
 
     function getPassedQuizRecord($learnerID, $courseCode, $courseRunID){
-        // to be shift to LearnerDAO
         // input: learnerID, courseCode, courseRunID
-        // output: a list of distinct quizes the learner has passed 
+        // output: a list of distinct quizes the learner has passed with grade > 0.6
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
         $sql = "SELECT DISTINCT Section_ID FROM Quiz_Record 
@@ -107,6 +110,9 @@ class LearnerDAO{
     }
 
     function getProgressByQuizPassed($learnerID, $courseCode, $courseRunID){
+        // input: learnerID, courseCode, courseRunID
+        // output: a float representing the current progress of the learner for a given courseCode and courseRun
+
         $passedSectionList =$this->getPassedQuizRecord($learnerID, $courseCode, $courseRunID); 
 
         $conn = new ConnectionManager(); 
@@ -117,7 +123,7 @@ class LearnerDAO{
                 AND Course_Run_ID = :course_run_id;"; 
 
         $stmt = $pdo->prepare($sql);
-
+        
         $stmt->bindParam(":learner_id", $learnerID, PDO::PARAM_STR); 
         $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
         $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
@@ -141,31 +147,34 @@ class LearnerDAO{
     }
 
     function getQualifiedCourse($learnerID){
+        // input: learnerID
+        // output: a list of CourseCode which the learner has already qualified
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
         $sql="SELECT Course_Code from Qualification Where Employee_ID=:learnerID;";
 
         $stmt = $conn->prepare($sql);
+
         $stmt->bindParam(":learner_ID", $learnerID, PDO::PARAM_STR);
-        $result = [];
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 
-        if ($stmt->execute()) {
-            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
-                $result[] = [
-                    $row["Course_Code"]
-                ];
-            }
-        }else{
-
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = [$row["Course_Code"]]; 
         }
         $stmt = null;
         $conn = null;        
-        
         return $result;
     }
 
     function getEnrolledCourses($learnerID){
+        // input: learnerID
+        // output: a  list of CourseCode which the learner is currently enrolled in
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
@@ -173,18 +182,20 @@ class LearnerDAO{
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":learner_ID", $learnerID, PDO::PARAM_STR);
-        $result = [];
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 
-        if ($stmt->execute()) {
-            while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ){
-                $result[] 
-                =[$row["Course_Code"]];
-            }
-        }else{
+        $status = $stmt->execute(); 
 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
         }
+        while($row = $stmt->fetch()){
+            $result[] = [$row["Course_Code"]]; 
+        }
+
         $stmt = null;
-        $conn = null;        
+        $conn = null; 
         
         return $result;
     }
