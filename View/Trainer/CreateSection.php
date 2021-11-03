@@ -43,10 +43,17 @@
             <input type="text" class="form-control" id="code" placeholder="Enter Section ID" name="sid">
         </div>
         <div class="form-group">
-            <label for="name">Section Name:</label>
+            <label for="sname">Section Name:</label>
             <input type="text" class="form-control" id="capacity" placeholder="Enter Section Name" name="sname">
         </div>
-
+        <div class="form-group">
+            <label for="isGrade">Is Graded Section:</label>
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="isGrade">
+              <option value="1">Yes</option>
+              <option value="0" selected>No</option>
+            </select>
+        </div>
+        
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
         <br>
@@ -56,7 +63,7 @@
      <?php
       var_dump($_POST);
       if($_POST){
-        
+
       }
      ?>
 
