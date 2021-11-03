@@ -112,8 +112,66 @@ class SectionDAO{
         return $result; 
 
     }
-    function addMaterial($courseCode, $courseRunID, $sectionID){
-        // under construction 
+
+    function addMaterial($courseCode, $courseRunID, $sectionID, $materialID, $materialName, $material){
+        // input: a material URL  to be added into the database 
+        // output: True if success
+
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO Material (Course_Code, Course_Run_ID, Section_ID, Material_ID, Material_Name, Material) 
+                VALUES          (:course_code, :course_run_id, :section_id, :material_id, :material_name, :material);"; 
+        $stmt = $pdo->prepare($sql); 
+
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+        $stmt->bindParam(":section_id", $sectionID, PDO::PARAM_STR); 
+        $stmt->bindParam(":material_id", $materialID, PDO::PARAM_STR); 
+        $stmt->bindParam(":material_name", $materialName, PDO::PARAM_STR); 
+        $stmt->bindParam(":material", $material, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+    }
+
+    function updateMaterial($courseCode, $courseRunID, $sectionID, $materialID, $newMaterialName, $newMaterial){
+        // input: a material URL  to be added into the database 
+        // output: True if success
+
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "UPDATE Material 
+                SET Material = :material, Material_Name = material_name
+                WHERE Course_Code = :course_code AND Course_Run_ID = :course_run_id
+                AND Section_ID = :section_id AND Material_ID = material_id);"; 
+                
+        $stmt = $pdo->prepare($sql); 
+
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+        $stmt->bindParam(":section_id", $sectionID, PDO::PARAM_STR); 
+        $stmt->bindParam(":material_id", $materialID, PDO::PARAM_STR); 
+        $stmt->bindParam(":material_name", $newMaterialName, PDO::PARAM_STR); 
+        $stmt->bindParam(":material", $newMaterial, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
     }
 
     function generateSectionById($empID, $courseCode, $courseRunID){
@@ -202,7 +260,6 @@ class SectionDAO{
         $stmt->closeCursor(); 
         $pdo = NULL; 
         return $status; 
-
     }
 
 }
