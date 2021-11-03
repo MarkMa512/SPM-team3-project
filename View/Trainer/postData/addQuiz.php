@@ -53,6 +53,6 @@ try{
     #header("Location:../CreateQuiz.html");
     exit();
 }
-
+header("#to edit");
 
 ?>
