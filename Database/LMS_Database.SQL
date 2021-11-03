@@ -236,7 +236,7 @@ CREATE TABLE Quiz_Record(
 -- newly added in TestDatabase4; 
 DROP TABLE IF EXISTS Forum_Post; 
 CREATE TABLE Forum_Post(
-    Post_ID INT NOT NULL, 
+    Post_ID INT NOT NULL AUTO_INCREMENT,
     Topic VARCHAR(255), 
     Content VARCHAR(255), 
     -- added in TestDatabase 5: auto capture of the date 
