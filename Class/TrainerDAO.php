@@ -9,7 +9,8 @@ class TrainerDAO{
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
-        $sql = "SELECT c.Course_Name, cr.Course_Code, cr.Course_Run_ID, cr.Capacity, cr.Start_Date, cr.End_Date FROM course_run cr, assignment a, course c WHERE cr.Course_Code=a.Course_Code AND cr.Course_Run_ID=a.Course_Run_ID AND c.Course_Code = cr.Course_Code AND a.Instructor_ID = :trainerID;";
+        $sql = "SELECT c.Course_Name, cr.Course_Code, cr.Course_Run_ID, cr.Capacity, cr.Start_Date, cr.End_Date FROM course_run cr, assignment a, course c 
+        WHERE cr.Course_Code=a.Course_Code AND cr.Course_Run_ID=a.Course_Run_ID AND c.Course_Code = cr.Course_Code AND a.Instructor_ID = :trainerID;";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
@@ -35,7 +36,9 @@ class TrainerDAO{
 
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
-        $sql="SELECT * FROM ASSIGNMENT A, MATERIAL M, COURSE C WHERE A.Course_Code = M.Course_Code = C.Course_Code AND A.Course_Run_ID= M.Course_Run_ID AND A.Course_Code= M.Course_Code = C.Course_CodeAND Instructor_ID=:trainerID;";
+        $sql="SELECT * FROM ASSIGNMENT A , MATERIAL M, COURSE C 
+        WHERE A.Course_Code = M.Course_Code AND M.Course_Code = C.Course_Code AND A.Course_Run_ID= M.Course_Run_ID 
+        AND A.Course_Code=M.Course_Code AND M.Course_Code = C.Course_Code AND A.Instructor_ID=:trainerID;";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
         $result = [];
