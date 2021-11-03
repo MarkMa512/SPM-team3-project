@@ -67,31 +67,6 @@ class EngineerDAO{
         $pdo = NULL; 
         return $status; 
     }
-
-    function getAllAccessRecord($learnerID){
-        // input: learnerID 
-        // output: a list of record given authorID
-        $conn = new ConnectionManager(); 
-        $pdo = $conn->getConnection(); 
-        $sql = "SELECT * FROM Access_Record WHERE Learner_ID = :learner_id;"; 
-        $stmt = $pdo->prepare($sql); 
-
-        $stmt->bindParam(":author_id", $learnerID, PDO::PARAM_STR); 
-        
-        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-        $status = $stmt->execute(); 
-        if(!$status){
-            var_dump($stmt->errorinfo());
-            # output any error if database access has problem
-        }
-        while($row = $stmt->fetch()){
-            $result[] = [$row["Learner_ID"], $row["Course_Code"], $row["Course_Run_ID"], $row["Section_ID"], $row["Visit_Date_Time"]]; 
-        }
-        $stmt->closeCursor();
-        $pdo = NULL; 
-        
-        return $result; 
-    }
 }
 
 ?>

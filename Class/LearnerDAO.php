@@ -46,6 +46,99 @@ class LearnerDAO{
         
         return $result;
     }
+
+
+    function getAccessedSectionRecord($learnerID, $courseCode, $courseRunID){
+        // to be shift to LearnerDAO
+        // input: learnerID, courseCode, courseRunID
+        // output: a list of distinct section the learner has accessed 
+        $conn = new ConnectionManager(); 
+        $pdo = $conn->getConnection(); 
+        $sql = "SELECT DISTINCT Section_ID FROM Access_Record WHERE Learner_ID = :learner_id AND Course_Code = :course_code AND Course_Run_ID = :course_run_id;"; 
+        $stmt = $pdo->prepare($sql); 
+
+        $stmt->bindParam(":learner_id", $learnerID, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = [$row["Section_ID"]]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result; 
+    }
+
+    function getPassedQuizRecord($learnerID, $courseCode, $courseRunID){
+        // to be shift to LearnerDAO
+        // input: learnerID, courseCode, courseRunID
+        // output: a list of distinct quizes the learner has passed 
+        $conn = new ConnectionManager(); 
+        $pdo = $conn->getConnection(); 
+        $sql = "SELECT DISTINCT Section_ID FROM Quiz_Record 
+                WHERE Learner_ID = :learner_id 
+                AND Course_Code = :course_code 
+                AND Course_Run_ID = :course_run_id 
+                AND Quiz_Score >= 0.60"; 
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(":learner_id", $learnerID, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $result[] = $row["Section_ID"]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result; 
+    }
+
+    function getProgressByQuizPassed($learnerID, $courseCode, $courseRunID){
+        $passedSectionList =$this->getPassedQuizRecord($learnerID, $courseCode, $courseRunID); 
+
+        $conn = new ConnectionManager(); 
+        $pdo = $conn->getConnection(); 
+
+        $sql = "SELECT Section_ID FROM Section 
+                WHERE Course_Code = :course_code 
+                AND Course_Run_ID = :course_run_id;"; 
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(":learner_id", $learnerID, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_STR); 
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        while($row = $stmt->fetch()){
+            $totalSectionList[] = $row["Section_ID"]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+
+        $result = count($passedSectionList)/ count($totalSectionList); 
+
+        return $result; 
+
+    }
 }
 
 
