@@ -58,12 +58,32 @@
                     </tr>
                 </thead>
                 <tbody>
+                  <?php 
+                  require_once "../../Class/autoload.php";
+                  session_start();
+                  $sectionDAO = new SectionDAO();
+                  // var_dump($_SESSION);
+                  $sections = $sectionDAO->getSectionByID($_SESSION['user']->getEmpID());
+
+                  foreach($sections as $section){
+                    echo "
+                    
+                    <tr>
+                      <th scope='row'>{$section['CourseCode']}</th>
+                      <td>{$section['CourseRunID']}</td>
+                      <td>{$section['CourseName']}</td>
+                      <td>Section {$section['SectionID']}</td>
+                      <td><a class='btn btn-outline-primary btn-primary' href=\"UploadNewMaterialTo.php?courseCode={$section['CourseCode']}&courseRunID={$section['CourseRunID']}&SectionID={$section['SectionID']}\" role='button'>Upload</a></td>
+                    </tr>
+                    ";
+                  }
+                  ?>
                      <tr>
                       <th scope="row">PT101</th>
                       <td>1</td>
                       <td>Intro to Ink Printers</td>
                       <td>Section 1</td>
-                      <td><a class="btn btn-outline-primary btn-primary" href="UploadNewMaterialTo.html" role="button">Upload</a></td>
+                      <td><a class="btn btn-outline-primary btn-primary" href="UploadNewMaterialTo.php?courseCode={$section['CourseCode']}&courseRunID={$section['CourseRunID']}" role="button">Upload</a></td>
                     </tr>
                     
                   </tbody>

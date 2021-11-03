@@ -87,7 +87,7 @@
 require_once "../../Class/autoload.php";
 session_start();
 var_dump($_GET);
-if(isset($_FILES['formFileLg']) && $_GET){
+if(isset($_FILES['formFileLg']) && isset($_GET['cid'])){
   $errors= array();
   $file_name = str_replace(" ", "", $_FILES['formFileLg']['name']);
   $file_size =$_FILES['formFileLg']['size'];
@@ -112,7 +112,37 @@ if(isset($_FILES['formFileLg']) && $_GET){
   if(empty($errors)==true){
      move_uploaded_file($file_tmp,"./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/".$file_name);
      $sectionDAO = new SectionDAO();
-     $sectionDAO->addMaterial($_GET['cid'], $_GET['crid'], $_GET['sid'], $_GET['mid'], $file_name, "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name");
+     $sectionDAO->updateMaterial($_GET['cid'], $_GET['crid'], $_GET['sid'], $_GET['mid'], $file_name, "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name");
+     //echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
+    //  echo "Success";
+  }
+}
+if(isset($_FILES['formFileLg']) && isset($_GET['courseCode'])){
+  $errors= array();
+  $file_name = str_replace(" ", "", $_FILES['formFileLg']['name']);
+  $file_size =$_FILES['formFileLg']['size'];
+  $file_tmp =$_FILES['formFileLg']['tmp_name'];
+  $file_type=$_FILES['formFileLg']['type'];
+  $file_names = explode('.',$_FILES['formFileLg']['name']);
+  $file_ext=strtolower($file_names[sizeof($file_names)-1]);
+  var_dump($file_ext);
+  $extensions= array("jpeg","jpg","png", "docx", "pptx", "zip", "ppt", "pdf");
+  
+  if(in_array($file_ext,$extensions)=== false){
+     $errors[]="extension not allowed, please choose a png, docx, pptx, jpeg, zip, ppt, pdf or jpg, file.";
+  }
+  
+  if($file_size > 104857600){
+     $errors[]='File size must no more than 100 MB';
+  }
+  // for user to create the file first time 
+  if (!file_exists("./../Files/{$_GET['courseCode']}/{$_GET['courseRunID']}/{$_GET['SectionID']}/1/")) {
+    mkdir("./../Files/{$_GET['courseCode']}/{$_GET['courseRunID']}/{$_GET['SectionID']}/1/", 0777, true);
+  }
+  if(empty($errors)==true){
+     move_uploaded_file($file_tmp,"./../Files/{$_GET['courseCode']}/{$_GET['courseRunID']}/{$_GET['SectionID']}/1/".$file_name);
+     $sectionDAO = new SectionDAO();
+     $sectionDAO->addMaterial($_GET['courseCode'], $_GET['courseRunID'], $_GET['SectionID'], 1, $file_name, "./../Files/{$_GET['courseCode']}/{$_GET['courseRunID']}/{$_GET['SectionID']}/1/$file_name");
      //echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
     //  echo "Success";
   }

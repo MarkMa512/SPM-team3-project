@@ -106,18 +106,18 @@
                   </tbody>
             </table>
 
-            <a class="btn btn-outline-primary btn-primary" href="UploadNewMaterial.html" role="button">Upload New Material</a>
+            <a class="btn btn-outline-primary btn-primary" href="UploadNewMaterial.php" role="button">Upload New Material</a>
       `
     });
     app.component('list-item', {
-        props:['cid', 'crid','material','mid','name','sid','link', "cname"],
+        props:['cid', 'crid','material','mid','name','sid','link', "cname", "download"],
         template:`
                   <tr>
                       <th scope="row">{{ cid }}-{{ crid }}</th>
                       <th scope="row">{{ cname }}</th>
                       <td scope="row">{{ sid }}</td>
                       <td scope="row"> {{cid}}-{{ cname }}: <br /> Course Run: {{ crid }} <br> Section: {{ sid }}</td>
-                      <td><a :href="link"><button class="btn btn-outline-primary align">Upload</button></a> <br /> <br />
+                      <td><a :href="link"><button class="btn btn-outline-primary align">Update</button></a> <br /> <br />
                         <a :href="download"><button class="btn btn-outline-primary align">Download</button></a> 
                         </td>
                     </tr>

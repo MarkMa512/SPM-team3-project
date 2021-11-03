@@ -4,18 +4,18 @@
     // var_dump($_SESSION);
     $forumDao = new PostDAO();
     $empDAO = new EmployeeDAO();
-
+    // var_dump($forumDao->displayAllPost());
     foreach($forumDao->displayAllPost() as $post) {
-        $author = $empDAO->getEmp($post->getPostAuthor());
+        $author = $empDAO->getEmp($post['Author_ID']);
         $name = $author->getEmpFirstName()." ".$author->getEmpLastName();
         // var_dump($post);
         $result[] = [
-            "postID" => $post->getPostID(), 
-            "topic" => $post->getPostTopic(),
-            "content" => $post->getPostContent(),
-            "createTime" => $post->getPostDateTime(), 
-            "author" => $post->getPostAuthor(),
-            "replyToID" => $post-> getPostReplyTo(),
+            "postID" => $post['Post_ID'],
+            "topic" => $post['Topic'],
+            "content" => $post['Content'],
+            "createTime" => $post['Creation_Date_Time'], 
+            "author" => $post['Author_ID'],
+            "replyToID" => $post['Reply_To_Post_ID'],
             "authorName" => $name
         ];
     }

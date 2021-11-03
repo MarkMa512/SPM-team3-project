@@ -149,9 +149,9 @@ class SectionDAO{
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
         $sql = "UPDATE Material 
-                SET Material = :material, Material_Name = material_name
+                SET Material = :material, Material_Name = :material_name
                 WHERE Course_Code = :course_code AND Course_Run_ID = :course_run_id
-                AND Section_ID = :section_id AND Material_ID = material_id);"; 
+                AND Section_ID = :section_id AND Material_ID = :material_id;"; 
                 
         $stmt = $pdo->prepare($sql); 
 
