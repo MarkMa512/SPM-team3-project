@@ -152,8 +152,9 @@ CREATE TABLE Material(
     Course_Run_ID INT NOT NULL, 
     Section_ID INT NOT NULL, 
     Material_ID INT NOT NULL, 
-
-    Material BLOB,
+    
+    Material_Name VARCHAR(255), 
+    Material VARCHAR(255), 
 
     CONSTRAINT Material_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Material_ID),
     -- Material is a week entity of Section
