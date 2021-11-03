@@ -58,6 +58,9 @@ class CourseRun{
     function getSectionList(){
         return $this->sectionList;
     }
+    function getCapacity(){
+        return $this->capacity;
+    }
 
     // return method by object refers back to Course.php class set
     // since it is part of PK, and no recommend to edit it 

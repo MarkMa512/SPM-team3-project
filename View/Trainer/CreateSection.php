@@ -35,14 +35,16 @@
       <h5>Create New Section</h5>
       <br>
 
-       <form id='addCourseRunForm'> 
+       <form id='addCourseRunForm' method="post"> 
+         <input type="text" name="courseCode" value='<?php echo $_GET['courseCode'];?>' hidden>
+         <input type="text" name="courseRunID" value='<?php echo $_GET['courseRunID'];?>' hidden>
         <div class="form-group">
             <label for="code">Section ID:</label>
-            <input type="text" class="form-control" id="code" placeholder="Enter Section ID">
+            <input type="text" class="form-control" id="code" placeholder="Enter Section ID" name="sid">
         </div>
         <div class="form-group">
             <label for="name">Section Name:</label>
-            <input type="text" class="form-control" id="capacity" placeholder="Enter Section Name">
+            <input type="text" class="form-control" id="capacity" placeholder="Enter Section Name" name="sname">
         </div>
 
         <br>
@@ -51,7 +53,12 @@
     </form>
       
     </div>
-
+     <?php
+      var_dump($_POST);
+      if($_POST){
+        
+      }
+     ?>
 
 
 </body>
