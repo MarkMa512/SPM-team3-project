@@ -176,8 +176,8 @@ class SectionDAO{
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
 
-        $sql = "INSERT INTO Section (Course_Code, Course_Run_ID, Section_ID, Section_Name, Is_Graded) 
-                VALUES          (:course_code, :course_run_ID, :section_id, :section_name, :is_graded);"; 
+        $sql = "INSERT INTO Section (Course_Code, Course_Run_ID, Section_ID, Section_Name) 
+                VALUES          (:course_code, :course_run_ID, :section_id, :section_name);"; 
         $stmt = $pdo->prepare($sql); 
         
         $courseCode = $section->getCourseCode(); 
@@ -191,7 +191,6 @@ class SectionDAO{
         $stmt->bindParam(":course_run_ID", $courseRunID, PDO::PARAM_STR); 
         $stmt->bindParam(":section_id", $sectionID, PDO::PARAM_STR); 
         $stmt->bindParam(":section_name", $sectionName, PDO::PARAM_STR); 
-        $stmt->bindParam(":is_graded", $IsGraded, PDO::PARAM_STR); 
 
         $status = $stmt->execute(); 
 
