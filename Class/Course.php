@@ -130,7 +130,8 @@ class Course{
     }
 
     function __construct($courseCode, $courseName, $badgeName, $prerequisiteList =[], $courseRunList=[], $courseStatus = TRUE){
-        $this->setCourseCode($courseCode); 
+        // $this->setCourseCode($courseCode); 
+        $this->courseCode = $courseCode;
         $this->setCourseName($courseName);
         $this->setBadgeName($badgeName);
         $this->setPrerequisiteList($prerequisiteList); 

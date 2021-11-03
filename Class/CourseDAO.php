@@ -99,7 +99,7 @@ class CourseDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Course($row['Course_Code'], $row['Course_Name'], $row['Bagde_Name']);
+            $result[] = ['Course_Code'=>$row['Course_Code'], 'Course_Name'=>$row['Course_Name'], 'Bagde_Name'=>$row['Bagde_Name']];
         }
         $stmt->closeCursor();
         $pdo = NULL; 
