@@ -7,7 +7,7 @@ class Message{
     private $sentDateTime; 
     private $readStatus; 
 
-    function __construct($senderID, $recieverID, $messageContent, $sentDateTime, $readStatus = FALSE)
+    function __construct($senderID, $recieverID, $messageContent, $sentDateTime = NULL, $readStatus = FALSE)
     {
         $this->senderID = $senderID; 
         $this->recieverID = $recieverID; 
