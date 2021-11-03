@@ -878,16 +878,30 @@
         } 
     })
     
-    BtnAdd = document.getElementById("btn-test");
-    BtnAdd.onclick = function(){
-        var newDiv = document.createElement("div");
-        var newBtn =document.createElement("button")
-        newBtn.setAttribute("class", "btn btn-secondary")
-        newBtn.innerHTML = "Test"
-        newDiv.appendChild(newBtn)
-        console.log("add")
-        document.body.appendChild(newDiv)
+
+</script>
+<script>
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
     }
+    return false;
+    };
+    
+    var courseCode = getUrlParameter('coursecode');
+    document.getElementById('quizForm').action = 'postData/addQuiz.php?coursecode=' + courseCode;
+    console.log(courseCode);
+
+
 </script>
 
 </html>

@@ -1,6 +1,7 @@
 <?php 
 
 var_dump($_POST);
+var_dump($_GET);
 require_once "../../../Class/autoload.php";
 
 $questionArray = [];
@@ -42,7 +43,8 @@ try{
         }
     }
 
-    $quiz = new Quiz($_POST['quizTitle'], $questionArray, $answerArray);
+    $quiz = new Quiz($_GET['coursecode'], $_POST['quizTitle'], $questionArray, $answerArray);
+    echo $quiz->getQuizID();
     #$quizDAO = new QuizDAO;
     #$quizDAO -> addQuiz($quiz);
 

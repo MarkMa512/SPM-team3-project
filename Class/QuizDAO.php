@@ -84,16 +84,17 @@ class QuizDAO{
         // output: True if success
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO Quiz (Quiz_Title, Quiz_Question_List, Quiz_Answer_List) 
-                VALUES      (:quizTitle, :quizQuestionList, :quizAnswerList)"; 
+        $sql = "INSERT INTO Quiz (Quiz_ID, Quiz_Title, Quiz_Question_List, Quiz_Answer_List) 
+                VALUES      (:quizID, :quizTitle, :quizQuestionList, :quizAnswerList)"; 
         $stmt = $pdo->prepare($sql); 
         
         $quizTitle = $quiz->getQuizTitle(); 
         $quizQuestionList = $quiz->getQuizQuestionList();
         $quizAnswerList = $quiz->getQuizAnswerList(); 
+        $quizID = $quiz->getQuizID();
 
-
-
+        
+        $stmt->bindParam(":quizID", $quizID, PDO::PARAM_STR);
         $stmt->bindParam(":quizTitle", $quizTitle, PDO::PARAM_STR); 
         $stmt->bindParam(":quizQuestionList", $quizQuestionList, PDO::PARAM_STR); 
         $stmt->bindParam(":quizAnswerList", $quizAnswerList, PDO::PARAM_STR); 

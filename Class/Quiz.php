@@ -1,12 +1,12 @@
 <?php 
 class Quiz{
-    //private $quizID;
+    private $quizID;
     private $quizTitle;
     private $quizQuestionList;
     private $quizAnswerList;
 
-    function __construct($quizTitle, $quizQuestionList, $quizAnswerList){
-        //$this->quizID = $quizID;
+    function __construct($quizID, $quizTitle, $quizQuestionList, $quizAnswerList){
+        $this->quizID = $quizID;
         $this->quizTitle = $quizTitle;
         $this->quizQuestionList = $quizQuestionList;
         $this->quizAnswerList = $quizAnswerList;
@@ -30,9 +30,9 @@ class Quiz{
         #echo $correctQUestions;
     }
 
-    /* function getQuizID(){
+     function getQuizID(){
         return $this->quizID;
-    } */
+    } 
     
     function getQuizTitle(){
         return $this->quizTitle;
