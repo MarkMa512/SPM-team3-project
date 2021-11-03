@@ -30,9 +30,12 @@ class TrainerDAO{
     }
 
     function getMaterialsById($trainerID){
+        // input: trainerID 
+        //  output: a list of materials uploaded by a particular trainer
+
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
-        $sql="SELECT * FROM ASSIGNMENT A, MATERIAL M WHERE A.Course_Code = M.Course_Code AND A.Course_Run_ID= M.Course_Run_ID AND A.Course_Code= M.Course_Code AND Instructor_ID=:trainerID;";
+        $sql="SELECT * FROM ASSIGNMENT A, MATERIAL M, COURSE C WHERE A.Course_Code = M.Course_Code = C.Course_Code AND A.Course_Run_ID= M.Course_Run_ID AND A.Course_Code= M.Course_Code = C.Course_CodeAND Instructor_ID=:trainerID;";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
         $result = [];
