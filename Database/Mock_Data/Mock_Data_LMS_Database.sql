@@ -113,7 +113,7 @@ VALUES
     ('SR101', 1, 1, 2, 'Material2', 'url2.com'),
     ('SR101', 1, 1, 3, 'Material3', 'url3.com'),
     ('SR101', 1, 2, 1, 'Material4', 'url4.com'),
-    ('SR101', 1, 2, 2, 'Material5', 'url5.com'),
+    ('SR101', 1, 2, 2, 'Material5', 'url5.com')
     ; 
 
 -- Insertion 11
