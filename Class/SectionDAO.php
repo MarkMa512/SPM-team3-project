@@ -169,6 +169,43 @@ class SectionDAO{
         
         return $result;
     }
+
+    function addSection($section){
+        // input: a section object to be added into the database 
+        // output: True if success
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+
+        $sql = "INSERT INTO Section (Course_Code, Course_Run_ID, Section_ID, Section_Name, Is_Graded) 
+                VALUES          (:course_code, :course_run_ID, :section_id, :section_name, :is_graded);"; 
+        $stmt = $pdo->prepare($sql); 
+        
+        $courseCode = $section->getCourseCode(); 
+        $courseRunID = $section->getCourseRunID();
+        $sectionID = $section->getSectionID(); 
+        $sectionName = $section->getSectionName();
+        $IsGraded = $section->getIsGraded(); 
+
+
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_ID", $courseRunID, PDO::PARAM_STR); 
+        $stmt->bindParam(":section_id", $sectionID, PDO::PARAM_STR); 
+        $stmt->bindParam(":section_name", $sectionName, PDO::PARAM_STR); 
+        $stmt->bindParam(":is_graded", $IsGraded, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+
+    }
+
 }
 
 ?>
