@@ -57,7 +57,7 @@
           <div class='card-header row' >
                 <a class='col-6'>Quiz AttemptNumber: {$take}<a/>
                 <a class='col-3'>Result: {$avg}/100<a/>     
-                <label for='progress'>{$avg}</label>
+                <label for='progress'>{$avg}%</label>
                 <progress id='progress' max='100' value='100' ></progress>
           </div>
         </div>
@@ -73,7 +73,7 @@
           <li class='list-group-item'><b>Section {$section}</b>
                 <div class='row' >
                      <a class='col-6'>Attempt: {$count}<a/>           
-                     <a class='col-6'>Section AVG Result: {$avg}<a/>
+                     <a class='col-6'>Section AVG Result: {$avg}/100<a/>
                 </div>
               </li>
           
