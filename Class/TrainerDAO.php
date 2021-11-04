@@ -55,6 +55,34 @@ class TrainerDAO{
         
         return $result;
     }
+
+    function getCourseRunByTrainerID($trainerID){
+        // input: trainerID 
+        //  output: a list of materials uploaded by a particular trainer
+
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+        $sql="SELECT c.Course_Name, a.Course_Code, a.Course_Run_ID, q.Section_ID, q.Quiz_Score, q.Attempt_Number 
+        FROM assignment a, course c, course_run cr, quiz_record q WHERE a.Course_Code=cr.Course_Code 
+        AND a.Course_Run_ID=cr.Course_Run_ID AND a.Course_Code=c.Course_Code 
+        AND q.Course_Code=a.Course_Code AND q.Course_Run_ID=a.Course_Run_ID 
+        AND a.Instructor_ID=:trainerID;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
+        $result = [];
+
+        if ($stmt->execute()) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+                $result[] = $row;
+            }
+        }else{
+
+        }
+        $stmt = null;
+        $conn = null;        
+        
+        return $result;
+    }
 }
 
 

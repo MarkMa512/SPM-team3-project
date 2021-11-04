@@ -47,7 +47,64 @@
     </div>
     <!--Course 1 CourseRun 1-->
     <div>
-        <h5>Intro to Printer Servicing - Course Run 1</h5>
+      <?php 
+          require_once "../../Class/autoload.php";
+          session_start();
+          var_dump($_SESSION);
+          $trainerDAO = new TrainerDAO();
+          $record = $trainerDAO->getCourseRunByTrainerID($_SESSION["userID"]);
+          $result = [];
+          foreach($record as $r){
+              $result[$r['Course_Code']."-".$r['Course_Name']." - Course Run ".$r['Course_Run_ID']][$r['Section_ID']]['Quiz_Score'][] = $r['Quiz_Score'];
+              $result[$r['Course_Code']."-".$r['Course_Name']." - Course Run ".$r['Course_Run_ID']][$r['Section_ID']]['Attempt_Number'][] = $r['Attempt_Number'];
+          }
+          // var_dump($result);
+
+          foreach($result as $title=>$value){
+            echo "<h5>{$title}</h5>";
+            $count = 0;
+            $total = 0;
+            $take = 0;
+            foreach($value as $section=>$each){
+              $count+= 1;
+              $crrMark = 0;
+              foreach($each['Quiz_Score'] as $mark){
+                $crrMark+= $mark;
+              }$total += ($crrMark/sizeof($each['Quiz_Score']));
+              $take += sizeof($each['Attempt_Number']);
+            }
+            $avg = number_format((float)($total/$count), 2, '.', '');
+            echo "<div class='card' >
+            <div class='card-header row' >
+                  <a class='col-6'>Quiz AttemptNumber: {$take}<a/>
+                  <a class='col-3'>Result: {$avg}/100<a/>     
+                  <label for='progress'>{$avg}%</label>
+                  <progress id='progress' max='100' value='100' ></progress>
+            </div>
+          </div>
+          <ul class='list-group list-group-flush'>";
+  
+          foreach($value as $section=>$each){
+            $count = sizeof($each["Attempt_Number"]);
+            $total = 0;
+            foreach($each["Quiz_Score"] as $mark){
+              $total +=$mark;
+            }$avg = number_format((float)($total/$count), 2, '.', '');
+            echo "
+            <li class='list-group-item'><b>Section {$section}</b>
+                  <div class='row' >
+                       <a class='col-6'>Attempt: {$count}<a/>           
+                       <a class='col-6'>Section AVG Result: {$avg}/100<a/>
+                  </div>
+                </li>
+            
+            ";
+          }
+          echo"</ul>
+          </div>";
+        }
+      ?>
+        <!-- <h5>Intro to Printer Servicing - Course Run 1</h5>
         <div class="card" >
           <div class="card-header row" >
                 <a class="col-6">Section visted: 50<a/>
@@ -82,10 +139,10 @@
               </li>
               <br>
           </ul>
-        </div>
+        </div> -->
         
         <!--Course 1 CourseRun 2-->
-        <div>
+        <!-- <div>
         <h5>Intro to Printer Servicing - Course Run 2</h5>
         <div class="card" >
           <div class="card-header row" >
@@ -121,7 +178,7 @@
               </li>
               <br>
           </ul>
-        </div>
+        </div> -->
 
     </div>
 
