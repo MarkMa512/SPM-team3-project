@@ -43,7 +43,7 @@
     <!-- picture can edit -->
     <br>
     <div class="container" id="app">
-      {{ posts }}
+      <!-- {{ posts }} -->
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Section</h6>
         <list-item v-for="data in posts" v-bind:cid="data.courseCode" v-bind:crid="data.courseRunID"

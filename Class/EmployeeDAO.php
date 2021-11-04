@@ -43,7 +43,7 @@ class EmployeeDAO {
         // prepare select
         $sql = "SELECT * FROM Employee WHERE Employee_ID IN (SELECT Engineer_ID FROM engineer WHERE Engineer_Type='I')";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(":emp_id", $emp_id, PDO::PARAM_INT);
+        
             
         $employee = null;
         if ( $stmt->execute() ) {
@@ -70,9 +70,9 @@ class EmployeeDAO {
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
         // prepare select
-        $sql = "SELECT * FROM Employee WHERE Employee_ID IN (SELECT Engineer_ID FROM engineer WHERE Engineer_Type='I')";
+        $sql = "SELECT * FROM Employee WHERE Employee_ID IN (SELECT Engineer_ID FROM engineer WHERE Engineer_Type='L')";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(":emp_id", $emp_id, PDO::PARAM_INT);
+        
             
         $employee = null;
         if ( $stmt->execute() ) {
