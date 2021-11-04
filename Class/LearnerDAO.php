@@ -362,8 +362,7 @@ class LearnerDAO{
     function getAllCourseRun($learnerID){
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
-        $sql = "SELECT * FROM quiz_record qr, enrollment_record er, course c WHERE qr.Course_Code=er.Course_Code AND qr.Course_Run_ID = er.Course_Run_ID 
-        AND c.Course_Code = er.Course_Code AND er.Learner_ID=:learnerID";
+        $sql = "(SELECT * FROM quiz_record q, course c, course_run cr WHERE q.Course_Code=c.Course_Code AND cr.Course_Code=q.Course_Code AND cr.Course_Run_ID=q.Course_Run_ID AND q.Learner_ID=:learnerID)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
         $status = $stmt->execute(); 
