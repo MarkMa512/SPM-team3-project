@@ -99,10 +99,10 @@
                 if(tmp.length == 2)
                 getVars[tmp[0]] = tmp[1];
             });
-            $courseCode = getVars['courseCode'];
+            $sectionID = getVars['sectionID'];
         }
         
-        axios.get('getData/getQuizQuestions.php?coursecode=' + $courseCode)
+        axios.get('getData/getQuizQuestions.php?sectionID=' + $sectionID)
         .then(response => {
             // this gets the data, which is an array
             this.questions = response.data

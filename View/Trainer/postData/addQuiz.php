@@ -43,7 +43,7 @@ try{
         }
     }
 
-    $quiz = new Quiz($_GET['coursecode'], $_POST['quizTitle'], $questionArray, $answerArray);
+    $quiz = new Quiz($_GET['sectionID'], $_POST['quizTitle'], $questionArray, $answerArray);
     echo $quiz->getQuizID();
     #$quizDAO = new QuizDAO;
     #$quizDAO -> addQuiz($quiz);

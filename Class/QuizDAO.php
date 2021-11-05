@@ -4,15 +4,17 @@ require_once 'autoload.php';
 
 class QuizDAO{
 
-    function getQuiz($quizID){
+    function getQuiz($courseCode, $courserunID, $sectionID){
         // input: courseCode 
         // output: a list of CoursrRun Object of given courseCode
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
-        $sql = "SELECT * FROM quiz WHERE Quiz_ID = :quizID;"; 
+        $sql = "SELECT * FROM quiz WHERE Course_Code = :courseCode AND Course_Run_ID = :courserunID AND Section_ID = :sectionID;"; 
         $stmt = $pdo->prepare($sql); 
 
-        $stmt->bindParam(":quizID", $quizID, PDO::PARAM_STR); 
+        $stmt->bindParam(":courseCode", $courseCode, PDO::PARAM_STR);
+        $stmt->bindParam(":courserunID", $courserunID, PDO::PARAM_STR);
+        $stmt->bindParam(":sectionID", $sectionID, PDO::PARAM_STR); 
         
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         $status = $stmt->execute(); 
@@ -21,7 +23,7 @@ class QuizDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Quiz($row["Quiz_Title"], $row["Quiz_Question_List"], $row["Quiz_Answer_List"]); 
+            $result[] = new Quiz($courseCode, $courserunID, $sectionID, $row["Quiz_Title"], $row["Quiz_Question_List"], $row["Quiz_Answer_List"]); 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -29,15 +31,17 @@ class QuizDAO{
         return $result; 
     }
 
-    function getQuizQuestions($quizID){
+    function getQuizQuestions($courseCode, $courserunID, $sectionID){
         // input: courseCode 
         // output: a list of CoursrRun Object of given courseCode
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
-        $sql = "SELECT * FROM quiz WHERE Quiz_ID = :quizID;"; 
+        $sql = "SELECT * FROM quiz WHERE Course_Code = :courseCode AND Course_Run_ID = :courserunID AND Section_ID = :sectionID;"; 
         $stmt = $pdo->prepare($sql); 
 
-        $stmt->bindParam(":quizID", $quizID, PDO::PARAM_STR); 
+        $stmt->bindParam(":courseCode", $courseCode, PDO::PARAM_STR);
+        $stmt->bindParam(":courserunID", $courserunID, PDO::PARAM_STR);
+        $stmt->bindParam(":sectionID", $sectionID, PDO::PARAM_STR);  
         
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         $status = $stmt->execute(); 
@@ -54,15 +58,17 @@ class QuizDAO{
         return $result; 
     }
 
-    function getQuizAnswer($quizID){
+    function getQuizAnswer($courseCode, $courserunID, $sectionID){
         // input: courseCode 
         // output: a list of CoursrRun Object of given courseCode
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
-        $sql = "SELECT * FROM quiz WHERE Quiz_ID = :quizID;"; 
+        $sql = "SELECT * FROM quiz WHERE Course_Code = :courseCode AND Course_Run_ID = :courserunID AND Section_ID = :sectionID;"; 
         $stmt = $pdo->prepare($sql); 
 
-        $stmt->bindParam(":quizID", $quizID, PDO::PARAM_STR); 
+        $stmt->bindParam(":courseCode", $courseCode, PDO::PARAM_STR);
+        $stmt->bindParam(":courserunID", $courserunID, PDO::PARAM_STR);
+        $stmt->bindParam(":sectionID", $sectionID, PDO::PARAM_STR); 
         
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         $status = $stmt->execute(); 
@@ -84,17 +90,23 @@ class QuizDAO{
         // output: True if success
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO Quiz (Quiz_ID, Quiz_Title, Quiz_Question_List, Quiz_Answer_List) 
-                VALUES      (:quizID, :quizTitle, :quizQuestionList, :quizAnswerList)"; 
+        $sql = "INSERT INTO Quiz (Course_Code, Course_Run_ID, Section_ID, Quiz_Title, Quiz_Question_List, Quiz_Answer_List) 
+                VALUES      (:courseCode, :courserunID, :quizTitle, :quizTitle, :quizQuestionList, :quizAnswerList)"; 
         $stmt = $pdo->prepare($sql); 
         
+
+        $courseCode = $quiz->getCourseCode();
+        $courserunID = $quiz->getCourseRunID();
+        $sectionID = $quiz->getSectionID();
         $quizTitle = $quiz->getQuizTitle(); 
         $quizQuestionList = $quiz->getQuizQuestionList();
         $quizAnswerList = $quiz->getQuizAnswerList(); 
-        $quizID = $quiz->getQuizID();
+        
 
         
-        $stmt->bindParam(":quizID", $quizID, PDO::PARAM_STR);
+        $stmt->bindParam(":courseCode", $courseCode, PDO::PARAM_STR);
+        $stmt->bindParam(":courserunID", $courserunID, PDO::PARAM_STR);
+        $stmt->bindParam(":sectionID", $sectionID, PDO::PARAM_STR); 
         $stmt->bindParam(":quizTitle", $quizTitle, PDO::PARAM_STR); 
         $stmt->bindParam(":quizQuestionList", $quizQuestionList, PDO::PARAM_STR); 
         $stmt->bindParam(":quizAnswerList", $quizAnswerList, PDO::PARAM_STR); 
@@ -108,7 +120,7 @@ class QuizDAO{
 
         $stmt->closeCursor(); 
         $pdo = NULL; 
-        return $status; 
+        return $status;
     }
 
 }
