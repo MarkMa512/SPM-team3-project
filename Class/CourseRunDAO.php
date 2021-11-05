@@ -279,6 +279,26 @@ class CourseRunDAO{
         $pdo = NULL; 
         return $status; 
     }
+    function getTrainerID($courseCode, $courseRunID) {
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection();
+        $sql="SELECT Instructor_ID FROM assignment WHERE Course_Code=:courseCode AND Course_Run_ID = :courseRunID;";
+        $stmt = $pdo->prepare($sql); 
+        $stmt->bindParam(":courseCode", $courseCode, PDO::PARAM_STR);
+        $stmt->bindParam(":courseRunID", $courseRunID, PDO::PARAM_INT);
+        $status = $stmt->execute(); 
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+        $result= "";
+        while($row = $stmt->fetch()){
+            $result = $row["Instructor_ID"]; 
+        }
+        $stmt->closeCursor();
+        $pdo = NULL; 
+        return $result;
+    }
 }
 
 ?>
