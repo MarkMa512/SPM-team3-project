@@ -270,10 +270,10 @@ CREATE TABLE Quiz(
     Course_Code CHAR(5) NOT NULL, 
     Course_Run_ID INT NOT NULL, 
     Section_ID INT NOT NULL, 
-    Quiz_Title VARCHAR (255), 
+    Quiz_Title VARCHAR (255) NOT NULL, 
     Quiz_Question_List VARCHAR (8000), 
-    Quiz_Answer_List VARCHAR (8000), 
+    Quiz_Answer_List VARCHAR (8000),
 
-    CONSTRAINT Quiz_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID)
-    CONSTRAINT Quiz_Record_FK2 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID) REFERENCES Section(Course_Code, Course_Run_ID, Section_ID)
-)
+    CONSTRAINT Quiz_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID),
+    CONSTRAINT Quiz_FK2 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID) REFERENCES Section(Course_Code, Course_Run_ID, Section_ID)
+); 
