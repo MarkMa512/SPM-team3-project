@@ -52,9 +52,9 @@ try{
         }
     }
 
-    $quiz = new Quiz($_POST['quizTitle'], $questionArray, $answerArray);
-#    $quizDAO = new QuizDAO;
-#    $quizDAO -> addQuiz($quiz);
+    #$quiz = new Quiz($_POST['quizTitle'], $questionArray, $answerArray);
+    #$quizDAO = new QuizDAO;
+    #$quizDAO -> addQuiz($quiz);
 
 }catch(PDOException $e){
     $_SESSION['error_msg'] = "PDO issues";
@@ -62,10 +62,14 @@ try{
     exit();
 }
 
+$test = [ ['qnNumber' => 1, 'type' => 'mcq', 'qnText' => 'Q1', 'options' => [['id' => 'q1-1', 'optText' => 'A1', 'value' => 1], ['id' => 'q1-2', 'optText' => 'A2', 'value' => 2], ['id' => 'q1-3', 'optText' => 'A3', 'value' => 3]]],
+['qnNumber' => 2, 'type' => 'mcq', 'qnText' => 'Q2', 'options' => [['id' => 'q2-1', 'optText' => 'A1', 'value' => 1], ['id' => 'q2-2', 'optText' => 'A2', 'value' => 2]]] 
+];
 
-var_dump($quiz->getQuizQuestionList()[0]['options']);
-var_dump($quiz->getQuizAnswerList());
-echo json_encode($quiz->getQuizQuestionList());
+echo json_encode($test);
+#var_dump($quiz->getQuizQuestionList()[0]['options']);
+#var_dump($quiz->getQuizAnswerList());
+#echo json_encode($quiz->getQuizQuestionList());
 /*
 echo $quiz->getQuizTitle();
 var_dump($quiz->getQuizQuestionList()[1]);

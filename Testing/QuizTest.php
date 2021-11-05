@@ -48,8 +48,6 @@ class QuizTest extends TestCase
         $this -> assertEquals([2,1], $result);
     }    
     
-    
-
 }
 
 ?>
