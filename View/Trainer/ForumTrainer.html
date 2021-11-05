@@ -94,7 +94,7 @@
 <div class="row"> 
     <div class="col-4">
            <div class="col-4">
-                <a class="btn btn-primary" href="CreateTopicTrainer.html" role="button">Create New Topic</a> 
+                <a class="btn btn-primary" href="CreateTopicTrainer.php" role="button">Create New Topic</a> 
            </div>
     </div>
 </div>
@@ -175,7 +175,7 @@
                                     <div class="text-muted small ml-3">
                                         <div>Created Time：<strong>{{ data.createTime }}</strong></div>
                                     </div> 
-                            </div>{{data}}
+                            </div>
                             <div class="card-body">
                                 <p> {{ data.content }}</p>
                             </div>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+            
             `
           });
         app.mount('#app');

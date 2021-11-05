@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("./common/navbarLearner.php");
+          $('#nav').load("./common/navbarTrainer.php");
           console.log("click");
         });
     </script>
@@ -45,25 +45,43 @@
             <h6 class="border-bottom border-gray pb-2 mb-0">Create New Topic</h6>
         </div>
         <br>
-        <form>
+        <form method="POST">
           <div class="form-group">
             <label for="topic">Topic:</label>
-            <input type="topic" class="form-control" id="topic" placeholder="Topic">
+            <input type="topic" class="form-control" id="topic" placeholder="Topic" name="topic" require>
           
           </div>
           <div class="form-group">
              <label for="exampleInputPassword1">Content:</label>
-             <input type="content"class="form-control" id="content" >
+             <input type="content"class="form-control" id="content" name="content" require>
           </div>
   
              <button type="submit" class="btn btn-primary">Submit</button>
-        </form>   
+        </form>    
 
     </div>
     </div>
 
 
 
+
+
+</body>
+<?php 
+require_once "../../Class/autoload.php";
+session_start();
+var_dump($_POST);
+if($_POST){
+  $postDAO = new PostDAO();
+  $result = $postDAO->newPost($_POST["topic"], $_POST["content"], $_SESSION["userID"]);
+  // header("Location:./ForumLearner.html");
+  // exit();
+  var_dump($result);
+}
+
+
+?>
+</html>
 
 
 </body>
