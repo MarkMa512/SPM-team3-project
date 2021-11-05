@@ -48,7 +48,8 @@
         v-bind:crid="data.CourseRunID" 
         v-bind:qlink="'CreateCourseRun.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID" 
         v-bind:mlink="'ManageMaterial.php?coursecode='+data.CourseCode"
-        v-bind:vlink="'ListOfCourseRun.php?coursecode='+data.CourseCode"></list-item>
+        v-bind:vlink="'ListOfCourseRun.php?coursecode='+data.CourseCode"
+        v-bind:clink="'ChatToLearner.html'"></list-item>
 
         
 
@@ -90,6 +91,7 @@
                   <strong class="text-gray-dark">{{ cid }} - {{ crid }} </strong>
                   <a :href="vlink">View Course Run</a>
                   <a :href="qlink">Create Course Run</a>
+                  <a :href="clink">Chat to Learner</a>
                 </div>
                 <span class="d-block">{{ cname }}</span>
               </div>
