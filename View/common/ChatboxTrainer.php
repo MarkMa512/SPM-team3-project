@@ -257,41 +257,43 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <body>
 	<!-- 	<div class="blog">Visit <a href="#" target="_blank">My Blog</a></div> -->
-  <button class="open-button" onclick="openForm()">Chat</button>
-  <div class="chat-popup" id="myForm">
-	<div class="container">
-		<div class="chat_box">
-			<div class="head">
-				<div class="user">
-					
-					<div class="name">Guan Yu</div>
-				</div>
-			</div>
-			<div class="body">
-				<div class="incoming">
-					<div class="bubble">
-						<p>Good morning. Are you free now?</p>
-					</div>
-					<div class="bubble">
-						<p>I would like to clarify something with you.</p>
+  <div id="chat">
+	<button class="open-button" onclick="openForm()">Chat</button>
+	<div class="chat-popup" id="myForm">
+		<div class="container">
+			<div class="chat_box">
+				<div class="head">
+					<div class="user">
+						
+						<div class="name">Guan Yu</div>
 					</div>
 				</div>
-				<div class="outgoing">
-					<div class="bubble">
-						<p>Sure. What's the problem you have got?</p>
+				<div class="body">
+					<div class="incoming">
+						<div class="bubble">
+							<p>Good morning. Are you free now?</p>
+						</div>
+						<div class="bubble">
+							<p>I would like to clarify something with you.</p>
+						</div>
+					</div>
+					<div class="outgoing">
+						<div class="bubble">
+							<p>Sure. What's the problem you have got?</p>
+						</div>
+					</div>
+					<div class="typing">
+						<div class="bubble">
+							<div class="ellipsis dot_1"></div>
+							<div class="ellipsis dot_2"></div>
+							<div class="ellipsis dot_3"></div>
+						</div>
 					</div>
 				</div>
-				<div class="typing">
-					<div class="bubble">
-						<div class="ellipsis dot_1"></div>
-						<div class="ellipsis dot_2"></div>
-						<div class="ellipsis dot_3"></div>
-					</div>
+				<div class="foot">
+					<input type="text" class="msg" placeholder="Type a message..." />
+					<button type="submit">Submit</i></button>
 				</div>
-			</div>
-			<div class="foot">
-				<input type="text" class="msg" placeholder="Type a message..." />
-				<button type="submit">Submit</i></button>
 			</div>
 		</div>
 	</div>

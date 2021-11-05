@@ -161,42 +161,42 @@ CREATE TABLE Material(
     CONSTRAINT Material_FK1 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID) REFERENCES Section(Course_Code, Course_Run_ID, Section_ID)
 ); 
 
--- Table 11
-DROP TABLE IF EXISTS Question; 
-CREATE TABLE Question(
-    -- Question is a weak entity of Section
-    Course_Code CHAR(5) NOT NULL, 
-    Course_Run_ID INT NOT NULL, 
-    Section_ID INT NOT NULL, 
-    Question_Number INT NOT NULL,
+-- -- Table 11
+-- DROP TABLE IF EXISTS Question; 
+-- CREATE TABLE Question(
+--     -- Question is a weak entity of Section
+--     Course_Code CHAR(5) NOT NULL, 
+--     Course_Run_ID INT NOT NULL, 
+--     Section_ID INT NOT NULL, 
+--     Question_Number INT NOT NULL,
     
-    Question_Type CHAR, 
-    Question VARCHAR(255), 
-    -- Answer VARCHAR(255), 
+--     Question_Type CHAR, 
+--     Question VARCHAR(255), 
+--     -- Answer VARCHAR(255), 
 
-    CONSTRAINT Question_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number), 
-    CONSTRAINT Question_FK1 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID) 
-    REFERENCES Section(Course_Code, Course_Run_ID, Section_ID)
-); 
+--     CONSTRAINT Question_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number), 
+--     CONSTRAINT Question_FK1 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID) 
+--     REFERENCES Section(Course_Code, Course_Run_ID, Section_ID)
+-- ); 
 
--- Table 12
-DROP TABLE IF EXISTS Answer; 
-CREATE TABLE Answer(
-    -- Newly implemented in TestDatabase 4 
-    -- Answer is a weak entity of Section
-    Course_Code CHAR(5) NOT NULL, 
-    Course_Run_ID INT NOT NULL, 
-    Section_ID INT NOT NULL, 
-    Question_Number INT NOT NULL,
-    Answer_Number VARCHAR(5), 
+-- -- Table 12
+-- DROP TABLE IF EXISTS Answer; 
+-- CREATE TABLE Answer(
+--     -- Newly implemented in TestDatabase 4 
+--     -- Answer is a weak entity of Section
+--     Course_Code CHAR(5) NOT NULL, 
+--     Course_Run_ID INT NOT NULL, 
+--     Section_ID INT NOT NULL, 
+--     Question_Number INT NOT NULL,
+--     Answer_Number VARCHAR(5), 
 
-    Answer VARCHAR(255), 
-    Is_Correct BOOLEAN, 
+--     Answer VARCHAR(255), 
+--     Is_Correct BOOLEAN, 
 
-    CONSTRAINT Answer_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number, Answer_Number), 
-    CONSTRAINT Answer_FK1 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number) 
-    REFERENCES Question(Course_Code, Course_Run_ID, Section_ID, Question_Number)
-);
+--     CONSTRAINT Answer_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number, Answer_Number), 
+--     CONSTRAINT Answer_FK1 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID, Question_Number) 
+--     REFERENCES Question(Course_Code, Course_Run_ID, Section_ID, Question_Number)
+-- );
 
 -- Table 13
 DROP TABLE IF EXISTS Access_Record; 
@@ -264,3 +264,16 @@ CREATE TABLE MSG(
     CONSTRAINT MSG_FK2 FOREIGN KEY (Reciever_ID) REFERENCES Employee(Employee_ID)
 
 );
+
+-- Table 17
+CREATE TABLE Quiz(
+    Course_Code CHAR(5) NOT NULL, 
+    Course_Run_ID INT NOT NULL, 
+    Section_ID INT NOT NULL, 
+    Quiz_Title VARCHAR (255), 
+    Quiz_Question_List VARCHAR (8000), 
+    Quiz_Answer_List VARCHAR (8000), 
+
+    CONSTRAINT Quiz_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID)
+    CONSTRAINT Quiz_Record_FK2 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID) REFERENCES Section(Course_Code, Course_Run_ID, Section_ID)
+)
