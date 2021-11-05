@@ -224,6 +224,7 @@ class CourseDAO{
         return $result;
     }
 
+    
 }
 
 ?>
