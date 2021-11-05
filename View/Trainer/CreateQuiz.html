@@ -898,7 +898,9 @@
     };
     
     var courseCode = getUrlParameter('coursecode');
-    document.getElementById('quizForm').action = 'postData/addQuiz.php?coursecode=' + courseCode;
+    var courserunID = getUrlParameter('courserunid');
+    var sectionID = getUrlParameter('sectionID');
+    document.getElementById('quizForm').action = 'postData/addQuiz.php?coursecode=' + courseCode + '&courserunid=' + courserunID + '&courserunid=' + sectionID;
     console.log(courseCode);
 
 
