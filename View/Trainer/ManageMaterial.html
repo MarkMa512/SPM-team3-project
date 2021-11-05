@@ -49,18 +49,19 @@
         
         <div id="app">
             <!-- example -->
+
             <tbodys v-bind:posts="posts"></tbodys>
             
         </div>
         
     </div>
-
+          
 
         <div class="footer-basic">
-        <footer>
+        <!-- <footer>
           
             <p class="copyright">LMS - Group 3 © 2021</p>
-        </footer>
+        </footer> -->
     </div>
 
 
@@ -95,28 +96,31 @@
                       <th scope="col">Course Code(Run_ID)</th>
                       <th scope="col">Course Name</th>
                       <th scope="col">Section</th>
-                      <th scope="col">Material</th>
+                      <th scope="col">Material Name</th>
                       <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:crid="data.CourseRunID"  v-bind:mid="data.MaterialID" v-bind:name="data.Name" v-bind:sid="data.SectionID" v-bind:cname="data.CourseName"
-                v-bind:link="'./postData/deleteMaterials.php?cid='+data.CourseCode+'&crid='+data.CourseRunID+'&sid='+data.SectionID+'&mid='+data.MaterialID"></list-item>
+                <list-item v-for="data in posts" v-bind:cid="data.Course_Code" v-bind:crid="data.Course_Run_ID"  v-bind:mid="data.Material_ID" 
+                 v-bind:download="data.Material" v-bind:name="data.Name" v-bind:sid="data.Section_ID" v-bind:cname="data.Course_Name"
+                v-bind:link="'./UploadNewMaterialTo.php?cid='+data.Course_Code+'&crid='+data.Course_Run_ID+'&sid='+data.Section_ID+'&mid='+data.Material_ID+'&cname='+data.Course_Name+'&sid='+data.Section_ID"></list-item>
                   </tbody>
             </table>
 
-            <a class="btn btn-outline-primary btn-primary" href="UploadNewMaterial.html" role="button">Upload New Material</a>
+            <a class="btn btn-outline-primary btn-primary" href="UploadNewMaterial.php" role="button">Upload New Material</a>
       `
     });
     app.component('list-item', {
-        props:['cid', 'crid','material','mid','name','sid','link', "cname"],
+        props:['cid', 'crid','material','mid','name','sid','link', "cname", "download"],
         template:`
                   <tr>
                       <th scope="row">{{ cid }}-{{ crid }}</th>
                       <th scope="row">{{ cname }}</th>
                       <td scope="row">{{ sid }}</td>
-                      <td scope="row"> {{ mid }}-{{ name }}</td>
-                      <td><a :href="link"><button class="btn btn-outline-primary align">Delete</button></a></td>
+                      <td scope="row"> {{cid}}-{{ cname }}: <br /> Course Run: {{ crid }} <br> Section: {{ sid }}</td>
+                      <td><a :href="link"><button class="btn btn-outline-primary align">Update</button></a> <br /> <br />
+                        <a :href="download"><button class="btn btn-outline-primary align">Download</button></a> 
+                        </td>
                     </tr>
         `
       });

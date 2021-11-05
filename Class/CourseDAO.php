@@ -11,15 +11,15 @@ class CourseDAO{
         $sql = "SELECT * FROM Prerequisite WHERE course_code = :course_code;"; 
         $stmt = $pdo->prepare($sql); 
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-
-        $courseCode = $course->getCourseCode(); 
-        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+ 
+        $stmt->bindParam(":course_code", $course, PDO::PARAM_STR); 
 
         $status = $stmt->execute(); 
         if(!$status){
             var_dump($stmt->errorinfo());
             # output any error if database access has problem
         }
+        $result = [];
         while($row = $stmt->fetch()){
             $result[] = $row["Prerequisite_Course_Code"]; 
         }

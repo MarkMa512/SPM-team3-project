@@ -15,7 +15,7 @@
             <a class="nav-link" href="LearnerHome.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="SelfAssign.html">Self-Enrollment</a>
+            <a class="nav-link" href="SelfAssign.php">Self-Enrollment</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="ViewCourse.html">My Course</a>
@@ -24,7 +24,7 @@
             <a class="nav-link" href="ViewMaterial.html">Material</a>
           </li>
            <li class="nav-item active">
-            <a class="nav-link" href="ViewProgressLearner.html">View Progress</a>
+            <a class="nav-link" href="ViewProgressLearner.php">View Progress</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="ForumLearner.html">Forum</a>

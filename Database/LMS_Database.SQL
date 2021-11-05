@@ -152,8 +152,9 @@ CREATE TABLE Material(
     Course_Run_ID INT NOT NULL, 
     Section_ID INT NOT NULL, 
     Material_ID INT NOT NULL, 
-
-    Material BLOB,
+    
+    Material_Name VARCHAR(255), 
+    Material VARCHAR(255), 
 
     CONSTRAINT Material_PK PRIMARY KEY (Course_Code, Course_Run_ID, Section_ID, Material_ID),
     -- Material is a week entity of Section
@@ -235,7 +236,7 @@ CREATE TABLE Quiz_Record(
 -- newly added in TestDatabase4; 
 DROP TABLE IF EXISTS Forum_Post; 
 CREATE TABLE Forum_Post(
-    Post_ID INT NOT NULL, 
+    Post_ID INT NOT NULL AUTO_INCREMENT,
     Topic VARCHAR(255), 
     Content VARCHAR(255), 
     -- added in TestDatabase 5: auto capture of the date 

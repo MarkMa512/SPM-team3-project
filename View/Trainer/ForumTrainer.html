@@ -12,8 +12,7 @@
           console.log("click");
         });
     </script>
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
       <style>
           .footer-basic {
         position: absolute;
@@ -33,7 +32,8 @@
          margin-bottom:0;
         }
   </style>
-
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -42,7 +42,7 @@
 
     <br>
     <div id="app" class="container">
-    <!-- <div class="container-fluid mt-100">
+   <!-- <div class="container-fluid mt-100">
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
@@ -90,6 +90,7 @@
     </div>
 </div> 
 -->
+
 <div class="row"> 
     <div class="col-4">
            <div class="col-4">
@@ -117,23 +118,25 @@
                     <p> Hi LMS learning Community, Albert here, I hope you enjoy this learning platform!",</p>
                 </div>
                 <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
-                    <div class="px-4 pt-3"> <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> &nbsp; </a> </span> </div>
-                    <div class="px-4 pt-3"> <a class="btn btn-primary" href="ReplyForumTrainer.html" role="button">Reply</a> </div>
+                    <div class="px-4 pt-3"> <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> &nbsp; </a> </div>
+                    <div class="px-4 pt-3"> <a class="btn btn-primary" href="ReplyForumLearner.html" role="button">Reply</a> </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-    <list-item v-for="data in posts" v-bind:author="data.author" v-bind:authorName="data.authorName" v-bind:content="data.content" v-bind:createTime="data.createTime" v-bind:postID="data.postID" v-bind:replyToID="data.replyToID" v-bind:topic="data.topic"></list-item>
-
+    <list-item v-for="data in posts" v-bind:data="data">
+     {{ data }}
+    </list-item>
+    
 
     </div>
     </div>
 
 
 
-
+    
 
 </body>
 <script>
@@ -144,7 +147,7 @@
             }
         },
         created() { // created is a hook that executes as soon as Vue instance is created
-            axios.get('http://localhost/SPM-team3-project/View/Trainer/getData/getForumData.php')
+            axios.get('http://localhost/spM-team3-project/View/Trainer/getData/getForumData.php')
             .then(response => {
                 // this gets the data, which is an array
                 this.posts = response.data
@@ -158,7 +161,7 @@
             
         });
         app.component('list-item', {
-            props:['author', 'authorName', "content", "createTime", "postID", "replyToID", "topic"],
+            props:['author1', 'authorName1', "content1", "createTime1", "postID1", "replyToID1", "topic1", "data"],
             template:`
             <div class="container-fluid mt-100">
                 <div class="row">
@@ -166,37 +169,28 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <div class="media flex-wrap w-100 align-items-center"> 
-                                    <div class="media-body ml-3"> 
-                                        <a href="javascript:void(0)" data-abc="true">{{ authorName }}</a>
-                                        <div class="text-muted small">
-                                            {{ createTime }}
-                                        </div>
+                                    <div class="media-body ml-3"> <a href="javascript:void(0)" data-abc="true">{{ data.topic }}</a>
+                                        <div class="text-muted small">{{ data.authorName }}</div>
                                     </div>
-                                    
-            
-                                </div>
-                            </div>
+                                    <div class="text-muted small ml-3">
+                                        <div>Created Time：<strong>{{ data.createTime }}</strong></div>
+                                    </div> 
+                            </div>{{data}}
                             <div class="card-body">
-                                <p> {{ content }} </p>
+                                <p> {{ data.content }}</p>
                             </div>
                             <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
-                                <div class="px-4 pt-3"> 
-                                    <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> 
-                                    <i class="fa fa-heart text-danger"></i>&nbsp;</a> 
-                                    <span class="text-muted d-inline-flex align-items-center align-middle ml-4"> 
-                                        <i class="fa fa-eye text-muted fsize-3"></i>&nbsp;  
-                                    </span> 
-                                </div>
-                                <div class="px-4 pt-3"> 
-                                    <button type="button" class="btn btn-primary"><i class="ion ion-md-create"></i>&nbsp; Reply</button> 
-                                </div>
+                                <div class="px-4 pt-3"> <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> &nbsp; </a></div>
+                                <div class="px-4 pt-3"> <a class="btn btn-primary" :href="'ReplyForumTrainer.php?postID='+data.postID+'&authorID='+data.author" role="button">Reply</a> </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
             `
           });
         app.mount('#app');
 </script>
+
 </html>

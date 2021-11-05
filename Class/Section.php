@@ -6,7 +6,7 @@ class Section{
     private $sectionName; 
     private $materialList; //????
     private $quizList = [];
-    private $isGRaded = FALSE; // to indicate if the quiz is graded or not
+    private $isGraded = FALSE; // to indicate if the quiz is graded or not
     function __construct($courseCode, $courseRunID, $sectionID, $sectionName){
         $this->courseCode = $courseCode;
         $this->courseRunID = $courseRunID;
@@ -77,11 +77,11 @@ class Section{
     }
 
     /**
-     * Get the value of isGRaded
+     * Get the value of isGraded
      */ 
-    public function getIsGRaded()
+    public function getIsGraded()
     {
-        return $this->isGRaded;
+        return $this->isGraded;
     }
 
 

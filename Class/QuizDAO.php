@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Autoload.php'; 
+require_once 'autoload.php'; 
 
 class QuizDAO{
 

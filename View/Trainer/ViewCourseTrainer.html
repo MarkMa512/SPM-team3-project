@@ -46,7 +46,9 @@
         <h6 class="border-bottom border-gray pb-2 mb-0">My Class</h6>
         <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" 
         v-bind:crid="data.CourseRunID" 
-        v-bind:qlink="'CreateCourseRun.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID" v-bind:mlink="'ManageMaterial.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID"></list-item>
+        v-bind:qlink="'CreateCourseRun.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID" 
+        v-bind:mlink="'ManageMaterial.php?coursecode='+data.CourseCode"
+        v-bind:vlink="'ListOfCourseRun.php?coursecode='+data.CourseCode"></list-item>
 
         
 
@@ -79,13 +81,14 @@
             
         });
         app.component('list-item', {
-            props:['cid', 'cname', "crid", "qlink", "mlink"],
+            props:['cid', 'cname', "crid", "qlink", "mlink", "vlink"],
             template:`
             <div class="media text-muted pt-3">
               <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
               <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <div class="d-flex justify-content-between align-items-center w-100">
                   <strong class="text-gray-dark">{{ cid }} - {{ crid }} </strong>
+                  <a :href="vlink">View Course Run</a>
                   <a :href="qlink">Create Course Run</a>
                 </div>
                 <span class="d-block">{{ cname }}</span>

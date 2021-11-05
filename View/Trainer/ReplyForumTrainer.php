@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(function(){
-          $('#nav').load("./common/navbarLearner.php");
+          $('#nav').load("./common/navbarTrainer.php");
           console.log("click");
         });
     </script>
@@ -45,15 +45,17 @@
             <h6 class="border-bottom border-gray pb-2 mb-0">Reply Post</h6>
         </div>
         <br>
-        <form>
+        <form method="POST">
+          <input type="text" value="<?php echo $_GET['postID']; ?>" name="postID" hidden>
+          <input type="text" value="<?php echo $_GET['authorID']; ?>" name="authorID" hidden>
           <div class="form-group">
             <label for="topic">Topic:</label>
-            <input type="topic" class="form-control" id="topic" placeholder="Topic">
+            <input type="topic" class="form-control" id="topic" placeholder="Topic" name="topic" require>
           
           </div>
           <div class="form-group">
              <label for="exampleInputPassword1">Content:</label>
-             <input type="content"class="form-control" id="content" >
+             <input type="content"class="form-control" id="content" name="content" require>
           </div>
   
              <button type="submit" class="btn btn-primary">Submit</button>
@@ -63,7 +65,19 @@
     </div>
 
 
+<?php 
+require_once "../../Class/autoload.php";
+session_start();
+if($_POST){
+  $post = new Post($_POST["topic"], $_POST["content"], $_SESSION["userID"], $_POST["postID"]);
+  $postDAO = new PostDAO();
+  $postDAO->newPost($post);
+  header("Location:./ForumTrainer.html");
+  exit();
+}
 
+
+?>
 
 
 </body>

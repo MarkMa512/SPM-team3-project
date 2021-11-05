@@ -18,7 +18,7 @@
             <a class="nav-link" href="ViewCourseTrainer.html">Class Management</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="ViewProgress.html">View Progress</a>
+            <a class="nav-link" href="ViewProgress.php">View Progress</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="SectionListForQuiz.html">Quiz Management</a>
@@ -46,7 +46,7 @@
 
         $empDao = new EmployeeDAO();
         $_SESSION["user"] = $empDao->getEmp(1001);
-
+        $_SESSION["userID"] = 1001;
         if($_SESSION){
           echo "Hi " . $_SESSION['user']->getEmpLastName();
         }else{

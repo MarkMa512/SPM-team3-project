@@ -53,25 +53,26 @@
     <div class="container">
       <h5>Create New Course Run</h5>
       <br>
-
-       <form id='addCourseRunForm' method="post"> 
+        
+       <form id='addCourseRunForm' method="post" action="./postData/createCourseRunProcess.php"> 
+       <input type="text" name="coursecode" value="<?php echo $_GET["coursecode"];?>" hidden>
         <div class="form-group">
             <label for="code">Course Run ID:</label>
-            <input type="text" class="form-control" id="code" placeholder="Enter ourse Run ID">
+            <input type="text" class="form-control" id="code" placeholder="Enter ourse Run ID" name="courseRunID">
         </div>
         <div class="form-group">
             <label for="name">Capacity:</label>
-            <input type="text" class="form-control" id="capacity" placeholder="Enter Capacity">
+            <input type="number" class="form-control" id="capacity" placeholder="Enter Capacity" name="capacity">
         </div>
         
         <div class="form-group">
             <label for="name">Start Date:</label>
-		    <input type="text" class="form-control datepicker" placeholder="Select Date"/>
+		    <input type="text" class="form-control datepicker" placeholder="Select Date" name="sDate"/>
 	    </div>
 
         <div class="form-group">
             <label for="name">End Date:</label>
-		    <input type="text" class="form-control datepicker" placeholder="Select Date"/>
+		    <input type="text" class="form-control datepicker" placeholder="Select Date" name="eDate"/>
 	    </div>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -35,23 +35,36 @@
       <h5>Create New Section</h5>
       <br>
 
-       <form id='addCourseRunForm'> 
+       <form id='addCourseRunForm' method="post"> 
+         <input type="text" name="courseCode" value='<?php echo $_GET['courseCode'];?>' hidden>
+         <input type="text" name="courseRunID" value='<?php echo $_GET['courseRunID'];?>' hidden>
         <div class="form-group">
             <label for="code">Section ID:</label>
-            <input type="text" class="form-control" id="code" placeholder="Enter Section ID">
+            <input type="text" class="form-control" id="code" placeholder="Enter Section ID" name="sid" require>
         </div>
         <div class="form-group">
-            <label for="name">Section Name:</label>
-            <input type="text" class="form-control" id="capacity" placeholder="Enter Section Name">
+            <label for="sname">Section Name:</label>
+            <input type="text" class="form-control" id="capacity" placeholder="Enter Section Name" name="sname" require>
         </div>
-
+        
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
         <br>
     </form>
       
     </div>
+     <?php
+     require_once "../../Class/autoload.php";
+      var_dump($_POST);
+      if($_POST){
 
+        $sectionDAO = new SectionDAO();
+        $sectionDAO->addSection(new Section($_POST['courseCode'], $_POST['courseRunID'],$_POST['sid'],$_POST['sname']));
+        header("Location:./ViewCourseTrainer.html");
+        exit();
+      }
+
+     ?>
 
 
 </body>
