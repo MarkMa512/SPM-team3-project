@@ -2,7 +2,6 @@
 session_start();
 var_dump($_POST);
 var_dump($_GET);
-var_dump($_SESSION);
 require_once "../../../Class/autoload.php";
 echo 'test';
 $questionArray = [];
@@ -45,11 +44,13 @@ try{
         }
     }
     
+    #var_dump($answerArray);
     $quiz = new Quiz($_GET['coursecode'], $_GET['courserunid'], $_GET['sectionID'], $_POST['quizTitle'], $questionArray, $answerArray);
     #echo $quiz->getQuizID();
     $quizDAO = new QuizDAO;
     echo ($quizDAO -> addQuiz($quiz));
     $quizDAO -> addQuiz($quiz);
+    echo 'test';
 }catch(PDOException $e){
     $_SESSION['error_msg'] = "PDO issues";
     #header("Location:../SectionListForQuiz.html");

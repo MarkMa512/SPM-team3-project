@@ -112,7 +112,7 @@ class QuizDAO{
         $stmt->bindParam(":quizQuestionList", $quizQuestionList, PDO::PARAM_STR); 
         $stmt->bindParam(":quizAnswerList", $quizAnswerList, PDO::PARAM_STR); 
         
-
+        
         $status = $stmt->execute(); 
         if(!$status){
             var_dump($stmt->errorinfo());

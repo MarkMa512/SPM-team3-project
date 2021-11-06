@@ -117,48 +117,38 @@ VALUES
     ; 
 
 -- Insertion 11
-INSERT INTO Question(Course_Code, Course_Run_ID, Section_ID, Question_Number, Question_Type, Question)
+INSERT INTO Quiz(Course_Code, Course_Run_ID, Section_ID, Quiz_Title, Quiz_Question_List, Quiz_Answer_List)
 VALUES
-    ('SR101', 1, 1, 1, 'M', 'This is a Test MCQ Quesion, select from the options belowL'), 
-    ('SR101', 1, 1, 2, 'T', 'This is a Test T/F Question, select the False options from below:')
+    ('SR101', 1, 1, 'Test Quiz 1', '[{"qnNumber":1,"type":"mcq","qnText":"Q1","options":[{"id":"q1-1","optText":"A1","value":1},{"id":"q1-2","optText":"A2","value":2},{"id":"q1-3","optText":"A3","value":3}]},{"qnNumber":2,"type":"mcq","qnText":"Q2","options":[{"id":"q2-1","optText":"A1","value":1},{"id":"q2-2","optText":"A2","value":2}]}]', '[{"qnNumber":1,"answer":"2"},{"qnNumber":2,"answer":"1"}]'), 
+    ('SR101', 1, 2, 'Test Quiz 2', '[{"qnNumber":1,"type":"mcq","qnText":"Q1","options":[{"id":"q1-1","optText":"Q1-A1","value":1},{"id":"q1-2","optText":"Q1-A2","value":2},{"id":"q1-3","optText":"Q1-A3","value":3}]},{"qnNumber":2,"type":"checkbox","qnText":"Q2","options":[{"id":"q2-1","optText":"Q2-1","value":1},{"id":"q2-2","optText":"Q2-2","value":2},{"id":"q2-3","optText":"Q2-3","value":3},{"id":"q2-4","optText":"Q2-4","value":4}]},{"qnNumber":3,"type":"mcq","qnText":"Q3","options":[{"id":"q3-1","optText":"Q3-1","value":1},{"id":"q3-2","optText":"Q3-2","value":2}]}]', '[{"qnNumber":1,"answer":"2"},{"qnNumber":2,"answer":["1","3"]},{"qnNumber":3,"answer":"2"}]')
     ; 
 
--- Insertion 12 
-INSERT INTO Answer(Course_Code, Course_Run_ID, Section_ID, Question_Number, Answer_Number, Answer, Is_Correct)
-VALUES
-    ('SR101', 1, 1, 1, 'A', 'This is the correct option', TRUE),
-    ('SR101', 1, 1, 1, 'B', 'This is not a correct option', FALSE), 
-    ('SR101', 1, 1, 1, 'C', 'This is not a correct option', FALSE), 
-    ('SR101', 1, 1, 1, 'D', 'This is a correct option', TRUE), 
-    ('SR101', 1, 1, 2, 'T', 'True', FALSE), 
-    ('SR101', 1, 1, 2, 'F', 'False', TRUE)
-    ; 
 
--- Insertion 13
+-- Insertion 12
 INSERT INTO Access_Record(Learner_ID, Course_Code, Course_Run_ID, Section_ID, Visit_Date_Time)
 VALUES
     (2001, 'SR101', 1, 1, '2021-02-02 23:55:55'), 
     (2001, 'SR101', 1, 2, '2021-02-03 22:00:05')
     ;
 
--- Insertion 14
-INSERT INTO Quiz_Record(Learner_ID, Course_Code, Course_Run_ID, Section_ID, Attempt_Number, Quiz_Score, Quiz_Date_Time)
+-- Insertion 13
+INSERT INTO Quiz_Record(Learner_ID, Course_Code, Course_Run_ID, Section_ID, Attempt_Number, Response_List, Quiz_Score, Quiz_Date_Time)
 VALUES
-    (2001, 'SR101', 1, 1, 1, 100.0, '2021-02-04 10:05:21'), 
-    (2001, 'SR101', 1, 2, 1, 40.0, '2021-02-05 10:11:11'), 
-    (2001, 'SR101', 1, 2, 2, 80.0, '2021-03-05 08:02:20'), 
-    (2001, 'SR101', 1, 3, 1, 70.0, '2021-03-19 08:21:05')
+    (2001, 'SR101', 1, 1, 1, '[{"qnNumber":1,"answer":"2"},{"qnNumber":2,"answer":"1"}]', 100.0, '2021-02-04 10:05:21'), 
+    (2001, 'SR101', 1, 1, 2, '[{"qnNumber":1,"answer":"2"},{"qnNumber":2,"answer":"1"}]', 50.0, '2021-02-05 10:11:11'), 
+    (2001, 'SR101', 1, 2, 2, '[{"qnNumber":1,"answer":"2"},{"qnNumber":2,"answer":["1","3"]},{"qnNumber":3,"answer":"2"}]', 80.0, '2021-03-05 08:02:20'), 
+    (2001, 'SR101', 1, 2, 1, '[{"qnNumber":1,"answer":"2"},{"qnNumber":2,"answer":["1","3"]},{"qnNumber":3,"answer":"2"}]', 70.0, '2021-03-19 08:21:05')
     ; 
 
 
--- Insertion 15
+-- Insertion 14
 INSERT INTO Forum_Post(Post_ID, Topic, Content, Creation_Date_Time, Author_ID, Reply_To_Post_ID)
 VALUES
     (0001, 'Hello  LMS Forum', 'Hi LMS learning Community, Albert here, I hope you enjoy this learning platform!', '2021-01-01 08:00:00', 0001, NULL), 
     (0002, 'Reply to LMS Forum', 'Hey Albert, Thomas here, I am so excited to use the system', '2021-01-01 10:00:00', 1001, 0001)
     ; 
 
--- Insertion 16
+-- Insertion 15
 INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content,Sent_Date_Time, Read_Status)
 VALUES
     (1001, 0001, "Test Message", "2021-01-02 09:00:00", TRUE), 

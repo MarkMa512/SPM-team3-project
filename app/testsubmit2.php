@@ -1,7 +1,7 @@
 <?php 
 
-var_dump($_POST);
-var_dump($_GET);
+#var_dump($_POST);
+#var_dump($_GET);
 require_once "../Class/autoload.php";
 
 #$array = array
@@ -14,8 +14,17 @@ require_once "../Class/autoload.php";
     
 } */
 
-$questionArray = [];
-$answerArray = [];
+$quizlizt1 = [ ['qnNumber' => 1, 'type' => 'mcq', 'qnText' => 'Q1', 'options' => [['id' => 'q1-1', 'optText' => 'A1', 'value' => 1], ['id' => 'q1-2', 'optText' => 'A2', 'value' => 2], ['id' => 'q1-3', 'optText' => 'A3', 'value' => 3]]],
+['qnNumber' => 2, 'type' => 'mcq', 'qnText' => 'Q2', 'options' => [['id' => 'q2-1', 'optText' => 'A1', 'value' => 1], ['id' => 'q2-2', 'optText' => 'A2', 'value' => 2]]] ];
+
+$answerlist1 = [['qnNumber' => 1, 'answer' => '2'], ['qnNumber' => 2, 'answer' => '1']];
+
+echo json_encode($quizlizt1);
+
+echo json_encode($answerlist1);
+
+
+
 /*
 try{
     for($i = 1; $i <= 10; $i ++){
