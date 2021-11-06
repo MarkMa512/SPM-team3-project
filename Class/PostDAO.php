@@ -79,7 +79,7 @@ class PostDAO{
 
 
 
-    function newPost($postObject){
+    function ReplyPost($postObject){
         // input: a post object to be added into the database 
         // output: True if success
         $conn = new ConnectionManager(); 
@@ -112,7 +112,36 @@ class PostDAO{
         $pdo = NULL; 
         return $status; 
     }
+    function newPost($topic, $content, $authorID){
+        // input: a post object to be added into the database 
+        // output: True if success
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO Forum_Post (Post_ID, Topic, Content, Author_ID) 
+                VALUES                 (:post_id, :topic, :content, :author_id);"; 
+        $stmt = $pdo->prepare($sql); 
+        
+        // $topic = $postObject->getPostTopic();
+        // $content = $postObject->getPostContent(); 
+        // $authorID = $postObject->getPostAuthor();  
+        $now = time();
 
+        $stmt->bindParam(":post_id", $now, PDO::PARAM_STR); 
+        $stmt->bindParam(":topic", $topic, PDO::PARAM_STR); 
+        $stmt->bindParam(":content", $content, PDO::PARAM_STR); 
+        $stmt->bindParam(":author_id", $authorID, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+    }
     function deletePost($postID){
         // input: a postID to be removed from the database
         // output: True if success 

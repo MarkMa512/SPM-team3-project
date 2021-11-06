@@ -33,7 +33,7 @@
       
       <p class="mt-5 mb-3 text-muted">&copy; 2021 - SPM G3</p>
     </form> -->
-    <a href="./Admin/HomeAdmin.html"><button class="btn btn-lg btn-outline-primary btn-block" type="submit">Sign in (Admin)</button></a>
+      <a href="./Admin/HomeAdmin.html"><button class="btn btn-lg btn-outline-primary btn-block" type="submit">Sign in (Admin)</button></a>
       <a href="./Trainer/HomeTrainer.html"> <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Sign in (Trainer)</button></a>
       <a href="./Learner/LearnerHome.html"> <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Sign in (Learner)</button></a>
   </body>

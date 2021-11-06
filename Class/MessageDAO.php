@@ -7,7 +7,9 @@ class MessageDAO{
         // output: a list of Message Objects as the conversation between given sender and reciever
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
-        $sql = "SELECT * FROM MSG WHERE Sender_ID = :sender_id AND Reciever_ID = :reciever_id;"; 
+        $sql = "SELECT * FROM MSG 
+                WHERE Sender_ID = :sender_id AND Reciever_ID = :reciever_id 
+                OR Sender_ID =:reciever_id AND Reciever_ID = :sender_id;"; 
         $stmt = $pdo->prepare($sql); 
 
         $stmt->bindParam(":sender_id", $senderID, PDO::PARAM_STR); 

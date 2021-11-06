@@ -71,7 +71,7 @@ session_start();
 if($_POST){
   $post = new Post($_POST["topic"], $_POST["content"], $_SESSION["userID"], $_POST["postID"]);
   $postDAO = new PostDAO();
-  $postDAO->newPost($post);
+  $postDAO->ReplyPost($post);
   header("Location:./ForumLearner.html");
   exit();
 }
