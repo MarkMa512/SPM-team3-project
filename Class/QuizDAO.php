@@ -50,7 +50,7 @@ class QuizDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = $row["Quiz_Question_List"]; 
+            $result = $row["Quiz_Question_List"]; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -86,21 +86,22 @@ class QuizDAO{
     }
 
     function addQuiz($quiz){
-        // input: a courserun object to be added into the database 
+        // input: a quiz object to be added into the database 
         // output: True if success
+        
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
         $sql = "INSERT INTO Quiz (Course_Code, Course_Run_ID, Section_ID, Quiz_Title, Quiz_Question_List, Quiz_Answer_List) 
-                VALUES      (:courseCode, :courserunID, :quizTitle, :quizTitle, :quizQuestionList, :quizAnswerList)"; 
+                VALUES      (:courseCode, :courserunID, :sectionID, :quizTitle, :quizQuestionList, :quizAnswerList)"; 
         $stmt = $pdo->prepare($sql); 
         
-
+        
         $courseCode = $quiz->getCourseCode();
         $courserunID = $quiz->getCourseRunID();
         $sectionID = $quiz->getSectionID();
         $quizTitle = $quiz->getQuizTitle(); 
-        $quizQuestionList = $quiz->getQuizQuestionList();
-        $quizAnswerList = $quiz->getQuizAnswerList(); 
+        $quizQuestionList = json_encode($quiz->getQuizQuestionList());
+        $quizAnswerList = json_encode($quiz->getQuizAnswerList()); 
         
 
         
@@ -110,9 +111,9 @@ class QuizDAO{
         $stmt->bindParam(":quizTitle", $quizTitle, PDO::PARAM_STR); 
         $stmt->bindParam(":quizQuestionList", $quizQuestionList, PDO::PARAM_STR); 
         $stmt->bindParam(":quizAnswerList", $quizAnswerList, PDO::PARAM_STR); 
+        
 
         $status = $stmt->execute(); 
-
         if(!$status){
             var_dump($stmt->errorinfo());
             # output any error if database access has problem

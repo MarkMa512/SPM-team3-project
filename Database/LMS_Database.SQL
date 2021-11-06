@@ -222,6 +222,7 @@ CREATE TABLE Quiz_Record(
     Course_Run_ID INT NOT NULL, 
     Section_ID INT NOT NULL,
     Attempt_Number INT NOT NULL,
+    Response_List VARCHAR (8000), 
 
     Quiz_Score FLOAT,
     -- added in TestDatabase 5: auto capture of the date 

@@ -18,18 +18,20 @@ class Quiz{
 
     function autoGrade($responseList){
         $totalQuestions = sizeof($this->quizAnswerList);
-        $correctQUestions = 0;
+        $correctQuestions = 0;
         foreach($this->quizAnswerList as $quizAnswer){
             foreach($responseList as $responseAnswer){
                 if($quizAnswer['qnNumber'] == $responseAnswer['qnNumber']){
                     if($quizAnswer['answer'] == $responseAnswer['answer']){
-                        $correctQUestions ++;
+                        $correctQuestions ++;
                     }
                     break;
                 }
             }
         }
-        return [$totalQuestions, $correctQUestions];
+        $score = round(($correctQuestions / $totalQuestions), 2);
+
+        return $score;
         #echo $totalQuestions;
         #echo $correctQUestions;
     }
