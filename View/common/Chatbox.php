@@ -190,7 +190,9 @@ var_dump($_SESSION);
 
 		/* foot */
 		.foot {
-			display: flex;
+			padding: 18px 30px;
+            		display: flex;
+           		justify-content: space-between;
 		}
 
 		.foot .msg {
@@ -339,10 +341,10 @@ var_dump($_SESSION);
 							</div>
 						</div> -->
 					</div>
-					<div class="foot">
-			<input type="text" class="msg" placeholder="Type a message..." v-model="messageContent" />
-			<button v-on:click="sendMsg()" type="submit">Submit</i></button>
-		</div>
+				</div>
+				<div class="foot">
+					<input type="text" class="msg" placeholder="Type a message..." v-model="messageContent" />
+					<button v-on:click="sendMsg()" type="submit">Submit</i></button>
 				</div>
 			</div>
 		
