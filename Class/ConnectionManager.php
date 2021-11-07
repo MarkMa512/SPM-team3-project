@@ -7,7 +7,7 @@ class ConnectionManager {
         // fill up based on your own configurations
         $servername = 'localhost';
         $username = 'root';
-        $password = 'root';
+        $password = '';
         $dbname = 'LMS_Database';
 
         // Create connection
