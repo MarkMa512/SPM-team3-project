@@ -104,7 +104,7 @@
             $learnerID = getVars['learnerID'];
         }
         
-        axios.get('getData/getLatestQuizResult.php?coursecode=' + $courseCode + '&courserunid=' + $courserunID + '&sectionID=' + $sectionID + '&learnerID=' + $learnerID)
+        axios.get('./getData/getLatestQuizResult.php?coursecode=' + $courseCode + '&courserunid=' + $courserunID + '&sectionID=' + $sectionID + '&learnerID=' + $learnerID)
         .then(response => {
             // this gets the data, which is an array
             //this.questions = response.data;

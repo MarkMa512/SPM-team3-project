@@ -56,7 +56,7 @@
 
         <div class="form-group">
             <label for="code">Course Code</label>
-            <input type="text" class="form-control" name="code" id="code" value="<?php echo $courseCode ?>" >
+            <input type="text" class="form-control" name="code" id="code" value="<?php echo $courseCode ?>" disabled="disabled">
         </div>
         <div class="form-group">
             <label for="name">Course Name</label>
