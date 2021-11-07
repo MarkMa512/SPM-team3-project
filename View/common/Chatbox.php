@@ -103,6 +103,14 @@ var_dump($_SESSION);
 			display: flex;
 			flex-direction: column;
 			height: 100%;
+			position: relative;
+			min-height: 500px;
+			max-height: 500px;
+			overflow-y: auto;
+			padding: 10px 30px 20px 30px;
+			background: #f7f7f7;
+			box-shadow: inset 0 32px 32px -32px rgb(0 0 0 / 5%),
+						inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
 		}
 
 		.chat_box>* {
@@ -284,8 +292,7 @@ var_dump($_SESSION);
 		{{ senderID}} <br>
 		{{ recieverID}} <br>
 		{{ msgList}} <br>
-		<button class="open-button" onclick="openForm()">Chat</button>
-		<div class="chat-popup" id="myForm">
+
 			<div class="container">
 				<div class="chat_box">
 					<div class="head">
@@ -333,13 +340,12 @@ var_dump($_SESSION);
 						</div> -->
 					</div>
 					<div class="foot">
-						<input type="text" class="msg" placeholder="Type a message..." v-model="messageContent"/>
+						<input type="text" class="msg" placeholder="Type a message..." v-model="messageContent" />
 						<button v-on:click="sendMsg()" type="submit">Submit</i></button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 
 </html>
@@ -395,21 +401,21 @@ var_dump($_SESSION);
 			this.interval = setInterval(() => this.displayMsg(), 1000);
 		}
 	});
-	app.component('display-msg',{
-		component:['sender', 'crrUser', 'message', 'time'],
-		template:`
-        				<div v-if="sender == crrUser" class="outgoing">
-							<div class="bubble">
-								<p>{{message}}</p>
-							</div>
-						</div>
-						<div v-else class="incoming">
-							<div class="bubble">
-								<p>{{message}}</p>
-							</div>
-						</div>
-    	`
-	});
+	// app.component('display-msg',{
+	// 	component:['sender', 'crrUser', 'message', 'time'],
+	// 	template:`
+    //     				<div v-if="sender == crrUser" class="outgoing">
+	// 						<div class="bubble">
+	// 							<p>{{message}}</p>
+	// 						</div>
+	// 					</div>
+	// 					<div v-else class="incoming">
+	// 						<div class="bubble">
+	// 							<p>{{message}}</p>
+	// 						</div>
+	// 					</div>
+    // 	`
+	// });
 	app.mount('#chat')
 </script>
 
