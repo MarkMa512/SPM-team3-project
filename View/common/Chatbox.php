@@ -339,12 +339,12 @@ var_dump($_SESSION);
 							</div>
 						</div> -->
 					</div>
-					<div class="foot">
-						<input type="text" class="msg" placeholder="Type a message..." v-model="messageContent" />
-						<button v-on:click="sendMsg()" type="submit">Submit</i></button>
-					</div>
 				</div>
 			</div>
+		<div class="foot">
+			<input type="text" class="msg" placeholder="Type a message..." v-model="messageContent" />
+			<button v-on:click="sendMsg()" type="submit">Submit</i></button>
+		</div>
 		</div>
 </body>
 
