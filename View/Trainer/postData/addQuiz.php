@@ -48,7 +48,7 @@ try{
     $quiz = new Quiz($_GET['coursecode'], $_GET['courserunid'], $_GET['sectionID'], $_POST['quizTitle'], $questionArray, $answerArray);
     #echo $quiz->getQuizID();
     $quizDAO = new QuizDAO;
-    echo ($quizDAO -> addQuiz($quiz));
+    #echo ($quizDAO -> addQuiz($quiz));
     $quizDAO -> addQuiz($quiz);
     echo 'test';
 }catch(PDOException $e){

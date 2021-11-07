@@ -17,9 +17,10 @@ class Quiz{
     }
 
     function autoGrade($responseList){
-        $totalQuestions = sizeof($this->quizAnswerList);
+        $answerListArray = json_decode($this->quizAnswerList, true);
+        $totalQuestions = sizeof($answerListArray);
         $correctQuestions = 0;
-        foreach($this->quizAnswerList as $quizAnswer){
+        foreach($answerListArray as $quizAnswer){
             foreach($responseList as $responseAnswer){
                 if($quizAnswer['qnNumber'] == $responseAnswer['qnNumber']){
                     if($quizAnswer['answer'] == $responseAnswer['answer']){
@@ -29,11 +30,11 @@ class Quiz{
                 }
             }
         }
-        $score = round(($correctQuestions / $totalQuestions), 2);
+        $score = round((($correctQuestions / $totalQuestions) * 100), 2);
 
         return $score;
         #echo $totalQuestions;
-        #echo $correctQUestions;
+        #echo $correctQUestions; 
     }
 
     function getCourseCode(){

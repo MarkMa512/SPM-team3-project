@@ -51,23 +51,22 @@
         <br>
         <form id="answerForm" action="testsubmit2.php" method="post">
           <h1>{{title}}</h1>
-          <div v-for="question in questions">
-              <h2>{{question.qnText}} </h2>
-                  <div v-if = "question.type == 'text'">
-                      <input type = "text" class="form-control" placeholder="Answer:">
-                  </div>
-                  <div v-else-if = "question.type == 'mcq'">
-                      <div v-for="option in question.options">
-                          <input type = "radio" v-bind:name="question.qnNumber" v-bind:id="option.id" v-bind:value="option.value">
-                          <label v-bind:for="option.id">{{option.optText}} </label><br>
+          <h2>Score: {{score}}%</h2>
+          <div v-for="(question, index, i) in questions">
+                <h2>Q{{index + 1}} {{question.qnText}} </h2>
+                  <div v-if = "question.type == 'mcq'">
+                      <div v-for="(option, index2, x) in question.options">
+                          <h3>Option {{index2 + 1}}: {{option.optText}}</h3>
                       </div>
                   </div>
                   <div v-else-if = "question.type == 'checkbox'">
-                      <div v-for="option in question.options">
-                          <input type = "checkbox" v-bind:name="question.qnNumber + '[]'" v-bind:id="option.id" v-bind:value="option.value">
-                          <label v-bind:for="option.id">{{option.optText}} </label><br>
+                      <div v-for="(option, index2, x) in question.options">
+                        <h3>Option {{index2 + 1}}: {{option.optText}}</h3>
                       </div>
                   </div>
+                
+                <h3>Correct answer is {{answers[index].answer}}, your answer was {{responses[index].answer}}</h3>
+                <br>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>  
@@ -83,7 +82,10 @@
       el: "#app",
       data: {
           title: "Test Quiz",
-          questions: []
+          score: "",
+          questions: [],
+          answers: [],
+          responses: []
       },
       created() { // created is a hook that executes as soon as Vue instance is created
         let uri = window.location.href.split('?');
@@ -99,18 +101,30 @@
             $courseCode = getVars['coursecode'];
             $courserunID = getVars['courserunid'];
             $sectionID = getVars['sectionID'];
+            $learnerID = getVars['learnerID'];
         }
         
-        axios.get('getData/getQuizQuestions.php?coursecode=' + $courseCode + '&courserunid=' + $courserunID + '&sectionID=' + $sectionID)
+        axios.get('getData/getLatestQuizResult.php?coursecode=' + $courseCode + '&courserunid=' + $courserunID + '&sectionID=' + $sectionID + '&learnerID=' + $learnerID)
         .then(response => {
             // this gets the data, which is an array
-            this.questions = response.data;
-            console.log(response.data);
-            console.log('test')
+            //this.questions = response.data;
+            console.log(response.data)
+            $responseList = JSON.parse(response.data['Response_List']);
+            $questionList = JSON.parse(response.data['Quiz_Question_List']);
+            $answersList = JSON.parse(response.data['Quiz_Answer_List']);
+            this.score = response.data['Quiz_Score']
+            this.title = response.data['Quiz_Title']
+            this.questions = $questionList;
+            this.responses = $responseList;
+            this.answers = $answersList;
+            console.log($answersList);
+            //console.log(response.data);
+            //console.log(response.data['Response_List']);
+            //console.log('test')
         })
         .catch(error => {
             this.questions = [{ entry: 'There was an error: ' + error.message }]
-            })
+            }) 
             
         }
   })
