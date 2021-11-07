@@ -57,5 +57,6 @@ try{
     exit();
 }
 #header("#to edit");
-
+header("Location:./../SectionListForQuiz.html");
+exit();
 ?>

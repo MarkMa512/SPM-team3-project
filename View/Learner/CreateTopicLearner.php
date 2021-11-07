@@ -77,6 +77,9 @@ if($_POST){
   // header("Location:./ForumLearner.html");
   // exit();
   var_dump($result);
+  header("Location:./ForumLearner.html");
+  exit();
+
 }
 
 

@@ -64,7 +64,6 @@
                   $sectionDAO = new SectionDAO();
                   // var_dump($_SESSION);
                   $sections = $sectionDAO->getSectionByID($_SESSION['user']->getEmpID());
-
                   foreach($sections as $section){
                     echo "
                     
@@ -78,14 +77,6 @@
                     ";
                   }
                   ?>
-                     <tr>
-                      <th scope="row">PT101</th>
-                      <td>1</td>
-                      <td>Intro to Ink Printers</td>
-                      <td>Section 1</td>
-                      <td><a class="btn btn-outline-primary btn-primary" href="UploadNewMaterialTo.php?courseCode={$section['CourseCode']}&courseRunID={$section['CourseRunID']}" role="button">Upload</a></td>
-                    </tr>
-                    
                   </tbody>
             </table>
 
