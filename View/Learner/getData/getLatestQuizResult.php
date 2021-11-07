@@ -5,7 +5,7 @@ $quizDAO = new QuizDAO();
 $result = $quizDAO->getLatestQuizResult($_GET['learnerID'], $_GET['coursecode'], $_GET['courserunid'], $_GET['sectionID']);
 
 $postJSON = json_encode($result);
-echo $postJSON
+echo $postJSON;
 
 
 ?>

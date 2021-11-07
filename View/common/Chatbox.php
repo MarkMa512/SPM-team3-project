@@ -1,31 +1,6 @@
 <?php
-
-// require_once "../../Class/autoload.php";
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
-// session_start(); 
-
-// // Dummy value for development purposes
-// $_POST ["RecieverID"] = "1001"; 
-// //print_r($_POST); 
-
-// //print_r($_SESSION); 
-
-// $recieverID = $_POST["RecieverID"]; 
-// $sender = $_SESSION["user"]; 
-
-// $senderID = $sender->getEmpID(); 
-// print_r($senderID); 
-
-// $messageHistory = []; 
-
-// if($_POST){
-// $msgDAO = new MessageDAO();
-// $messageHistory = $msgDAO->displayConversation($senderID, $recieverID); 
-// }
-// print_r($messageHistory); 
+session_start();
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +18,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
 	<script src="https://unpkg.com/vue@3.0.5"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<script>
 		$(function() {
@@ -303,8 +279,11 @@
 </head>
 
 <body>
-	<div id="test1"></div>
+
 	<div id="chat">
+		{{ senderID}} <br>
+		{{ recieverID}} <br>
+		{{ msgList}} <br>
 		<button class="open-button" onclick="openForm()">Chat</button>
 		<div class="chat-popup" id="myForm">
 			<div class="container">
@@ -315,10 +294,27 @@
 						</div>
 					</div>
 					<div class="body">
+						
+						<div v-for="msg of msgList">
+							<div v-if="msg['sender'] == senderID" class="outgoing">
+								<div class="bubble">
+									<p>{{msg['message']}}</p>
+								</div>
+							</div>
+							<div v-else class="incoming">
+								<div class="bubble">
+									<p>{{msg['message']}}</p>
+								</div>
+							</div>
+						</div>
+						<!-- <div>
 						<div class="incoming">
 							<div class="bubble">
 								<p>Good morning. Are you free now?</p>
 							</div>
+						</div>
+						</div>
+						<div class="incoming">
 							<div class="bubble">
 								<p>I would like to clarify something with you.</p>
 							</div>
@@ -327,7 +323,7 @@
 							<div class="bubble">
 								<p>Sure. What's the problem you have got?</p>
 							</div>
-						</div>
+						</div> -->
 						<!-- <div class="typing">
 							<div class="bubble">
 								<div class="ellipsis dot_1"></div>
@@ -337,8 +333,8 @@
 						</div> -->
 					</div>
 					<div class="foot">
-						<input type="text" class="msg" placeholder="Type a message..." />
-						<button v-on:click="getUser()" type="submit">Submit</i></button>
+						<input type="text" class="msg" placeholder="Type a message..." v-model="messageContent"/>
+						<button v-on:click="sendMsg()" type="submit">Submit</i></button>
 					</div>
 				</div>
 			</div>
@@ -353,23 +349,68 @@
 
 <script>
 	const app = Vue.createApp({
-		template: '<div class="bubble"><p>{{MessageContent}}</p></div>',
 		data(){
 			return{
-				senderID:000,
-				recieverID:0001, 
-				messageContent:"", 
-				sentDateTime:"2021-01-01"
+				senderID:<?php echo $_SESSION['userID'];?>,
+				recieverID:<?php echo $_GET["chatID"]; ?>, 
+				messageContent:"",
+				msgList: []
 			}
 		},
 		methods:{
-			
-			getUser(){
-				console.log(this.messageContent)
+			sendMsg(){
+				console.log("send");
+				axios.get("./ChatProcess.php",{
+				params:{
+					send: true,
+					sender: this.senderID,
+					receiver: this.recieverID,
+					msg: this.messageContent
+				}
+				}).then(response=>{
+					console.log(response.data);
+					// remember check data before doing any other things 
+					this.messageContent = "";
+					this.displayMsg();
+				}).catch(error=>{
+					console.log(error.message);
+				});
 			},
+			displayMsg(){
+				axios.get("./ChatProcess.php",{
+				params:{
+					receive: true,
+					sender: this.senderID,
+					receiver: this.recieverID
+				}
+				}).then(response=>{
+					console.log(response.data);
+					// remember check data before doing any other things 
+					this.msgList=response.data;
+				}).catch(error=>{
+					console.log(error.message);
+				});
+			}
+		}, created(){
+			this.interval = setInterval(() => this.displayMsg(), 1000);
 		}
-	})
-	app.mount('#test1')
+	});
+	app.component('display-msg',{
+		component:['sender', 'crrUser', 'message', 'time'],
+		template:`
+        				<div v-if="sender == crrUser" class="outgoing">
+							<div class="bubble">
+								<p>{{message}}</p>
+							</div>
+						</div>
+						<div v-else class="incoming">
+							<div class="bubble">
+								<p>{{message}}</p>
+							</div>
+						</div>
+    	`
+	});
+	app.mount('#chat')
 </script>
 
 <script>
