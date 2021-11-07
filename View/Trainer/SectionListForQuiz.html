@@ -72,7 +72,7 @@
         }
     },
     created() { // created is a hook that executes as soon as Vue instance is created
-        axios.get('http://localhost/SPM-team3-project/View/Trainer/getData/getSectionListForQuizData.php')
+        axios.get('./getData/getSectionListForQuizData.php')
         .then(response => {
             // this gets the data, which is an array
             this.posts = response.data
@@ -101,7 +101,7 @@
                     </thead>
                     <tbody>
                       <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:crid="data.CourseRunID" v-bind:sid="data.SectionID" 
-                      v-bind:link="'CreateQuiz.php?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID+'&sectionID='+data.SectionID"></list-item>
+                      v-bind:link="'CreateQuiz.html?coursecode='+data.CourseCode+'&courserunid='+data.CourseRunID+'&sectionID='+data.SectionID"></list-item>
                         
                       </tbody>
                 </table>

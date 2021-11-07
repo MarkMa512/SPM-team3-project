@@ -68,7 +68,7 @@
             }
         },
         created() { // created is a hook that executes as soon as Vue instance is created
-            axios.get('http://localhost/SPM-team3-project/View/Trainer/getData/getViewCourseTrainerData.php')
+            axios.get('./getData/getViewCourseTrainerData.php')
             .then(response => {
                 // this gets the data, which is an array
                 this.posts = response.data
