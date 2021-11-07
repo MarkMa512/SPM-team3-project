@@ -296,7 +296,7 @@
 </head>
 
 <body>
-	<div id="test1"></div>
+	<div id="test1">
 	<div id="chat">
 		<button class="open-button" onclick="openForm()">Chat</button>
 		<div class="chat-popup" id="myForm">
@@ -337,59 +337,35 @@
 									{$trainmsg[2]}
 								</div>
 								</div>";
-							}
-						
-						}
-					}
-					else{
+						}}
+					}else{
 						echo "No Message";
 					}
-
-						
 						?>
-						<!-- <div class="typing">
-							<div class="bubble">
-								<div class="ellipsis dot_1"></div>
-								<div class="ellipsis dot_2"></div>
-								<div class="ellipsis dot_3"></div>
-							</div>
-						</div> -->
 					</div>
-					<div class="foot">
-						<input type="text" class="msg" placeholder="Type a message..." />
-						<button v-on:click="getUser()" type="submit">Submit</i></button>
+
+					<form method="POST">
+					<div class="form-group">
+						<input class="form-control" type="content" class="content" id="content" placeholder="Type a message..." />
 					</div>
+					<button type="submit">Submit</button>
+					</form>
+
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 </body>
 
 </html>
-
-</body>
-
-
-<script>
-	const app = Vue.createApp({
-		template: '<div class="bubble"><p>{{MessageContent}}</p></div>',
-		data(){
-			return{
-				senderID:000,
-				recieverID:0001, 
-				messageContent:"", 
-				sentDateTime:"2021-01-01"
-			}
-		},
-		methods:{
-			
-			getUser(){
-				console.log(this.messageContent)
-			},
-		}
-	})
-	app.mount('#test1')
-</script>
+<?php 
+require_once "../../Class/autoload.php";
+var_dump($_POST);
+if($_POST){
+  $MessageDAO ->newMessage($_POST[$trainerID],$_POST[$empID],$_POST["content"]);
+}
+?>
 
 <script>
 	function openForm() {
@@ -401,4 +377,5 @@
 	}
 </script>
 
+</body>
 </html>

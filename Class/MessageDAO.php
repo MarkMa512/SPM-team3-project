@@ -36,24 +36,27 @@ class MessageDAO{
         return $result; 
     }
 
-    function newMessage($messageObject){
+    function newMessage($senderID,$receiverID,$messageContent, $readStatus=False){
         // input: a message object 
         // output: true if the database insertion is successful
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content)
-                VALUES                 (:sender_id, :reciever_id, :message_content);"; 
+        $sql = "INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content, Sent_Date_Time, Read_Status)
+                VALUES (:sender_id, :reciever_id, :message_content, :nowdatetime, :readstatus);"; 
         $stmt = $pdo->prepare($sql); 
         
-        $senderID = $messageObject->getSenderID(); 
-        $recieverID = $messageObject->getRecieverID();
-        $messageContent = $messageObject->getMessageContent(); 
-        $readStatus = $messageObject->getReadStatus();  
+        // $senderID = $messageObject->getSenderID(); 
+        // $recieverID = $messageObject->getRecieverID();
+        // $messageContent = $messageObject->getMessageContent(); 
+        // $readStatus = $messageObject->getReadStatus(); 
+        // $datetime = $messageObject-> getSentDateTime();
 
+        $date = date('Y-m-d H:i:s');
         $stmt->bindParam(":sender_id", $senderID, PDO::PARAM_STR); 
-        $stmt->bindParam(":reciever_id", $recieverID, PDO::PARAM_STR); 
+        $stmt->bindParam(":reciever_id", $receiverID, PDO::PARAM_STR); 
         $stmt->bindParam(":message_content", $messageContent, PDO::PARAM_STR); 
-        // $stmt->bindParam(":read_status", $readStatus, PDO::PARAM_STR); 
+        $stmt->bindParam(":readstatus", $readStatus, PDO::PARAM_STR); 
+        $stmt->bindParam(":nowdatetime", $date, PDO::PARAM_STR);
 
         $status = $stmt->execute(); 
 
