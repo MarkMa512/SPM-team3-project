@@ -1,32 +1,25 @@
 <?php
+	$empID = $_GET['empID'];
+	$trainerID = $_GET['trainerID'];
 
-// require_once "../../Class/autoload.php";
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+	// echo $empID;
+	// echo $trainerID;
+	require_once "../../Class/autoload.php";
+	$MessageDAO = new MessageDAO();
+	// var_dump($empDAO->getAllInstructors());
+	$trainer_msg = $MessageDAO->displayConversation($trainerID,$empID);
+	
+	$empdao = new EmployeeDAO();
+	$emp_name=$empdao->getEmp($empID);
 
-// session_start(); 
+	$name=$emp_name->getEmpFirstName()." ".$emp_name->getEmpLastName();
 
-// // Dummy value for development purposes
-// $_POST ["RecieverID"] = "1001"; 
-// //print_r($_POST); 
+	echo $name;
+	session_start();
 
-// //print_r($_SESSION); 
-
-// $recieverID = $_POST["RecieverID"]; 
-// $sender = $_SESSION["user"]; 
-
-// $senderID = $sender->getEmpID(); 
-// print_r($senderID); 
-
-// $messageHistory = []; 
-
-// if($_POST){
-// $msgDAO = new MessageDAO();
-// $messageHistory = $msgDAO->displayConversation($senderID, $recieverID); 
-// }
-// print_r($messageHistory); 
-?>
+	// var_dump($trainer_msg);
+	
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -311,23 +304,49 @@
 				<div class="chat_box">
 					<div class="head">
 						<div class="user">
-							<div class="name" id="name">Guan Yu</div>
+							<div class="name" id="name"><?php echo $name; ?></div>
 						</div>
 					</div>
 					<div class="body">
-						<div class="incoming">
+						<!-- <div class="incoming">
 							<div class="bubble">
 								<p>Good morning. Are you free now?</p>
 							</div>
 							<div class="bubble">
 								<p>I would like to clarify something with you.</p>
 							</div>
-						</div>
-						<div class="outgoing">
+						</div> -->
+						<!-- <div class="outgoing">
 							<div class="bubble">
 								<p>Sure. What's the problem you have got?</p>
 							</div>
-						</div>
+						</div> -->
+						<?php
+						if($trainer_msg !=null){
+						foreach($trainer_msg as $trainmsg){
+							if($trainmsg[0]==$trainerID){
+									echo"<div class='outgoing'>
+									<div class='bubble'>";
+									echo $trainmsg[2];
+									echo"</div>
+									</div>";
+							}
+							else{
+								echo"<div class='incoming'>
+								<div class='bubble'>
+									{$trainmsg[2]}
+								</div>
+								</div>";
+							}
+						
+						}
+					}
+					else{
+						echo "No Message";
+					}
+
+						
+						?>
 						<!-- <div class="typing">
 							<div class="bubble">
 								<div class="ellipsis dot_1"></div>

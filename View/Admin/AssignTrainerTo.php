@@ -64,7 +64,7 @@
                       <th scope="col">Course Name</th>
                       <!-- <th scope="col">Section</th> -->
                       <th scope="col">Start Date</th>
-                      <th scope="col">Avaiable Slots</th>
+                      <th scope="col">Available Slots</th>
                       <th scope="col">Action</th>
                     </tr>
                 </thead>
