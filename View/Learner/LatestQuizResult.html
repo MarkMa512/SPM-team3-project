@@ -49,7 +49,7 @@
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Take Quiz</h6>
         <br>
-        <form id="answerForm" action="testsubmit2.php" method="post">
+        <form id="answerForm" action="ViewProgressLearner.php" >
           <h1>{{title}}</h1>
           <h2>Score: {{score}}%</h2>
           <div v-for="(question, index, i) in questions">
@@ -68,7 +68,7 @@
                 <h3>Correct answer is {{answers[index].answer}}, your answer was {{responses[index].answer}}</h3>
                 <br>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">View Progress</button>
       </form>  
 
   </div>
@@ -149,7 +149,6 @@
     var courseCode = getUrlParameter('coursecode');
     var courserunID = getUrlParameter('courserunid');
     var sectionID = getUrlParameter('sectionID');
-    document.getElementById('answerForm').action = 'postData/addQuizRecord.php?coursecode=' + courseCode + '&courserunid=' + courserunID + '&sectionID=' + sectionID;
     console.log(courseCode);
 </script>
  
