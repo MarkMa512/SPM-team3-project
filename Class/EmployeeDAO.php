@@ -41,7 +41,8 @@ class EmployeeDAO {
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
         // prepare select
-        $sql = "SELECT * FROM Employee WHERE Employee_ID IN (SELECT Engineer_ID FROM engineer WHERE Engineer_Type='I')";
+        $sql = "SELECT * FROM Employee WHERE Employee_ID IN 
+        (SELECT Engineer_ID FROM engineer WHERE Engineer_Type='I')";
         $stmt = $conn->prepare($sql);
         
             
@@ -192,5 +193,30 @@ class EmployeeDAO {
         $conn = null;        
         
         return $result;
+    }
+    function getLearnerUnderTrainer($trainerID){
+        $connMgr = new ConnectionManager();
+        $conn = $connMgr->getConnection();
+        $sql="SELECT * FROM Employee WHERE Employee_ID IN
+        ( SELECT er.Learner_ID FROM Enrollment_Record er WHERE Course_Code IN 
+        (SELECT Course_Code FROM Assignment WHERE Instructor_ID = :trainerID))";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
+
+        $employee = null;
+
+        if ($stmt->execute()) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC) ){
+                $employee[] = new Employee($row["First_Name"], $row["Last_Name"],
+                $row["Employee_ID"],$row["Employee_Type"],$row["Employee_Password_Hash"]);
+            }
+        }else{
+
+        }
+        $stmt = null;
+        $conn = null;        
+        
+        return $employee;
     }
 }

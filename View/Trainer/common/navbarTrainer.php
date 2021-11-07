@@ -29,7 +29,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="ForumTrainer.html">Forum</a>
           </li>
-          
+          <li class="nav-item active">
+            <a class="nav-link" href="ChatToLearner.html">Chat With Learners</a>
+          </li>
           
          
         

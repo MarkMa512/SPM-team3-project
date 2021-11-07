@@ -2,6 +2,7 @@
 require_once "autoload.php"; 
 
 class MessageDAO{
+    
     function displayConversation($senderID, $recieverID){
         // input: senderID and recieverID
         // output: a list of Message Objects as the conversation between given sender and reciever
@@ -9,7 +10,8 @@ class MessageDAO{
         $pdo = $conn->getConnection(); 
         $sql = "SELECT * FROM MSG 
                 WHERE Sender_ID = :sender_id AND Reciever_ID = :reciever_id 
-                OR Sender_ID =:reciever_id AND Reciever_ID = :sender_id;"; 
+                OR Sender_ID =:reciever_id AND Reciever_ID = :sender_id
+                ORDER BY Sent_Date_Time; "; 
         $stmt = $pdo->prepare($sql); 
 
         $stmt->bindParam(":sender_id", $senderID, PDO::PARAM_STR); 
@@ -17,12 +19,16 @@ class MessageDAO{
         
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         $status = $stmt->execute(); 
+        $result=[];
         if(!$status){
             var_dump($stmt->errorinfo());
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Message($row['Sender_ID'], $row['Reciever_ID'], $row['Message_Content'], $row['Sent_Date_Time']); 
+            $result[] = [$row['Sender_ID'], 
+            $row['Reciever_ID'], 
+            $row['Message_Content'], 
+            $row['Sent_Date_Time']]; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -43,7 +49,6 @@ class MessageDAO{
         $recieverID = $messageObject->getRecieverID();
         $messageContent = $messageObject->getMessageContent(); 
         $readStatus = $messageObject->getReadStatus();  
-
 
         $stmt->bindParam(":sender_id", $senderID, PDO::PARAM_STR); 
         $stmt->bindParam(":reciever_id", $recieverID, PDO::PARAM_STR); 

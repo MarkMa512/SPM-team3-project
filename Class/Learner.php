@@ -24,8 +24,6 @@ class Learner extends Engineer{
         
     }
 
-
-
     function getCourseClass($courseID){
         $courseRunID = "";
         $startDate = "";
