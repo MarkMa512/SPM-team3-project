@@ -7,14 +7,15 @@ class SectionTest extends TestCase
 {
     public function testConstructGetParams(){
         $section = new Section('Test course code', 'Test run ID', 'Test section ID', 'Test name');
+
+        $this -> assertEquals("Test course code", $$section->getCourseCode());
+        $this -> assertEquals("Test run ID", $$section->getCourseRunID());
+        $this -> assertEquals("Test section ID", $$section->getSectionID());
+        $this -> assertEquals("Test Name", $$section->getSectionName());
+        $this -> assertEquals([], $$section->getQuizList());
         #No functions to get params
     }
 
-    public function testCreateQuiz(){
-        $section = new Section('Test course code', 'Test run ID', 'Test section ID', 'Test name');
-        $section -> createQuiz('Test ID', 'Test Type', 'Test Question', 'Test Answer');
-        #No function to get quiz param to check quiz has been created
-    }
 
 }
 
