@@ -68,6 +68,7 @@ class PostDAO{
             var_dump($stmt->errorinfo());
             # output any error if database access has problem
         }
+        $result =[];
         while($row = $stmt->fetch()){
             $result[] = $row; 
         }
@@ -82,6 +83,7 @@ class PostDAO{
     function getAllReplies($postID){
         // input: postID 
         // output: a list of CoursrRun Object of given postID
+        // did not really used  in other part of the code base
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
         $sql = "SELECT * FROM Forum_Post WHERE Reply_To_Post_ID = :reply_to_post_id;"; 
@@ -96,7 +98,7 @@ class PostDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
+            $result[] = $row; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -109,6 +111,7 @@ class PostDAO{
     function ReplyPost($postObject){
         // input: a post object to be added into the database 
         // output: True if success
+        // this function got issue!!!!!
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
         $sql = "INSERT INTO Forum_Post (Post_ID, Topic, Content, Author_ID, Reply_To_Post_ID) 
@@ -139,9 +142,11 @@ class PostDAO{
         $pdo = NULL; 
         return $status; 
     }
+
     function newPost($topic, $content, $authorID){
         // input: a post object to be added into the database 
         // output: True if success
+        // this function does not work, causes 
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
         $sql = "INSERT INTO Forum_Post (Post_ID, Topic, Content, Author_ID) 
@@ -169,6 +174,7 @@ class PostDAO{
         $pdo = NULL; 
         return $status; 
     }
+
     function deletePost($postID){
         // input: a postID to be removed from the database
         // output: True if success 

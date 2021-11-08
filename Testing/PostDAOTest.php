@@ -40,28 +40,58 @@ Class PostDAOTest extends TestCase{
     public function testGetAllPostByAuthor(){
         $testPostDAO = new PostDAO();
         $authorID = 0001; 
-        $testPost = $testPostDAO->getAllPostByAuthor($authorID)[0]; 
 
-        $this -> assertNotNull(0001, $testPost->getPostID()); // check if this function was used by esle where
-        // data retrival is okay, but the new Post Class uses the date as PostID; 
-        $this -> assertEquals('Hello  LMS Forum', $testPost->getPostTopic());
-        $this -> assertEquals("Hi LMS learning Community, Albert here, I hope you enjoy this learning platform!", $testPost->getPostContent($authorID));
-        $this -> assertEquals("2021-01-01 08:00:00", $testPost->getPostDateTime());
-        $this -> assertEquals(0001, $testPost->getPostAuthor());
-        $this -> assertNull($testPost->getPostReplyTo());
+        $this -> assertEquals(0001, $testPostDAO->getAllPostByAuthor($authorID)[0]['Post_ID']);
+        $this -> assertEquals('Hello  LMS Forum', $testPostDAO->getAllPostByAuthor($authorID)[0]['Topic']);
+        $this -> assertEquals("Hi LMS learning Community, Albert here, I hope you enjoy this learning platform!", $testPostDAO->getAllPostByAuthor($authorID)[0]['Content']);
+        $this -> assertEquals("2021-01-01 08:00:00", $testPostDAO->getAllPostByAuthor($authorID)[0]['Creation_Date_Time']);
+        $this -> assertEquals(0001, $testPostDAO->getAllPostByAuthor($authorID)[0]['Author_ID']);
+        $this -> assertNull($testPostDAO->getAllPostByAuthor($authorID)[0]['Reply_To_Post_ID']);
     }
-    // public function testNewPost(){
 
-    //     $testMessageDAO = new MessageDAO(); 
+    public function testGetAllReplies(){
+        $testPostDAO = new PostDAO(); 
+        $postID = 0001; 
+        $this -> assertEquals(0002, $testPostDAO->getAllReplies($postID)[0]['Post_ID']);
+        $this -> assertEquals('Reply to LMS Forum', $testPostDAO->getAllReplies($postID)[0]['Topic']);
+        $this -> assertEquals("Hey Albert, Thomas here, I am so excited to use the system", $testPostDAO->getAllReplies($postID)[0]['Content']);
+        $this -> assertEquals("2021-01-01 10:00:00", $testPostDAO->getAllReplies($postID)[0]['Creation_Date_Time']);
+        $this -> assertEquals(1001, $testPostDAO->getAllReplies($postID)[0]['Author_ID']);
+        $this -> assertEquals(0001, $testPostDAO->getAllReplies($postID)[0]['Reply_To_Post_ID']);
 
-    //     //insert into database, check if success
-    //     $this->assertTrue($testMessageDAO->newMessage(1002, 0001, "New Message Test")); 
+    }
+    
+    public function testReplyPost(){
+        $testAuthor = 1003; 
+        $testPost = new Post("TestReplyPostTopic", "TestReplyContent", $testAuthor, 0001); 
+        $testPostDAO = new PostDAO(); 
 
-    //     // Test if the message is inserted correctly
-    //     $this -> assertEquals(1002, $testMessageDAO->displayConversation(1002, 0001)[0]['sender']);
-    //     $this -> assertEquals(0001, $testMessageDAO->displayConversation(1002, 0001)[0]['reciever']);
-    //     $this -> assertEquals("New Message Test", $testMessageDAO->displayConversation(1002, 0001)[0]['message']);
-    // }
+        // check if the insertion is successful or not 
+        $this -> assertTrue($testPostDAO->ReplyPost($testPost)); // this function got issue!!!!!
+
+        // $this -> assertEquals(0001, $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Post_ID']);
+        $this -> assertEquals('TestReplyPostTopic', $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Topic']);
+        $this -> assertEquals("TestReplyContent", $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Content']);
+        // $this -> assertEquals("2021-01-01 08:00:00", $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Creation_Date_Time']);
+        $this -> assertEquals($testAuthor, $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Author_ID']);
+        $this -> assertEquals(0001, $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Reply_To_Post_ID']);
+        
+    }
+
+    public function testNewPost(){
+        sleep(1);// need to sleep for 1s to prevent dulication of primary key
+        $testAuthor = 2001; 
+        $testPostDAO = new PostDAO(); 
+
+        // this function does not work 
+         // check if the insertion is successful or not 
+        $this->assertTrue($testPostDAO->newPost("TestNewPostTopic", "TestNewContent", $testAuthor));
+        $this -> assertEquals('TestNewPostTopic', $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Topic']);
+        $this -> assertEquals("TestNewContent", $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Content']);
+        // $this -> assertEquals("2021-01-01 08:00:00", $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Creation_Date_Time']);
+        $this -> assertEquals($testAuthor, $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Author_ID']);
+        $this -> assertNull( $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Reply_To_Post_ID']);
+    }
 
 }
 
