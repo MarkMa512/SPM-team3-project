@@ -198,7 +198,7 @@ class PostDAO{
     }
 
 
-    function editPost($editedPostObject){
+    function editPost($postID, $topic, $content){
         // input: a post object to be added into the database 
         // output: True if success
         $conn = new ConnectionManager(); 
@@ -209,9 +209,9 @@ class PostDAO{
 
         $stmt = $pdo->prepare($sql); 
 
-        $topic = $editedPostObject->getPostTopic();
-        $content = $editedPostObject->getPostContent(); 
-        $postID = $editedPostObject->getPostID(); 
+        // $topic = $editedPostObject->getPostTopic();
+        // $content = $editedPostObject->getPostContent(); 
+        // $postID = $editedPostObject->getPostID(); 
 
         $stmt->bindParam(":post_id", $postID, PDO::PARAM_STR); 
         $stmt->bindParam(":topic", $topic, PDO::PARAM_STR); 

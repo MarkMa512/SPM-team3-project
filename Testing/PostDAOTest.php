@@ -3,7 +3,10 @@
 require __DIR__ . '/../Class/PostDAO.php';
 use PHPUnit\Framework\TestCase;
 
+use function PHPUnit\Framework\assertTrue;
+
 // below are the mock data in the database for testing, check b4 running the test! 
+// clear all the other post data b4 testing 
 /*
 INSERT INTO Forum_Post(Post_ID, Topic, Content, Creation_Date_Time, Author_ID, Reply_To_Post_ID)
 VALUES
@@ -83,7 +86,6 @@ Class PostDAOTest extends TestCase{
         $testAuthor = 2001; 
         $testPostDAO = new PostDAO(); 
 
-        // this function does not work 
          // check if the insertion is successful or not 
         $this->assertTrue($testPostDAO->newPost("TestNewPostTopic", "TestNewContent", $testAuthor));
         $this -> assertEquals('TestNewPostTopic', $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Topic']);
@@ -91,6 +93,29 @@ Class PostDAOTest extends TestCase{
         // $this -> assertEquals("2021-01-01 08:00:00", $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Creation_Date_Time']);
         $this -> assertEquals($testAuthor, $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Author_ID']);
         $this -> assertNull( $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Reply_To_Post_ID']);
+    }
+
+    public function testEditPost(){
+        $testAuthor = 2001;
+        $testPostDAO = new PostDAO(); 
+        $postID = $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Post_ID'];
+
+        // check if the post is updated successfully or not
+        $this->assertTrue($testPostDAO->editPost($postID, "EditTopic", "EditContent"));
+        $this -> assertEquals('EditTopic', $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Topic']);
+        $this -> assertEquals("EditContent", $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Content']);
+        // $this -> assertEquals("2021-01-01 08:00:00", $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Creation_Date_Time']);
+        $this -> assertEquals($testAuthor, $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Author_ID']);
+        $this -> assertNull( $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Reply_To_Post_ID']);
+    }
+
+    public function testDeletePost(){
+        $testAuthor = 2001; 
+        $testPostDAO = new PostDAO(); 
+        $postID = $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Post_ID'];
+
+        // check if the deletion is successfu;
+        $this->assertTrue($testPostDAO->deletePost($$postID)); 
     }
 
 }
