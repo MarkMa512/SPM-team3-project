@@ -24,91 +24,91 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-    - name: Execute test1 (Unit and Feature tests) via PHPUnit
+    - name: Execute Course Run test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/CourseRunTest.php
       continue-on-error: true
 
-    - name: Execute test2 (Unit and Feature tests) via PHPUnit
+    - name: Execute Course test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/CourseTest.php
       continue-on-error: true
 
-    - name: Execute test3 (Unit and Feature tests) via PHPUnit
+    - name: Execute Employee test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/EmployeeTest.php
       continue-on-error: true
     
-    - name: Execute test4 (Unit and Feature tests) via PHPUnit
+    - name: Execute Engineer test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/EngineerTest.php
       continue-on-error: true
 
-    - name: Execute test5 (Unit and Feature tests) via PHPUnit
+    - name: Execute Forum test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/ForumTest.php
       continue-on-error: true
 
-    - name: Execute test6 (Unit and Feature tests) via PHPUnit
+    - name: Execute HR test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/HRTest.php
       continue-on-error: true
 
-    - name: Execute test7 (Unit and Feature tests) via PHPUnit
+    - name: Execute Learner test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/LearnerTest.php
       continue-on-error: true
 
-    - name: Execute test8 (Unit and Feature tests) via PHPUnit
+    - name: Execute Message test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/MessageTest.php
       continue-on-error: true
 
-    - name: Execute test9 (Unit and Feature tests) via PHPUnit
+    - name: Execute Post test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/PostTest.php
       continue-on-error: true
 
-    - name: Execute test10 (Unit and Feature tests) via PHPUnit
+    - name: Execute Qualification test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/QualificationTest.php
       continue-on-error: true
 
-    - name: Execute test11 (Unit and Feature tests) via PHPUnit
+    - name: Execute Section test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/SectionTest.php
       continue-on-error: true
 
-    - name: Execute test12 (Unit and Feature tests) via PHPUnit
+    - name: Execute Trainer test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php vendor/bin/phpunit Testing/TrainerTest.php
       continue-on-error: true
 
-    - name: Execute test13 (Unit and Feature tests) via PHPUnit
+    - name: Execute Quiz test (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
