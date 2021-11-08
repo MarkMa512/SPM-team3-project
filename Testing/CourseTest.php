@@ -13,7 +13,7 @@ class CourseTest extends TestCase
         echo $course->getCourseCode();
         $this -> assertEquals("TestName", $course->getCourseName());
         $this -> assertEquals("TestBadge", $course->getBadgeName());
-        $this -> assertEquals(["PreReq1", "PreReq2"], $course->getPrerequisiteList());
+        $this -> assertEquals(["PreReq1", "PreReq2"], $course->getCoursprerequisiteList());
         $this -> assertEquals(["RunList1", "RunList2"], $course->getCourseRunList());
     }
 
@@ -27,7 +27,7 @@ class CourseTest extends TestCase
     public function testAddPrerequisite(){
         $course = new Course("Test1", "TestName", "TestBadge", ["PreReq1", "PreReq2"], ["RunList1", "RunList2"]);
         $course -> addPrerequisite("PreReq3");
-        $preReqList = $course ->getPrerequisiteList();
+        $preReqList = $course ->getCoursprerequisiteList();
         $this -> assertEquals(3, count($preReqList));
         $this -> assertEquals("PreReq3", $preReqList[2]);
     }
