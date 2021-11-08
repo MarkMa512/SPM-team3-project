@@ -13,25 +13,6 @@
         });
     </script>
 
-      <style>
-          .footer-basic {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding:40px 0;
-        background-color:#ffffff;
-        color:#4b4c4d;
-        }
-
-
-        .footer-basic .copyright {
-         margin-top:15px;
-         text-align:center;
-         font-size:13px;
-         color:#aaa;
-         margin-bottom:0;
-        }
-  </style>
 
 </head>
 <body>
@@ -50,7 +31,7 @@
       <?php 
           require_once "../../Class/autoload.php";
           session_start();
-          var_dump($_SESSION);
+          // var_dump($_SESSION);
           $trainerDAO = new TrainerDAO();
           $record = $trainerDAO->getCourseRunByTrainerID($_SESSION["userID"]);
           $result = [];
@@ -104,42 +85,7 @@
           </div>";
         }
       ?>
-        <!-- <h5>Intro to Printer Servicing - Course Run 1</h5>
-        <div class="card" >
-          <div class="card-header row" >
-                <a class="col-6">Section visted: 50<a/>
-                <a class="col-3">Completed: 50/50<a/>     
-                <label for="progress">100%</label>
-                <progress id="progress" max="100" value="100" ></progress>
-          </div>
-            </div>
-
-           <ul class="list-group list-group-flush">
-              <li class="list-group-item"><b>Section 1</b>
-                <div class="row" >
-                     <a class="col-3">Visted: 50<a/>           
-                     <a class="col-3">Quiz Completed: 50<a/>
-                     <a class="col-3">Materials Downloaded: 50<a/>
-                </div>
-              </li>
-                
-              <li class="list-group-item"><b>Section 2</b>
-                <div class="row" >
-                     <a class="col-3">Visted: 50<a/>           
-                     <a class="col-3">Quiz Completed: 50<a/>
-                     <a class="col-3">Materials Downloaded: 50<a/>
-                </div>
-              </li>
-              <li class="list-group-item"><b>Section 3</b>
-                <div class="row" >
-                     <a class="col-3">Visted: 50<a/>           
-                     <a class="col-3">Quiz Completed: 50<a/>
-                     <a class="col-3">Materials Downloaded: 50<a/>
-                </div>
-              </li>
-              <br>
-          </ul>
-        </div> -->
+      
         
         <!--Course 1 CourseRun 2-->
         <!-- <div>
