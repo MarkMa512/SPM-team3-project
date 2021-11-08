@@ -25,9 +25,36 @@ class PostDAO{
         return $result; 
     }
 
+    // function getAllPostByAuthor($authorID){
+    //     // input: authorID 
+    //     // output: a list of Post Object of given authorID
+    //     // did not really used  in other part of the code base
+    //     $conn = new ConnectionManager(); 
+    //     $pdo = $conn->getConnection(); 
+    //     $sql = "SELECT * FROM Forum_Post WHERE Author_ID = :author_id;"; 
+    //     $stmt = $pdo->prepare($sql); 
+
+    //     $stmt->bindParam(":author_id", $authorID, PDO::PARAM_STR); 
+        
+    //     $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+    //     $status = $stmt->execute(); 
+    //     if(!$status){
+    //         var_dump($stmt->errorinfo());
+    //         # output any error if database access has problem
+    //     }
+    //     while($row = $stmt->fetch()){
+    //         $result[] = new Post($row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
+    //     }
+    //     $stmt->closeCursor();
+    //     $pdo = NULL; 
+        
+    //     return $result; 
+    // }
+
     function getAllPostByAuthor($authorID){
         // input: authorID 
-        // output: a list of Post Object of given authorID
+        // output: a list of Posts of given authorID
+        // did not really used  in other part of the code base
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
         $sql = "SELECT * FROM Forum_Post WHERE Author_ID = :author_id;"; 
@@ -42,7 +69,7 @@ class PostDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
+            $result[] = $row; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
