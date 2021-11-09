@@ -44,6 +44,15 @@ Class MessageDAOTest extends TestCase{
         $this -> assertEquals(1002, $testMessageDAO->displayConversation(1002, 0001)[0]['sender']);
         $this -> assertEquals(0001, $testMessageDAO->displayConversation(1002, 0001)[0]['reciever']);
         $this -> assertEquals("New Message Test", $testMessageDAO->displayConversation(1002, 0001)[0]['message']);
+
+        sleep(2); // paulse to prevent Primary key duplication
+        
+        $this->assertTrue($testMessageDAO->newMessage(1002, 0001, "New Message Test2")); 
+
+        // Test if the message is inserted correctly
+        $this -> assertEquals(1002, $testMessageDAO->displayConversation(1002, 0001)[1]['sender']);
+        $this -> assertEquals(0001, $testMessageDAO->displayConversation(1002, 0001)[1]['reciever']);
+        $this -> assertEquals("New Message Test2", $testMessageDAO->displayConversation(1002, 0001)[1]['message']);
     }
 
 }
