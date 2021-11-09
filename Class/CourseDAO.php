@@ -200,7 +200,7 @@ class CourseDAO{
     function getSectionMaterialById($empID) {
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
-        $sql="SELECT * FROM assignment a, material m, course c WHERE a.Course_Code=m.Course_Code AND a.Course_Run_ID=m.Course_Run_ID AND c.Course_Code=m.Course_Code AND a.Instructor_ID=:empID";
+        $sql="SELECT * FROM Assignment a, Material m, Course c WHERE a.Course_Code=m.Course_Code AND a.Course_Run_ID=m.Course_Run_ID AND c.Course_Code=m.Course_Code AND a.Instructor_ID=:empID";
         $stmt = $pdo->prepare($sql); 
         $stmt->bindParam(":empID", $empID, PDO::PARAM_INT);
         $status = $stmt->execute(); 
