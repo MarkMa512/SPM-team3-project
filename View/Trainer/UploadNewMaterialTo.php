@@ -93,7 +93,7 @@ if(isset($_FILES['formFileLg']) && isset($_GET['cid'])){
   $file_type=$_FILES['formFileLg']['type'];
   $file_names = explode('.',$_FILES['formFileLg']['name']);
   $file_ext=strtolower($file_names[sizeof($file_names)-1]);
-  var_dump($file_ext);
+  // var_dump($file_ext);
   $extensions= array("jpeg","jpg","png", "docx", "pptx", "zip", "ppt", "pdf");
   
   if(in_array($file_ext,$extensions)=== false){
