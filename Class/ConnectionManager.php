@@ -10,7 +10,7 @@ class ConnectionManager {
         $servername = "database-1.cjfoojqqvgrl.us-east-2.rds.amazonaws.com";
         $username = 'admin';
         $password = 'pass1234';
-        $dbname = 'LMS_Database';
+        $dbname = 'LMS-Database';
 
         // Create connection
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
