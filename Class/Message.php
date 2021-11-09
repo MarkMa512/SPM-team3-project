@@ -16,7 +16,7 @@ class Message{
         $this->messageContent = $messageContent; 
         $time =  Date("Y-m-d H:i:s");
         $this->sentDateTime = $time; 
-        // $this->readStatus = $readStatus; 
+        $this->readStatus = 0; 
     }
 
     /**

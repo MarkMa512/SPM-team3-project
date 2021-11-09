@@ -401,7 +401,7 @@ var_dump($_SESSION);
 				});
 			}
 		}, created(){
-			this.interval = setInterval(() => this.displayMsg(), 1000);
+			this.interval = setInterval(() => this.displayMsg(), 2000);
 		}
 	});
 	// app.component('display-msg',{

@@ -41,8 +41,8 @@ class MessageDAO{
         // output: true if the database insertion is successful
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content, Sent_Date_Time, Read_Status)
-                VALUES (:sender_id, :reciever_id, :message_content, :nowdatetime, :readstatus);"; 
+        $sql = "INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content)
+                VALUES (:sender_id, :reciever_id, :message_content);"; 
         $stmt = $pdo->prepare($sql); 
         
         // $senderID = $messageObject->getSenderID(); 
@@ -55,8 +55,9 @@ class MessageDAO{
         $stmt->bindParam(":sender_id", $senderID, PDO::PARAM_STR); 
         $stmt->bindParam(":reciever_id", $receiverID, PDO::PARAM_STR); 
         $stmt->bindParam(":message_content", $messageContent, PDO::PARAM_STR); 
-        $stmt->bindParam(":readstatus", $readStatus, PDO::PARAM_STR); 
-        $stmt->bindParam(":nowdatetime", $date, PDO::PARAM_STR);
+        // $stmt->bindParam(":readstatus", $readStatus, PDO::PARAM_STR); 
+        // $stmt->bindParam(":nowdatetime", $date, PDO::PARAM_STR);
+        // $stmt->bindParam(":readstatus", 0, PDO::PARAM_STR);
 
         $status = $stmt->execute(); 
 
