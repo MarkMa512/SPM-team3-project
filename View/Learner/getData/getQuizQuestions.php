@@ -4,7 +4,7 @@ session_start();
 $quizDAO = new QuizDAO();
 $result = $quizDAO->getQuizQuestions($_GET['coursecode'], $_GET['courserunid'], $_GET['sectionID']);
 
-$postJSON = $result;
+$postJSON = json_encode($result);
 echo $postJSON
 
 

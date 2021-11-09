@@ -50,7 +50,7 @@ class QuizDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result = $row["Quiz_Question_List"]; 
+            $result = [$row["Quiz_Question_List"], $row['Quiz_Title']]; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 

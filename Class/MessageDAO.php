@@ -25,10 +25,10 @@ class MessageDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = [$row['Sender_ID'], 
-            $row['Reciever_ID'], 
-            $row['Message_Content'], 
-            $row['Sent_Date_Time']]; 
+            $result[] = ["sender"=>$row['Sender_ID'], 
+            "reciever"=>$row['Reciever_ID'], 
+            "message"=>$row['Message_Content'], 
+            "time"=>$row['Sent_Date_Time']]; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
