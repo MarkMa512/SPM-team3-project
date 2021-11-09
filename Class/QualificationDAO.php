@@ -24,7 +24,7 @@ class QualificationDAO{
         }
         $stmt->closeCursor();
         $pdo = NULL; 
-        
+        ///
         return $result; 
     }
 }
