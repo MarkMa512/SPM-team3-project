@@ -112,7 +112,7 @@ if(isset($_FILES['formFileLg']) && isset($_GET['cid'])){
      $sectionDAO = new SectionDAO();
      $sectionDAO->updateMaterial($_GET['cid'], $_GET['crid'], $_GET['sid'], $_GET['mid'], $file_name, "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name");
      //echo "./../Files/{$_GET['cid']}/{$_GET['crid']}/{$_GET['sid']}/{$_GET['mid']}/$file_name"; // stored this for users to download and refers to viewFiles to get the sense of downloading 
-    //  echo "Success";
+      //  echo "Success";
     header("Location:./ManageMaterial.html");
     exit();
   }

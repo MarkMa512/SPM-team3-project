@@ -299,7 +299,7 @@ var_dump($_SESSION);
 				<div class="chat_box">
 					<div class="head">
 						<div class="user">
-							<div class="name" id="name">Guan Yu</div>
+							<div class="name" id="name"><?php echo $_GET["name"];?></div>
 						</div>
 					</div>
 					<div class="body">
