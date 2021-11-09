@@ -228,7 +228,7 @@ CREATE TABLE Quiz_Record(
     -- added in TestDatabase 5: auto capture of the date 
     Quiz_Date_Time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    CONSTRAINT Quiz_Record_PK PRIMARY KEY (Learner_ID, Course_Code, Course_Run_ID, Section_ID, Attempt_Number), 
+    CONSTRAINT Quiz_Record_PK PRIMARY KEY (Attempt_Number, Learner_ID, Course_Code, Course_Run_ID, Section_ID), 
     CONSTRAINT Quiz_Record_FK1 FOREIGN KEY (Learner_ID) REFERENCES Employee(Employee_ID),
     CONSTRAINT Quiz_Record_FK2 FOREIGN KEY (Course_Code, Course_Run_ID, Section_ID) REFERENCES Section(Course_Code, Course_Run_ID, Section_ID)
 );
