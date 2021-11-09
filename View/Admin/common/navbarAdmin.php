@@ -30,7 +30,8 @@
         </form>
       </div>
       <div class="nav-item my-2 my-lg-0">
-        <a class="nav-item nav-link text-light" href="../signin.php"><?php
+        <a class="nav-item nav-link text-light" href="../signin.php">
+        <?php
         require_once "../../../Class/autoload.php";
         
         session_start();
@@ -44,6 +45,7 @@
           echo "Log In";
         }
         
-        ?></a>
+        ?>
+        </a>
       </div>
     </nav>
