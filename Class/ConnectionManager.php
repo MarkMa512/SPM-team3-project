@@ -7,9 +7,9 @@ class ConnectionManager {
         // fill up based on your own configurations
         // $servername = 'localhost';
 
-        $servername = "127.0.0.1";
-        $username = 'root';
-        $password = '';
+        $servername = "database-1.cjfoojqqvgrl.us-east-2.rds.amazonaws.com";
+        $username = 'admin';
+        $password = 'pass1234';
         $dbname = 'LMS_Database';
 
         // Create connection
