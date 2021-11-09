@@ -109,11 +109,11 @@ VALUES
 -- Insertion 10 
 INSERT INTO Material(Course_Code, Course_Run_ID, Section_ID, Material_ID, Material_Name, Material)
 VALUES
-    ('SR101', 1, 1, 1, 'Material1', ''),
-    ('SR101', 1, 1, 2, 'Material2', ''),
-    ('SR101', 1, 1, 3, 'Material3', ''),
-    ('SR101', 1, 2, 1, 'Material4', ''),
-    ('SR101', 1, 2, 2, 'Material5', '')
+    ('SR101', 1, 1, 1, 'Material1', './../Files/SR101/1/1/1/BPAS_Sample_Exam.pdf'),
+    ('SR101', 1, 1, 2, 'Material2', './../Files/SR101/1/1/2/BPAS_Sample_Exam_Solution.pdf'),
+    ('SR101', 1, 1, 3, 'Material3', './../Files/SR101/1/1/1/BPAS_Sample_Exam.pdf'),
+    ('SR101', 1, 2, 1, 'Material4', './../Files/SR101/1/1/1/BPAS_Sample_Exam.pdf'),
+    ('SR101', 1, 2, 2, 'Material5', './../Files/SR101/1/1/2/BPAS_Sample_Exam_Solution.pdf')
     ; 
 
 -- Insertion 11
