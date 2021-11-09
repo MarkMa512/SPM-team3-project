@@ -1,5 +1,5 @@
 <?php
-// TDD Auther: Ningzhi 
+// TDD Author: Ma Ningzhi 
 require __DIR__ . '/../Class/PostDAO.php';
 use PHPUnit\Framework\TestCase;
 

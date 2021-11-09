@@ -1,5 +1,5 @@
 <?php
-// TDD Author: Ningzhi
+// TDD Author: Ma Ningzhi 
 require __DIR__ . '/../Class/Post.php';
 use PHPUnit\Framework\TestCase;
 
