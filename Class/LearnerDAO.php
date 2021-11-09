@@ -9,7 +9,7 @@ class LearnerDAO{
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
-        $sql = "SELECT C.Course_Name, ER.Learner_ID, ER.Course_Code, ER.Course_Run_ID, ER.Start_Date, CR.End_Date, CR.Capacity FROM Enrollment_Record ER, Course_Run CR, Course C WHERE CR.Course_Code = ER.Course_Code AND CR.Course_Code = C.Course_Code AND CR.Course_Run_ID = ER.Course_Run_ID AND ER.Learner_ID=:trainerID;";
+        $sql = "SELECT C.Course_Name, ER.Learner_ID, ER.Course_Code, ER.Course_Run_ID, CR.Start_Date, CR.End_Date, CR.Capacity FROM Enrollment_Record ER, Course_Run CR, Course C WHERE CR.Course_Code = ER.Course_Code AND CR.Course_Code = C.Course_Code AND CR.Course_Run_ID = ER.Course_Run_ID AND ER.Learner_ID=:trainerID;";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
