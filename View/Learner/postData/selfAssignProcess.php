@@ -7,6 +7,7 @@
     $learnerDAO = new LearnerDAO();
     $learnerDAO->selfAssign($_SESSION["userID"], $_GET["courseID"], $_GET["courseRunID"] );
 
-
+    header("Location:./../SelfAssign.php");
+    exit();
 
 ?>

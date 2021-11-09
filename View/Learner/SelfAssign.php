@@ -115,6 +115,9 @@
                     </tr>
                       ";
                     }
+                    if(sizeof($result) == 0){
+                      echo "<tr><td colspan='6' class='text-center'>No self-assign class</td></tr>";
+                    }
                   ?>
                   
                     <!-- <tr>
