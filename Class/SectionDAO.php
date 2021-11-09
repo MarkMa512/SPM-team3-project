@@ -177,7 +177,7 @@ class SectionDAO{
     function generateSectionById($empID, $courseCode, $courseRunID){
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
-        $sql = "SELECT * FROM section s, assignment a WHERE s.Course_Code=a.Course_Code AND s.Course_Run_ID=a.Course_Run_ID AND a.Instructor_ID=:empID AND s.Course_Code=:courseCode AND s.Course_Run_ID=:courseRunId;";
+        $sql = "SELECT * FROM Section s, Assignment a WHERE s.Course_Code=a.Course_Code AND s.Course_Run_ID=a.Course_Run_ID AND a.Instructor_ID=:empID AND s.Course_Code=:courseCode AND s.Course_Run_ID=:courseRunId;";
         // 1001
         $stmt = $pdo->prepare($sql); 
         $stmt->bindParam(":empID", $empID, PDO::PARAM_INT); 
@@ -203,7 +203,7 @@ class SectionDAO{
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
-        $sql = "SELECT c.Course_Name, s.Course_Code, s.Course_Run_ID, s.Section_ID FROM section s, assignment a, course c WHERE s.Course_Code=a.Course_Code AND s.Course_Run_ID=a.Course_Run_ID AND c.Course_Code = s.Course_Code AND a.Instructor_ID =:trainerID;";
+        $sql = "SELECT c.Course_Name, s.Course_Code, s.Course_Run_ID, s.Section_ID FROM Section s, Assignment a, Course c WHERE s.Course_Code=a.Course_Code AND s.Course_Run_ID=a.Course_Run_ID AND c.Course_Code = s.Course_Code AND a.Instructor_ID =:trainerID;";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);

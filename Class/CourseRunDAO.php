@@ -232,7 +232,7 @@ class CourseRunDAO{
         // SELECT * FROM material WHERE Course_Code='SR101' AND Course_Run_ID=1
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
-        $sql = "SELECT * FROM material WHERE Course_Code=:course_code AND Course_Run_ID=:course_run_id";
+        $sql = "SELECT * FROM Material WHERE Course_Code=:course_code AND Course_Run_ID=:course_run_id";
         $stmt = $pdo->prepare($sql); 
         $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
         $stmt->bindParam(":course_run_id", $courseRunID, PDO::PARAM_INT);
@@ -259,7 +259,7 @@ class CourseRunDAO{
         // output: true if success
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO enrollment_record (Learner_ID, Course_Code, Course_Run_ID) VALUES ( :learner_id,:course_code,:course_run_id);"; 
+        $sql = "INSERT INTO Enrollment_Record (Learner_ID, Course_Code, Course_Run_ID) VALUES ( :learner_id,:course_code,:course_run_id);"; 
         $stmt = $pdo->prepare($sql); 
         
         // $courseCode = $courseRun->getCourseCode(); 
@@ -282,7 +282,7 @@ class CourseRunDAO{
     function getTrainerID($courseCode, $courseRunID) {
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
-        $sql="SELECT Instructor_ID FROM assignment WHERE Course_Code=:courseCode AND Course_Run_ID = :courseRunID;";
+        $sql="SELECT Instructor_ID FROM Assignment WHERE Course_Code=:courseCode AND Course_Run_ID = :courseRunID;";
         $stmt = $pdo->prepare($sql); 
         $stmt->bindParam(":courseCode", $courseCode, PDO::PARAM_STR);
         $stmt->bindParam(":courseRunID", $courseRunID, PDO::PARAM_INT);

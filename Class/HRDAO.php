@@ -21,7 +21,7 @@ class HRDAO{
         // output: a list of course run of the courses the object
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
-        $sql = "SELECT * FROM Course_Run WHERE course_code = :course_code;"; 
+        $sql = "SELECT * FROM Course_Run WHERE Course_Code = :course_code;"; 
         $stmt = $pdo->prepare($sql); 
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
  
@@ -47,7 +47,7 @@ class HRDAO{
         $pdo = $conn->getConnection(); 
 
         
-        $sql = "SELECT * FROM Course_Run WHERE course_code = :course_code AND course_run_id = :course_run_id;"; 
+        $sql = "SELECT * FROM Course_Run WHERE Course_Code = :course_code AND Course_Run_ID = :course_run_id;"; 
         $stmt = $pdo->prepare($sql); 
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 

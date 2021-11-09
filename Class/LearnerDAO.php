@@ -9,7 +9,7 @@ class LearnerDAO{
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
-        $sql = "SELECT c.Course_Name, er.Learner_ID, er.Course_Code, er.Course_Run_ID, cr.Start_Date, cr.End_Date, cr.Capacity FROM enrollment_record er, course_run cr, course c WHERE cr.Course_Code=er.Course_Code AND cr.Course_Code=c.Course_Code AND cr.Course_Run_ID=er.Course_Run_ID AND er.Learner_ID=:trainerID;";
+        $sql = "SELECT C.Course_Name, ER.Learner_ID, ER.Course_Code, ER.Course_Run_ID, ER.Start_Date, CR.End_Date, CR.Capacity FROM Enrollment_Record ER, Course_Run CR, Course C WHERE CR.Course_Code = ER.Course_Code AND CR.Course_Code = C.Course_Code AND CR.Course_Run_ID = ER.Course_Run_ID AND ER.Learner_ID=:trainerID;";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $trainerID, PDO::PARAM_INT);
@@ -36,7 +36,7 @@ class LearnerDAO{
         // a list of Information regarding the material by learner for the class he has taken. 
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
-        $sql="SELECT * FROM enrollment_record er, material m, course c WHERE er.Course_Code=m.Course_Code AND er.Course_Run_ID=m.Course_Run_ID AND c.Course_Code=er.Course_Code AND Learner_ID=:trainerID";
+        $sql="SELECT * FROM Enrollment_Record ER, Material M, Course C WHERE ER.Course_Code=M.Course_Code AND ER.Course_Run_ID=M.Course_Run_ID AND C.Course_Code=ER.Course_Code AND Learner_ID=:trainerID";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":trainerID", $learnerID, PDO::PARAM_INT);
         $result = [];
@@ -292,7 +292,7 @@ class LearnerDAO{
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
 
-        $sql = "SELECT DISTINCT Course_Code FROM enrollment_record WHERE Learner_ID=:learnerID";
+        $sql = "SELECT DISTINCT Course_Code FROM Enrollment_Record WHERE Learner_ID=:learnerID";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
         $status = $stmt->execute(); 
@@ -314,7 +314,7 @@ class LearnerDAO{
     function getAllNotAttendCourseByUserId($learnerID){
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
-        $sql = "SELECT DISTINCT Course_Code FROM course WHERE Course_Code NOT IN 
+        $sql = "SELECT DISTINCT Course_Code FROM Course WHERE Course_Code NOT IN 
         (SELECT Course_Code FROM enrollment_record WHERE Learner_ID=:learnerID)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
@@ -336,7 +336,7 @@ class LearnerDAO{
     function selfAssign($learnerID, $courseCode, $courseRunCode ){
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
-        $sql = "INSERT INTO enrollment_record (Learner_ID, Course_Code, Course_Run_ID, Enroll_Date) 
+        $sql = "INSERT INTO Enrollment_Record (Learner_ID, Course_Code, Course_Run_ID, Enroll_Date) 
                 VALUES      (:learner_id, :course_code, :course_run_id, :enroll_date);"; 
         $stmt = $pdo->prepare($sql); 
         $time =  Date("Y-m-d H:i:s");
@@ -362,7 +362,7 @@ class LearnerDAO{
     function getAllCourseRun($learnerID){
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
-        $sql = "(SELECT * FROM quiz_record q, course c, course_run cr WHERE q.Course_Code=c.Course_Code AND cr.Course_Code=q.Course_Code AND cr.Course_Run_ID=q.Course_Run_ID AND q.Learner_ID=:learnerID)";
+        $sql = "(SELECT * FROM Quiz_Record q, Course c, Course_Run cr WHERE q.Course_Code=c.Course_Code AND cr.Course_Code=q.Course_Code AND cr.Course_Run_ID=q.Course_Run_ID AND q.Learner_ID=:learnerID)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
         $status = $stmt->execute(); 

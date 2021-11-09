@@ -9,7 +9,7 @@ class TrainerDAO{
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
 
-        $sql = "SELECT c.Course_Name, cr.Course_Code, cr.Course_Run_ID, cr.Capacity, cr.Start_Date, cr.End_Date FROM course_run cr, assignment a, course c 
+        $sql = "SELECT c.Course_Name, cr.Course_Code, cr.Course_Run_ID, cr.Capacity, cr.Start_Date, cr.End_Date FROM Course_Run cr, Assignment a, Course c 
         WHERE cr.Course_Code=a.Course_Code AND cr.Course_Run_ID=a.Course_Run_ID AND c.Course_Code = cr.Course_Code AND a.Instructor_ID = :trainerID;";
 
         $stmt = $conn->prepare($sql);
@@ -36,7 +36,7 @@ class TrainerDAO{
 
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
-        $sql="SELECT * FROM ASSIGNMENT A , MATERIAL M, COURSE C 
+        $sql="SELECT * FROM Assignment A , Material M, Course C 
         WHERE A.Course_Code = M.Course_Code AND M.Course_Code = C.Course_Code AND A.Course_Run_ID= M.Course_Run_ID 
         AND A.Course_Code=M.Course_Code AND M.Course_Code = C.Course_Code AND A.Instructor_ID=:trainerID;";
         $stmt = $conn->prepare($sql);
@@ -63,7 +63,7 @@ class TrainerDAO{
         $connMgr = new ConnectionManager();
         $conn = $connMgr->getConnection();
         $sql="SELECT c.Course_Name, a.Course_Code, a.Course_Run_ID, q.Section_ID, q.Quiz_Score, q.Attempt_Number 
-        FROM assignment a, course c, course_run cr, quiz_record q 
+        FROM Assignment a, Course c, Course_Run cr, Quiz_Record q 
         WHERE a.Course_Code=cr.Course_Code 
         AND a.Course_Run_ID=cr.Course_Run_ID 
         AND a.Course_Code=c.Course_Code 

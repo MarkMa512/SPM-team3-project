@@ -170,7 +170,7 @@ class QuizDAO{
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
         $sql = "SELECT qr.Learner_ID, qr.Course_Code, qr.Course_Run_ID, qr.Section_ID, qr.Attempt_Number, qr.Response_List, qr.Quiz_Score, qr.Quiz_Date_Time, q.Quiz_Title, q.Quiz_Question_List, q.Quiz_Answer_List 
-                FROM Quiz_Record AS qr LEFT JOIN quiz AS q 
+                FROM Quiz_Record AS qr LEFT JOIN Quiz AS q 
                 ON q.Course_Code = qr.Course_Code AND q.Course_Run_ID = qr.Course_Run_ID AND q.Section_ID = qr.Section_ID 
                 WHERE qr.Learner_ID = :learnerID AND qr.Course_Code = :courseCode AND qr.Course_Run_ID = :courserunID AND qr.Section_ID = :sectionID 
                 AND qr.Attempt_Number = (SELECT MAX(Attempt_Number) FROM Quiz_Record WHERE Learner_ID = :learnerID AND Course_Code = :courseCode AND Course_Run_ID = :courserunID AND Section_ID = :sectionID)"; 
