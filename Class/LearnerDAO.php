@@ -315,7 +315,7 @@ class LearnerDAO{
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection();
         $sql = "SELECT DISTINCT Course_Code FROM Course WHERE Course_Code NOT IN 
-        (SELECT Course_Code FROM enrollment_record WHERE Learner_ID=:learnerID)";
+        (SELECT Course_Code FROM Enrollment_Record WHERE Learner_ID=:learnerID)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":learnerID", $learnerID, PDO::PARAM_STR); 
         $status = $stmt->execute(); 
