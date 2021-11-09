@@ -2,7 +2,7 @@
     require_once "../../../Class/autoload.php";
     $empDAO = new EmployeeDAO();
     // var_dump($empDAO->getAllInstructors());
-    $instructors = $empDAO->getAllLearns();
+    // $instructors = $empDAO->getAllLearns();
     $result = [];
     // foreach ($instructors as $instructor) {
     //     $empID = $instructor->getEmpID();
