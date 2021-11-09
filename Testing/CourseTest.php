@@ -1,5 +1,5 @@
 <?php
-// TDD Auther: Adolphus
+// TDD Author: Adolphus
 require __DIR__ . '/../Class/Course.php';
 require __DIR__ . '/../Class/CourseRun.php';
 use PHPUnit\Framework\TestCase;
