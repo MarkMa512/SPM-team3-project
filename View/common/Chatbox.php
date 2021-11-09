@@ -401,6 +401,7 @@ var_dump($_SESSION);
 				});
 			}
 		}, created(){
+			this.displayMsg();
 			this.interval = setInterval(() => this.displayMsg(), 2000);
 		}
 	});
