@@ -9,6 +9,7 @@
         $name = $instructor->getEmpFirstName(). " " .$instructor->getEmpLastName();
         $result[] = ["EmpID"=>$empID, "Name"=>$name];
     }
+    
     $postJSON = json_encode($result);
     echo $postJSON;
 ?>
