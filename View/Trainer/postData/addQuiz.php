@@ -56,7 +56,11 @@ try{
     #header("Location:../SectionListForQuiz.html");
     exit();
 }
-#header("#to edit");
-header("Location:./../SectionListForQuiz.html");
+#echo "<script type='text/javascript'>alert('$message');</script>";
+#header("Location:./../SectionListForQuiz.html");
+echo '<script>
+alert("Quiz created");
+window.location.href="./../SectionListForQuiz.html";
+</script>';
 exit();
 ?>
