@@ -13,26 +13,6 @@
         });
     </script>
 
-      <style>
-          .footer-basic {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding:40px 0;
-        background-color:#ffffff;
-        color:#4b4c4d;
-        }
-
-
-        .footer-basic .copyright {
-         margin-top:15px;
-         text-align:center;
-         font-size:13px;
-         color:#aaa;
-         margin-bottom:0;
-        }
-  </style>
-
 </head>
 <body>
 
@@ -104,7 +84,7 @@
 <?php
 require_once "../../Class/autoload.php";
 session_start();
-var_dump($_GET);
+// var_dump($_GET);
 if(isset($_FILES['formFileLg']) && isset($_GET['cid'])){
   $errors= array();
   $file_name = str_replace(" ", "", $_FILES['formFileLg']['name']);
@@ -113,7 +93,7 @@ if(isset($_FILES['formFileLg']) && isset($_GET['cid'])){
   $file_type=$_FILES['formFileLg']['type'];
   $file_names = explode('.',$_FILES['formFileLg']['name']);
   $file_ext=strtolower($file_names[sizeof($file_names)-1]);
-  var_dump($file_ext);
+  // var_dump($file_ext);
   $extensions= array("jpeg","jpg","png", "docx", "pptx", "zip", "ppt", "pdf");
   
   if(in_array($file_ext,$extensions)=== false){

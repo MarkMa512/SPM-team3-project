@@ -5,7 +5,9 @@ class ConnectionManager {
     public function getConnection() {
         // for development / testing purposes only! 
         // fill up based on your own configurations
-        $servername = 'localhost';
+        // $servername = 'localhost';
+
+        $servername = "127.0.0.1";
         $username = 'root';
         $password = '';
         $dbname = 'LMS_Database';

@@ -13,5 +13,6 @@
         $postJSON = json_encode($result);
         echo $postJSON;
     }
+    // $msgDAO->newMessage(1, 1001, "Hello");
 
-?>
+    ?>

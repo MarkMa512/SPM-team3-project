@@ -25,9 +25,36 @@ class PostDAO{
         return $result; 
     }
 
+    // function getAllPostByAuthor($authorID){
+    //     // input: authorID 
+    //     // output: a list of Post Object of given authorID
+    //     // did not really used  in other part of the code base
+    //     $conn = new ConnectionManager(); 
+    //     $pdo = $conn->getConnection(); 
+    //     $sql = "SELECT * FROM Forum_Post WHERE Author_ID = :author_id;"; 
+    //     $stmt = $pdo->prepare($sql); 
+
+    //     $stmt->bindParam(":author_id", $authorID, PDO::PARAM_STR); 
+        
+    //     $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+    //     $status = $stmt->execute(); 
+    //     if(!$status){
+    //         var_dump($stmt->errorinfo());
+    //         # output any error if database access has problem
+    //     }
+    //     while($row = $stmt->fetch()){
+    //         $result[] = new Post($row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
+    //     }
+    //     $stmt->closeCursor();
+    //     $pdo = NULL; 
+        
+    //     return $result; 
+    // }
+
     function getAllPostByAuthor($authorID){
         // input: authorID 
-        // output: a list of Post Object of given authorID
+        // output: a list of Posts of given authorID
+        // did not really used  in other part of the code base
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
         $sql = "SELECT * FROM Forum_Post WHERE Author_ID = :author_id;"; 
@@ -41,8 +68,9 @@ class PostDAO{
             var_dump($stmt->errorinfo());
             # output any error if database access has problem
         }
+        $result =[];
         while($row = $stmt->fetch()){
-            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
+            $result[] = $row; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -55,6 +83,7 @@ class PostDAO{
     function getAllReplies($postID){
         // input: postID 
         // output: a list of CoursrRun Object of given postID
+        // did not really used  in other part of the code base
         $conn = new ConnectionManager(); 
         $pdo = $conn->getConnection(); 
         $sql = "SELECT * FROM Forum_Post WHERE Reply_To_Post_ID = :reply_to_post_id;"; 
@@ -69,7 +98,7 @@ class PostDAO{
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
-            $result[] = new Post($row["Post_ID"], $row["Topic"], $row["Content"], $row["Author_ID"], $row["Creation_Date_Time"], $row["Reply_To_Post_ID"]); 
+            $result[] = $row; 
         }
         $stmt->closeCursor();
         $pdo = NULL; 
@@ -82,6 +111,7 @@ class PostDAO{
     function ReplyPost($postObject){
         // input: a post object to be added into the database 
         // output: True if success
+        // this function got issue!!!!!
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
         $sql = "INSERT INTO Forum_Post (Post_ID, Topic, Content, Author_ID, Reply_To_Post_ID) 
@@ -112,9 +142,11 @@ class PostDAO{
         $pdo = NULL; 
         return $status; 
     }
+
     function newPost($topic, $content, $authorID){
         // input: a post object to be added into the database 
         // output: True if success
+        // this function does not work, causes 
         $conn = new ConnectionManager(); 
         $pdo = $conn-> getConnection(); 
         $sql = "INSERT INTO Forum_Post (Post_ID, Topic, Content, Author_ID) 
@@ -142,6 +174,7 @@ class PostDAO{
         $pdo = NULL; 
         return $status; 
     }
+
     function deletePost($postID){
         // input: a postID to be removed from the database
         // output: True if success 
@@ -165,7 +198,7 @@ class PostDAO{
     }
 
 
-    function editPost($editedPostObject){
+    function editPost($postID, $topic, $content){
         // input: a post object to be added into the database 
         // output: True if success
         $conn = new ConnectionManager(); 
@@ -176,9 +209,9 @@ class PostDAO{
 
         $stmt = $pdo->prepare($sql); 
 
-        $topic = $editedPostObject->getPostTopic();
-        $content = $editedPostObject->getPostContent(); 
-        $postID = $editedPostObject->getPostID(); 
+        // $topic = $editedPostObject->getPostTopic();
+        // $content = $editedPostObject->getPostContent(); 
+        // $postID = $editedPostObject->getPostID(); 
 
         $stmt->bindParam(":post_id", $postID, PDO::PARAM_STR); 
         $stmt->bindParam(":topic", $topic, PDO::PARAM_STR); 

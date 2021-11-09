@@ -1,18 +1,19 @@
 <?php 
+require_once "autoload.php"; 
 
 class Trainer extends Engineer{
 
-    function viewProgressOfLearner($trainerID){
+    // function viewProgressOfLearner($trainerID){
         
-    }
+    // }
 
-    function viewProgressOfCourse($courseCOde, $courseRunID){
+    // function viewProgressOfCourse($courseCOde, $courseRunID){
         
-    }
+    // }
 
-    function messageLearner($trainerID){
+    // function messageLearner($trainerID){
         
-    }
+    // }
 
 }
 
