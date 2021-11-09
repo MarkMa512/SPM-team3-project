@@ -36,6 +36,9 @@ VALUES
 -- Insertion 3
 INSERT INTO Course (Course_Code, Course_Name, Bagde_Name, Badge_Image, Course_Status)
 VALUES
+    ('CP001', 'Company Policy 1', 'Policy Badge 1', NULL, TRUE),
+    ('CP002', 'Company Policy 2', 'Policy Badge 2', NULL, TRUE),
+    ('CP003', 'Company Policy 3', 'Policy Badge 3', NULL, TRUE),
     ('SR101', 'Intro to Printer Servicing', 'Intro Badge', NULL, TRUE),
     ('PT101', 'Intro to Ink Printers', 'Ink Badge', NULL, TRUE), 
     ('PT102', 'Intro to Laserjet Printers', 'Laser Badge', NULL, TRUE), 
