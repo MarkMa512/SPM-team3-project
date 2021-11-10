@@ -46,7 +46,11 @@
     <div id="app" class="container">
        <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">List of Courses</h6>
-        <list-item v-for="data in posts" v-bind:cid="data.CourseCode" v-bind:cname="data.CourseName" v-bind:bname="data.BadgeName" v-bind:link="'UpdateCourse.php?coursecode='+data.CourseCode"></list-item>
+        <list-item v-for="data in posts" v-bind:cid="data.CourseCode" 
+        v-bind:cname="data.CourseName" v-bind:bname="data.BadgeName" 
+        v-bind:link="'UpdateCourse.php?coursecode='+data.CourseCode"
+        v-bind:clink="'CreateCourseRun.php?coursecode='+data.CourseCode"
+        ></list-item>
         
         <div class="media text-muted pt-3">
           <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
@@ -78,7 +82,7 @@
                 
             });
             app.component('list-item', {
-                props:['cid', 'cname','bname','link'],
+                props:['cid', 'cname','bname','link', 'clink'],
                 template:`
                 <div class="media text-muted pt-3">
                   <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
@@ -86,6 +90,7 @@
                     <div class="d-flex justify-content-between align-items-center w-100">
                       <strong class="text-gray-dark">{{ cid }}</strong>
                       <a :href="link">Edit</a>
+                      <a :href="clink">Create Course Run</a>
                       <a>Deactivate</a>
                     </div>
                     <span class="d-block">{{ cname }}</span>
