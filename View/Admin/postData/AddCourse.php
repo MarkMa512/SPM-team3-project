@@ -7,8 +7,11 @@
         $badgeName = $_POST['badgeName'];
         $course = new Course($code, $name, $badgeName);
         $courseDAO = new CourseDAO();
+        $courseRunDAO = new CourseRunDAO();
         try{
             $courseDAO->addCourse($course);
+            $initiateRun = new courseRun($code, 1, 40, "", "");
+            $courseRunDAO->addCourseRunByinitiate($initiateRun);
         }catch(Exception $e){
 
         }

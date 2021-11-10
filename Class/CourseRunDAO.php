@@ -86,6 +86,34 @@ class CourseRunDAO{
         $pdo = NULL; 
         return $status; 
     }
+    function addCourseRunByinitiate($courseRun){
+        // input: a courserun object to be added into the database 
+        // output: True if success
+        $conn = new ConnectionManager(); 
+        $pdo = $conn-> getConnection(); 
+        $sql = "INSERT INTO Course_Run (Course_Code, Course_Run_ID) 
+                VALUES      (:course_code, :course_run_ID);"; 
+        $stmt = $pdo->prepare($sql); 
+        
+        $courseCode = $courseRun->getCourseCode(); 
+        $courseRunID = $courseRun->getCourseRunID();
+
+
+
+        $stmt->bindParam(":course_code", $courseCode, PDO::PARAM_STR); 
+        $stmt->bindParam(":course_run_ID", $courseRunID, PDO::PARAM_STR); 
+
+        $status = $stmt->execute(); 
+
+        if(!$status){
+            var_dump($stmt->errorinfo());
+            # output any error if database access has problem
+        }
+
+        $stmt->closeCursor(); 
+        $pdo = NULL; 
+        return $status; 
+    }
     
     function removeCourseRun($courseCode, $courseRunID){
         // input: a courserun objec to be removed from the database
