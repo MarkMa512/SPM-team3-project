@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php 
+        session_start();
+        $_SESSION["getViewCourse"] = [$_GET['CourseCode'], $_GET['CourseRunID']]; 
+
+        
+        ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -84,6 +90,7 @@
           <a href="#">All Class</a>
         </small>
         -->
+        <div v-if="posts.length == 0"><h4>Inform your trainer to create session</h4></div>
       </div>
     </div>
 
@@ -91,7 +98,8 @@
   const app = Vue.createApp({
         data() {
             return {
-                posts: [] // array of post objects
+                posts: [], // array of post objects
+
             }
         },
         created() { // created is a hook that executes as soon as Vue instance is created

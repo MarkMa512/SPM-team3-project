@@ -6,11 +6,18 @@
 
       $sectionDAO = new SectionDAO();
       // var_dump($_SESSION);
-      // // $empID = $_SESSION["user"]->getEmpType();
+      // $empID = $_SESSION["user"]->getEmpType();
       // $crrUser = $_SESSION["user"];
       // $crrUser->getEmpType();
       // var_dump($crrUser);
-      $classes = $sectionDAO->getAllSection("SR101","1");
+
+      // var_dump($_SESSION);
+      if(isset($_SESSION["getViewCourse"])){
+        $classes = $sectionDAO->getAllSection($_SESSION["getViewCourse"][0],$_SESSION["getViewCourse"][1]);
+      }else{
+        $classes = $sectionDAO->getAllSection("SR101","1");
+      }
+      
 
       $result = [];
       foreach ($classes as $class) {

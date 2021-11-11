@@ -17,12 +17,14 @@ class SectionDAO{
         
         $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         $status = $stmt->execute(); 
+        $result = [];
         if(!$status){
             var_dump($stmt->errorinfo());
             # output any error if database access has problem
         }
         while($row = $stmt->fetch()){
             $result[] = new Section($row["Course_Code"], $row["Course_Run_ID"], $row["Section_ID"], $row["Section_Name"]); 
+            // $result[] = $row;
         }
         $stmt->closeCursor();
         $pdo = NULL; 
