@@ -26,7 +26,7 @@ class CourseRun{
         $this->courseRunID = $courseRunID;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
-        $this->$capacity = $capacity;
+        $this->capacity = $capacity;
         // insert statement to check if $courseCode and $courseRunID (PKs) exisited 
 
     }
