@@ -152,13 +152,13 @@ VALUES
 -- Insertion 14
 INSERT INTO Forum_Post(Post_ID, Topic, Content, Creation_Date_Time, Author_ID, Reply_To_Post_ID)
 VALUES
-    (0001, 'Hello  LMS Forum', 'Hi LMS learning Community, Albert here, I hope you enjoy this learning platform!', '2021-01-01 08:00:00', 0001, NULL), 
-    (0002, 'Reply to LMS Forum', 'Hey Albert, Thomas here, I am so excited to use the system', '2021-01-01 10:00:00', 1001, 0001)
+    (1001, 'Hello  LMS Forum', 'Hi LMS learning Community, Thomas here, I hope you enjoy this learning platform!', '2021-01-01 08:00:00', 0001, NULL), 
+    (1002, 'Reply to LMS Forum', 'Hey Thomas, Lucas here, I am so excited to use the system', '2021-01-01 10:00:00', 1001, 0001)
     ; 
 
 -- Insertion 15
 INSERT INTO MSG (Sender_ID, Reciever_ID, Message_Content,Sent_Date_Time, Read_Status)
 VALUES
-    (1001, 0001, "Test Message", "2021-01-02 09:00:00", TRUE), 
-     (0001, 1001, "Test Message", "2021-01-02 09:00:20", TRUE)
+    (1001, 2001, "Test Message", "2021-01-02 09:00:00", TRUE), 
+     (2001, 1001, "Test Message", "2021-01-02 09:00:20", TRUE)
      ;  
