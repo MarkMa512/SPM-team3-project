@@ -115,7 +115,7 @@ Class PostDAOTest extends TestCase{
         $postID = $testPostDAO->getAllPostByAuthor($testAuthor)[0]['Post_ID'];
 
         // check if the deletion is successfu;
-        $this->assertTrue($testPostDAO->deletePost($$postID)); 
+        $this->assertTrue($testPostDAO->deletePost($postID)); 
     }
 
 }
