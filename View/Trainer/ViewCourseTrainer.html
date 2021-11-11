@@ -75,9 +75,9 @@
                 this.posts = response.data
                 console.log(response.data);
                 for(let data in response.data){
-                  if(listOfCourse.indexOf(data.CourseCode) == -1){
+                  if(this.listOfCourse.indexOf(data.CourseCode) == -1){
                     this.posts.push(data);
-                    listOfCourse.push(data.CourseCode);
+                    this.listOfCourse.push(data.CourseCode);
                   }
                 }
             })
