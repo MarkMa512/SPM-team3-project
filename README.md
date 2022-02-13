@@ -2,8 +2,4 @@
 
 Engineer Learning System Development
 
-<p>Roles:</p>
-<br>
-<p>Learner</p>
-<p>Trainer</p>
-<p>HR</p>
+Hi, this is our first attempt in a Software Project development utlizing Agile Methodology. 
